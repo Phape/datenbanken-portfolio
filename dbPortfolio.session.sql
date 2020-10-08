@@ -1,60 +1,63 @@
 CREATE DATABASE dbportfolio;
 USE dbportfolio;
+CREATE TABLE ort (
+    Postleitzahl INT,
+    Ortsname VARCHAR(70),
+    PRIMARY KEY (Postleitzahl)
+);
+CREATE TABLE adresse (
+    Adress_ID INT,
+    Straße VARCHAR(70),
+    Hausnummer VARCHAR(10),
+    Postleitzahl INT,
+    PRIMARY KEY (Adress_ID),
+    FOREIGN KEY (Postleitzahl) REFERENCES ort(Postleitzahl)
+    );
 CREATE TABLE rentner (
-    Versicherungs_Nr INTEGER,
+    Versicherungs_Nr INT,
     Nachname VARCHAR(70), 
     Vorname VARCHAR(70), 
     Rentenart VARCHAR(20),
     Rentenhoehe FLOAT,
-    Arbeitgeber_ID INTEGER,
-    PRIMARY KEY (Versicherungs_Nr)
+    Arbeitgeber_ID INT,
+    Adress_ID INT,
+    PRIMARY KEY (Versicherungs_Nr),
+    FOREIGN KEY (Adress_ID) REFERENCES adresse(Adress_ID)
     );
 CREATE TABLE vertrag (
-    Vertrags_ID INTEGER,
+    Vertrags_ID INT,
     Vertragsstatus VARCHAR(20),
     Typ VARCHAR(10),
     Abschlussdatum DATE,
-    Versicherungs_Nr INTEGER,
+    Versicherungs_Nr INT,
     PRIMARY KEY (Vertrags_ID)
 );
-CREATE TABLE adresse (
-    Adress_ID INTEGER,
-    Straße VARCHAR(70),
-    Hausnummer VARCHAR(10),
-    Postleitzahl INTEGER,
-    PRIMARY KEY (Adress_ID)
-);
 CREATE TABLE arbeitgeber (
-    Arbeitgeber_ID INTEGER,
-    Adress_ID INTEGER,
+    Arbeitgeber_ID INT,
+    Adress_ID INT,
     Firmenname VARCHAR(120),
-    Mitarbeiter_Nr INTEGER,
+    Mitarbeiter_Nr INT,
     Abrechnungsverband VARCHAR(10),
     PRIMARY KEY (Arbeitgeber_ID),
     FOREIGN KEY (Adress_ID) REFERENCES adresse(Adress_ID)
 );
 CREATE TABLE key_account_manager (
-    Mitarbeiter_Nr INTEGER,
+    Mitarbeiter_Nr INT,
     Vorname VARCHAR(70),
     Nachname  VARCHAR(70),
     Eintrittsdatum DATE,
     PRIMARY KEY (Mitarbeiter_Nr)
 );
-
-CREATE TABLE ort (
-    Postleitzahl INTEGER,
-    Ortsname VARCHAR(70),
-    PRIMARY KEY (Postleitzahl)
-);
 CREATE TABLE versicherter (
-    Versicherungs_Nr INTEGER,
+    Versicherungs_Nr INT,
     Nachname VARCHAR(70),
     Vorname VARCHAR(70),
     Geburtsdatum DATE,
-    Adress_ID INTEGER,
-    Arbeitgeber_ID INTEGER,
+    Adress_ID INT,
+    Arbeitgeber_ID INT,
     Gehalt FLOAT,
-    PRIMARY KEY (Versicherungs_Nr)
+    PRIMARY KEY (Versicherungs_Nr),
+    FOREIGN KEY (Adress_ID) REFERENCES adresse(Adress_ID)
 );
 
 INSERT INTO vertrag (
