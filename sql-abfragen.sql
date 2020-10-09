@@ -56,6 +56,43 @@ CREATE TABLE versicherter (
 
 SAVEPOINT vor_insert;
 
+-- Inserts
+
+INSERT INTO ort (Postleitzahl, Ortsname)
+VALUES (),
+(), --bitte Beispieldaten einfügen
+();
+
+INSERT INTO adresse (Adress_ID, Straße, Hausnummer, Postleitzahl)
+VALUES (),
+(), --bitte Beispieldaten einfügen
+();
+
+INSERT INTO key_account_manager (Mitarbeiter_Nr, Vorname, Nachname, Eintrittsdatum)
+VALUES (),
+(), --bitte Beispieldaten einfügen
+();
+
+INSERT INTO arbeitgeber (Arbeitgeber_ID, Adress_ID, Firmenname, Mitarbeiter_Nr, Abrechnungsverband)
+VALUES (),
+(),
+();
+
+INSERT INTO versicherter (Versicherungs_Nr, Nachname, Vorname, Geburtsdatum, Adress_ID, Arbeitgeber_ID, Gehalt)
+VALUES (),
+(),
+();
+
+INSERT INTO vertrag (Vertrags_ID, Vertragsstatus, Typ, Abschlussdatum, Versicherungs_Nr)
+Values ('101', ),
+--woher wüsste man hier die Versicherungs-Nr, diese muss ja erst automatisch generiert werden
+--um generiert zu werden, muss doch erst der rentner-Insert abgeschlossen sein, oder?
+(aktiv, klassik, 12.12.2000), --vertragsId automatisch?, Versicherungsnummer an der stelle noch nicht generiert
+(aktiv, klassik, 01.12.1990),
+(aktiv, dynamik, 15.09.1990),
+(aktiv, riester, 20.03.1978),
+(inaktiv, klassik, 23.11.2002);
+
 INSERT INTO rentner (Versicherungs_Nr, Nachname, Vorname, Rentenart, Rentenhoehe, Arbeitgeber_ID)
 VALUES (Müller, Max, Altersrente, 360, 1), --versicherungs Nr fehlt noch, sollte automatisch generiert werden
 (Frey, Roman, Altersrente, 332, 1),
@@ -64,31 +101,25 @@ Ulm, Markus, Altersrente, 234, 2),
 (Nau, Olaf, Altersrente, 97, 3);
 
 
-INSERT INTO vertrag (Vertrags_ID, Vertragsstatus, Typ, Abschlussdatum, Versicherungs_Nr)
-Values ('101', ),
-(); --woher wüsste man hier die Versicherungs-Nr, diese muss ja erst automatisch generiert werden
---um generiert zu werden, muss doch erst der rentner-Insert abgeschlossen sein, oder?
 
+-- Beispiele für Foreign Key
 
-INSERT INTO arbeitgeber (Arbeitgeber_ID, Adress_ID, Firmenname, Mitarbeiter_Nr, Abrechnungsverband)
-VALUES (),
-(), --bitte Beispieldaten einfügen
-();
+CREATE TABLE aatest(
+    ID INTEGER NOT NULL AUTO_INCREMENT,
+    Name VARCHAR(70),
+    PRIMARY KEY (ID)
+);
 
+CREATE TABLE aatest1(
+    ID INTEGER NOT NULL AUTO_INCREMENT,
+    Nachname VARCHAR(70),
+    Parent_ID INTEGER,
+    PRIMARY KEY (ID),
+    FOREIGN KEY (Parent_ID) REFERENCES aatest(ID)
+);
 
-INSERT INTO key_account_manager (Mitarbeiter_Nr, Vorname, Nachname, Eintrittsdatum)
-VALUES (),
-(), --bitte Beispieldaten einfügen
-();
+INSERT INTO aatest1 (Nachname)
+VALUE ('Mayer');
 
-
-INSERT INTO adresse (Adress_ID, Straße, Hausnummer, Postleitzahl)
-VALUES (),
-(), --bitte Beispieldaten einfügen
-();
-
-
-INSERT INTO ort (Postleitzahl, Ortsname)
-VALUES (),
-(), --bitte Beispieldaten einfügen
-();
+INSERT INTO aatest(Name)
+VALUE ('Philipp');
