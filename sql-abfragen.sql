@@ -57,13 +57,17 @@ CREATE TABLE versicherter (
 SAVEPOINT vor_insert;
 
 INSERT INTO rentner (Versicherungs_Nr, Nachname, Vorname, Rentenart, Rentenhoehe, Arbeitgeber_ID)
-VALUES ('Jutta', 'Müller', '0819', 3500), --beispiele, bitte mit unseren Daten füllen
-(NULL, 'Groß', '0820', NULL);
+VALUES (Müller, Max, Altersrente, 360, 1), --versicherungs Nr fehlt noch, sollte automatisch generiert werden
+(Frey, Roman, Altersrente, 332, 1),
+Ulm, Markus, Altersrente, 234, 2),
+(Braun, Thomas, Witwenrente, 109, 4),
+(Nau, Olaf, Altersrente, 97, 3);
 
 
 INSERT INTO vertrag (Vertrags_ID, Vertragsstatus, Typ, Abschlussdatum, Versicherungs_Nr)
 Values ('101', ),
-(); --bitte Beispieldaten einfügen
+(); --woher wüsste man hier die Versicherungs-Nr, diese muss ja erst automatisch generiert werden
+--um generiert zu werden, muss doch erst der rentner-Insert abgeschlossen sein, oder?
 
 
 INSERT INTO arbeitgeber (Arbeitgeber_ID, Adress_ID, Firmenname, Mitarbeiter_Nr, Abrechnungsverband)
