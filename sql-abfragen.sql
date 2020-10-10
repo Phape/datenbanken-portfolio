@@ -7,7 +7,9 @@ CREATE TABLE rentner (
     Rentenart VARCHAR(20),
     Rentenhoehe FLOAT,
     Arbeitgeber_ID INTEGER,
-    PRIMARY KEY (Versicherungs_Nr)
+    PRIMARY KEY (Versicherungs_Nr),
+    FOREIGN KEY (Adress_ID) REFERENCES adresse(Adress_ID),
+    FOREIGN KEY (Arbeitgeber_ID) REFERENCES arbeitgeber(Arbeitgeber_ID)
     );
 CREATE TABLE vertrag (
     Vertrags_ID INTEGER NOT NULL AUTO_INCREMENT,
@@ -15,7 +17,9 @@ CREATE TABLE vertrag (
     Typ VARCHAR(10),
     Abschlussdatum DATE,
     Versicherungs_Nr INTEGER,
-    PRIMARY KEY (Vertrags_ID)
+    PRIMARY KEY (Vertrags_ID),
+    FOREIGN KEY (Versicherungs_Nr) REFERENCES rentner(Versicherungs_Nr),
+    FOREIGN KEY (Versicherungs_Nr) REFERENCES versicherter(Versicherungs_Nr)
 );
 CREATE TABLE arbeitgeber (
     Arbeitgeber_ID INTEGER NOT NULL AUTO_INCREMENT,
@@ -23,7 +27,9 @@ CREATE TABLE arbeitgeber (
     Firmenname VARCHAR(120),
     Mitarbeiter_Nr INTEGER,
     Abrechnungsverband VARCHAR(10),
-    PRIMARY KEY (Arbeitgeber_ID)
+    PRIMARY KEY (Arbeitgeber_ID),
+    FOREIGN KEY (Adress_ID) REFERENCES adresse(Adress_ID),
+    FOREIGN KEY (Mitarbeiter_Nr) REFERENCES key_account_manager(Mitarbeiter_Nr)
 );
 CREATE TABLE key_account_manager (
     Mitarbeiter_Nr INTEGER NOT NULL AUTO_INCREMENT,
@@ -37,7 +43,8 @@ CREATE TABLE adresse (
     Straße VARCHAR(70),
     Hausnummer VARCHAR(10),
     Postleitzahl INTEGER,
-    PRIMARY KEY (Adress_ID)
+    PRIMARY KEY (Adress_ID),
+    FOREIGN KEY (Postleitzahl) REFERENCES ort(Postleitzahl)
 );
 CREATE TABLE ort (
     Postleitzahl INTEGER NOT NULL,
@@ -53,6 +60,8 @@ CREATE TABLE versicherter (
     Arbeitgeber_ID INTEGER,
     Gehalt FLOAT,
     PRIMARY KEY (Versicherungs_Nr)
+    FOREIGN KEY (Adress_ID) REFERENCES adresse(Adress_ID),
+    FOREIGN KEY (Arbeitgeber_ID) REFERENCES arbeitgeber(Arbeitgeber_ID)
 );
 
 SAVEPOINT vor_insert;
