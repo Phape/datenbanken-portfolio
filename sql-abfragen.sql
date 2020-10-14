@@ -98,51 +98,31 @@ VALUES ('Frauke', 'Bauer', 2000-04-01),
 ('Tim', 'Seibert', 1990-12-01),
 ('Walter', 'Mayer', 1980-01-01);
 
+--adress-ids müssen noch angepasst werden, nachdem die ids automatisch generiert wurden
 INSERT INTO arbeitgeber (Firmenname, Adress_ID, Abrechnungsverband, Mitarbeiter_Nr)
-VALUES ('ENBW', 6, 'West', 2312), --adress-ids müssen noch angepasst werden, nachdem die ids automatisch generiert wurden
+VALUES ('ENBW', 6, 'West', 2312), 
 ('DRV', 7, 'West', 4321),
 ('Stadt Karlsruhe', 8, 'West', 2645),
 ('Stadt Berlin', 9, 'Ost', 1265),
 ('SAP', 15, 'West', 2312);
 
+--adress-id und arbeitgeber-id nach automatischer generierung ergänzen
 INSERT INTO versicherter (Vorname, Nachname, Geburtsdatum, Versorgungspunkte, Adress_ID, Rentenart, Versicherungsstatus, Arbeitgeber_ID)
 VALUES ('Horst', 'Ehren', 1978-11-08, 34, 1, '', 'aktiv', 6),
-('Axel', 'Zaun', 1990-07-23, 55, 2, '', 'aktiv',  6), --adress-id und arbeitgeber-id nach automatischer generierung ergänzen
+('Axel', 'Zaun', 1990-07-23, 55, 2, '', 'aktiv',  6), 
 ('Ulli', 'Weber', 2000-10-06, 90, 3, '', 'pausiert', 7),
 ('Lilli', 'Schick', 1988-08-15, 150, 4, '', 'pausiert', 7),
 ('Karl', 'Grün', 1983-09-17, 180, 5, '', 'aktiv', 8),
-('Max', 'Müller', 1950-02-02, 'Altersrente', 10, 'inaktiv', 1), 
-('Roman', 'Frey', 1950-12-08, 'Altersrente', 11, 'inaktiv', 1),
-('Markus', 'Ulm', 1931-09-13, 'Altersrente', 12, 'inaktiv', 2),
-('Thomas', 'Braun', 1920-12-09, 'Witwenrente', 13, 'inaktikv', 4),
-('Olaf', 'Nau', 1936-05-30, 'Altersrente', 14, 'inaktiv', 3);
+('Max', 'Müller', 1950-02-02, 190, 10, 'Altersrente', 'inaktiv', 1), 
+('Roman', 'Frey', 1950-12-08, 220, 11, 'Altersrente', 'inaktiv', 1),
+('Markus', 'Ulm', 1931-09-13, 259, 12, 'Altersrente', 'inaktiv', 2),
+('Thomas', 'Braun', 1920-12-09, 274, 13, 'Witwenrente', 'inaktikv', 4),
+('Olaf', 'Nau', 1936-05-30, 210, 14, 'Altersrente', 'inaktiv', 3);
 
+--Versicherungsnummern ergänzen, nachdem sie generiert wurden
 INSERT INTO vertrag (Vertragsstatus, Vertragstyp, Abschlussdatum, Versicherungs_Nr)
-Values ('aktiv', 'klassik', 2000-12-12), --Versicherungsnummern ergänzen, nachdem sie generiert wurden
+Values ('aktiv', 'klassik', 2000-12-12), 
 ('aktiv', 'klassik', 1990-12-01),
 ('aktiv', 'dynamik', 1990-09-15),
 ('aktiv', 'riester', 1978-03-20),
 ('inaktiv', 'klassik', 2002-11-23);
-
-
--- Beispiele für Foreign Key
-
-CREATE TABLE aatest(
-    ID INTEGER NOT NULL AUTO_INCREMENT,
-    Name VARCHAR(70),
-    PRIMARY KEY (ID)
-);
-
-CREATE TABLE aatest1(
-    ID INTEGER NOT NULL AUTO_INCREMENT,
-    Nachname VARCHAR(70),
-    Parent_ID INTEGER,
-    PRIMARY KEY (ID),
-    FOREIGN KEY (Parent_ID) REFERENCES aatest(ID)
-);
-
-INSERT INTO aatest1 (Nachname)
-VALUE ('Mayer');
-
-INSERT INTO aatest(Name)
-VALUE ('Philipp');
