@@ -41,16 +41,16 @@ CREATE TABLE ort (
     PRIMARY KEY (Postleitzahl)
 );
 CREATE TABLE versicherter (
-    Versicherungs_Nr INTEGER NOT NULL, --auto_increment Konflikt mit rentner
+    Versicherungs_Nr INTEGER NOT NULL AUTO_INCREMENT, 
     Nachname VARCHAR(70),
     Vorname VARCHAR(70),
     Geburtsdatum DATE,
     Adress_ID INTEGER,
     Rentenart VARCHAR(20),
-    Rentenhoehe FLOAT,
     Arbeitgeber_ID INTEGER,
-    Gehalt FLOAT,
-    PRIMARY KEY (Versicherungs_Nr)
+    Versorgungspunkte FLOAT,
+    Versicherungsstatus VARCHAR(20),
+    PRIMARY KEY (Versicherungs_Nr),
     FOREIGN KEY (Adress_ID) REFERENCES adresse(Adress_ID),
     FOREIGN KEY (Arbeitgeber_ID) REFERENCES arbeitgeber(Arbeitgeber_ID)
 );
@@ -60,67 +60,67 @@ SAVEPOINT vor_insert;
 -- Inserts
 
 INSERT INTO ort (Postleitzahl, Ortsname)
-VALUES (76887, Bad Bergzabern),
-(76131, Karlsruhe),
-(55116, Mainz),
-(76137, Karlsruhe),
-(10115, Berlin),
-(20095, Hamburg),
-(76133, Karlsruhe),
-(76199, Ettlingen),
-(75177, Pforzheim),
-(76829, Landau)
+VALUES (76887, 'Bad Bergzabern'),
+(76131, 'Karlsruhe'),
+(55116, 'Mainz'),
+(76137, 'Karlsruhe'),
+(10115, 'Berlin'),
+(20095, 'Hamburg'),
+(76133, 'Karlsruhe'),
+(76199, 'Ettlingen'),
+(75177, 'Pforzheim'),
+(76829, 'Landau')
 
 INSERT INTO adresse (Straße, Hausnummer, Postleitzahl)
-VALUES (Hauptstraße, 54, 76887),
-(Am Bach, 99, 10115),
-(Zollstraße, 3, 55116),
-(Bahnhofstraße, 65	76137),
-(Gartenstraße, 45, 20095),
-(Ettlingerstraße, 12, 76131),
-(Am Seeweg, 4, 76131),
-(Bachstraße, 9, 76133),
-(Bahnhofstraße, 65, 76137),
-(Hansstraße, 2, 76199),
-(Am Tor, 33, 76199),
-(Donaustraße, 2, 76829),
-(Zaunpfad, 78a, 76829),
-(Untere Hauptstraße, 231, 55116),
-(Adenauerring, 99, 75177);
+VALUES ('Hauptstraße', '54', 76887),
+('Am Bach', '99', 10115),
+('Zollstraße', '3', 55116),
+('Bahnhofstraße', '65', 76137),
+('Gartenstraße', '45', 20095),
+('Ettlingerstraße', '12', 76131),
+('Am Seeweg', '4', 76131),
+('Bachstraße', '9', 76133),
+('Bahnhofstraße', '65', 76137),
+('Hansstraße', '2', 76199),
+('Am Tor', '33', 76199),
+('Donaustraße', '2', 76829),
+('Zaunpfad', '78a', 76829),
+('Untere Hauptstraße', '231', 55116),
+('Adenauerring', '99', 75177);
 
 INSERT INTO key_account_manager (Vorname, Nachname, Eintrittsdatum)
-VALUES (Frauke, Bauer, 2000-04-01),
-(Martin, Lutz, 2010-06-15),
-(Ingrid, Nist, 2020-08-15),
-(Tim, Seibert, 1990-12-01),
-(Walter, Mayer, 1980-01-01);
+VALUES ('Frauke', 'Bauer', 2000-04-01),
+('Martin', 'Lutz', 2010-06-15),
+('Ingrid', 'Nist', 2020-08-15),
+('Tim', 'Seibert', 1990-12-01),
+('Walter', 'Mayer', 1980-01-01);
 
 INSERT INTO arbeitgeber (Firmenname, Adress_ID, Abrechnungsverband, Mitarbeiter_Nr)
-VALUES (ENBW, 6, West, 2312), --adress-ids müssen noch angepasst werden, nachdem die ids automatisch generiert wurden
-(DRV, 7, West, 4321),
-(Stadt Karlsruhe, 8, West, 2645),
-(Stadt Berlin, 9, Ost, 1265),
-(SAP, 15, West, 2312);
+VALUES ('ENBW', 6, 'West', 2312), --adress-ids müssen noch angepasst werden, nachdem die ids automatisch generiert wurden
+('DRV', 7, 'West', 4321),
+('Stadt Karlsruhe', 8, 'West', 2645),
+('Stadt Berlin', 9, 'Ost', 1265),
+('SAP', 15, 'West', 2312);
 
 INSERT INTO vertrag (Vertragsstatus, Typ, Abschlussdatum, Versicherungs_Nr)
-Values (aktiv, klassik, 2000-12-12), --Versicherungsnummern ergänzen, nachdem sie generiert wurden
-(aktiv, klassik, 1990-12-01),
-(aktiv, dynamik, 1990-09-15),
-(aktiv, riester, 1978-03-20),
-(inaktiv, klassik, 2002-11-23);
+Values ('aktiv', 'klassik', 2000-12-12), --Versicherungsnummern ergänzen, nachdem sie generiert wurden
+('aktiv', 'klassik', 1990-12-01),
+('aktiv', 'dynamik', 1990-09-15),
+('aktiv', 'riester', 1978-03-20),
+('inaktiv', 'klassik', 2002-11-23);
 
-INSERT INTO versicherter (Versicherungs_Nr, Vorname, Nachname, Geburtsdatum, Gehalt, Adress_ID, Rentenart, Rentenhoehe, Arbeitgeber_ID)
-VALUES (Horst, Ehren, 1978-11-08, 3434), --versicherungs Nr fehlt noch, sollte automatisch generiert werden
-(Axel, Zaun, 1990-07-23, 1587), --adress-id und arbeitgeber-id nach automatischer generierung ergänzen
-(Ulli, Weber, 2000-10-06, 5676),
-(Lilli, Schick, 1988-08-15, 3399),
-(Karl, Grün, 1983-09-17, 2456),
+INSERT INTO versicherter (Vorname, Nachname, Geburtsdatum, Versorgungspunkte, Adress_ID, Rentenart, Versicherungsstatus, Arbeitgeber_ID)
+VALUES ('Horst', 'Ehren', 1978-11-08, 34, 1, '', 'aktiv', 6), --versicherungs Nr fehlt noch, sollte automatisch generiert werden
+('Axel', 'Zaun', 1990-07-23, 55, 2, '', 'aktiv',  6), --adress-id und arbeitgeber-id nach automatischer generierung ergänzen
+('Ulli', 'Weber', 2000-10-06, 90, 3, '', 'pausiert', 7),
+('Lilli', 'Schick', 1988-08-15, 150, 4, '', 'pausiert', 7),
+('Karl', 'Grün', 1983-09-17, 180, 5, '', 'aktiv', 8),
 
-(Max, Müller, 1950-02-02, Altersrente, 360, 1), --versicherungs Nr fehlt noch, sollte automatisch generiert werden
-(Roman, Frey, 1950-12-08, Altersrente, 332, 1), --arbeitgeber_id nach Generierung anpassen
-(Markus, Ulm, 1931-09-13, Altersrente, 234, 2),
-(Thomas, Braun, 1920-12-09, Witwenrente, 109, 4),
-(Olaf, Nau, 1936-05-30, Altersrente, 97, 3);
+('Max', 'Müller', 1950-02-02, 'Altersrente', 10, 'inaktiv', 1), 
+('Roman', 'Frey', 1950-12-08, 'Altersrente', 11, 'inaktiv', 1), --arbeitgeber_id nach Generierung anpassen
+('Markus', 'Ulm', 1931-09-13, 'Altersrente', 12, 'inaktiv', 2),
+('Thomas', 'Braun', 1920-12-09, 'Witwenrente', 13, 'inaktikv', 4),
+('Olaf', 'Nau', 1936-05-30, 'Altersrente', 14, 'inaktiv', 3);
 
 
 
