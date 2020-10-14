@@ -1,31 +1,9 @@
 CREATE DATABASE dbPortfolio;
 
-CREATE TABLE vertrag (
-    Vertrags_ID INTEGER NOT NULL AUTO_INCREMENT,
-    Vertragsstatus VARCHAR(20),
-    Typ VARCHAR(10),
-    Abschlussdatum DATE,
-    Versicherungs_Nr INTEGER,
-    PRIMARY KEY (Vertrags_ID),
-    FOREIGN KEY (Versicherungs_Nr) REFERENCES rentner(Versicherungs_Nr),
-    FOREIGN KEY (Versicherungs_Nr) REFERENCES versicherter(Versicherungs_Nr)
-);
-CREATE TABLE arbeitgeber (
-    Arbeitgeber_ID INTEGER NOT NULL AUTO_INCREMENT,
-    Adress_ID INTEGER,
-    Firmenname VARCHAR(120),
-    Mitarbeiter_Nr INTEGER,
-    Abrechnungsverband VARCHAR(10),
-    PRIMARY KEY (Arbeitgeber_ID),
-    FOREIGN KEY (Adress_ID) REFERENCES adresse(Adress_ID),
-    FOREIGN KEY (Mitarbeiter_Nr) REFERENCES key_account_manager(Mitarbeiter_Nr)
-);
-CREATE TABLE key_account_manager (
-    Mitarbeiter_Nr INTEGER NOT NULL AUTO_INCREMENT,
-    Vorname VARCHAR(70),
-    Nachname  VARCHAR(70),
-    Eintrittsdatum DATE,
-    PRIMARY KEY (Mitarbeiter_Nr)
+CREATE TABLE ort (
+    Postleitzahl INTEGER NOT NULL,
+    Ortsname VARCHAR(70),
+    PRIMARY KEY (Postleitzahl)
 );
 CREATE TABLE adresse (
     Adress_ID INTEGER NOT NULL AUTO_INCREMENT,
@@ -35,25 +13,47 @@ CREATE TABLE adresse (
     PRIMARY KEY (Adress_ID),
     FOREIGN KEY (Postleitzahl) REFERENCES ort(Postleitzahl)
 );
-CREATE TABLE ort (
-    Postleitzahl INTEGER NOT NULL,
-    Ortsname VARCHAR(70),
-    PRIMARY KEY (Postleitzahl)
+CREATE TABLE key_account_manager (
+    Mitarbeiter_Nr INTEGER NOT NULL AUTO_INCREMENT,
+    Vorname VARCHAR(70),
+    Nachname  VARCHAR(70),
+    Eintrittsdatum DATE,
+    PRIMARY KEY (Mitarbeiter_Nr)
+);
+CREATE TABLE arbeitgeber (
+    Arbeitgeber_ID INTEGER NOT NULL AUTO_INCREMENT,
+    Firmenname VARCHAR(120),
+    Adress_ID INTEGER,
+    Abrechnungsverband VARCHAR(10),
+    Mitarbeiter_Nr INTEGER,
+    PRIMARY KEY (Arbeitgeber_ID),
+    FOREIGN KEY (Adress_ID) REFERENCES adresse(Adress_ID),
+    FOREIGN KEY (Mitarbeiter_Nr) REFERENCES key_account_manager(Mitarbeiter_Nr)
 );
 CREATE TABLE versicherter (
     Versicherungs_Nr INTEGER NOT NULL AUTO_INCREMENT, 
-    Nachname VARCHAR(70),
     Vorname VARCHAR(70),
+    Nachname VARCHAR(70),
     Geburtsdatum DATE,
+    Versorgungspunkte FLOAT,
     Adress_ID INTEGER,
     Rentenart VARCHAR(20),
-    Arbeitgeber_ID INTEGER,
-    Versorgungspunkte FLOAT,
     Versicherungsstatus VARCHAR(20),
+    Arbeitgeber_ID INTEGER,
     PRIMARY KEY (Versicherungs_Nr),
     FOREIGN KEY (Adress_ID) REFERENCES adresse(Adress_ID),
     FOREIGN KEY (Arbeitgeber_ID) REFERENCES arbeitgeber(Arbeitgeber_ID)
 );
+CREATE TABLE vertrag (
+    Vertrags_ID INTEGER NOT NULL AUTO_INCREMENT,
+    Versicherungs_Nr INTEGER,
+    Abschlussdatum DATE,
+    Vertragsstatus VARCHAR(20),
+    Vertragstyp VARCHAR(10),
+    PRIMARY KEY (Vertrags_ID),
+    FOREIGN KEY (Versicherungs_Nr) REFERENCES versicherter(Versicherungs_Nr)
+);
+
 
 SAVEPOINT vor_insert;
 
@@ -69,7 +69,7 @@ VALUES (76887, 'Bad Bergzabern'),
 (76133, 'Karlsruhe'),
 (76199, 'Ettlingen'),
 (75177, 'Pforzheim'),
-(76829, 'Landau')
+(76829, 'Landau');
 
 INSERT INTO adresse (Straße, Hausnummer, Postleitzahl)
 VALUES ('Hauptstraße', '54', 76887),
@@ -86,7 +86,10 @@ VALUES ('Hauptstraße', '54', 76887),
 ('Donaustraße', '2', 76829),
 ('Zaunpfad', '78a', 76829),
 ('Untere Hauptstraße', '231', 55116),
-('Adenauerring', '99', 75177);
+('Adenauerring', '99', 75177),
+('Baldachinstraße', '23', 76133),
+('Schneeweg', '4', 10115),
+('Milchstraße', '44', 76133);
 
 INSERT INTO key_account_manager (Vorname, Nachname, Eintrittsdatum)
 VALUES ('Frauke', 'Bauer', 2000-04-01),
@@ -102,26 +105,24 @@ VALUES ('ENBW', 6, 'West', 2312), --adress-ids müssen noch angepasst werden, na
 ('Stadt Berlin', 9, 'Ost', 1265),
 ('SAP', 15, 'West', 2312);
 
-INSERT INTO vertrag (Vertragsstatus, Typ, Abschlussdatum, Versicherungs_Nr)
+INSERT INTO versicherter (Vorname, Nachname, Geburtsdatum, Versorgungspunkte, Adress_ID, Rentenart, Versicherungsstatus, Arbeitgeber_ID)
+VALUES ('Horst', 'Ehren', 1978-11-08, 34, 1, '', 'aktiv', 6),
+('Axel', 'Zaun', 1990-07-23, 55, 2, '', 'aktiv',  6), --adress-id und arbeitgeber-id nach automatischer generierung ergänzen
+('Ulli', 'Weber', 2000-10-06, 90, 3, '', 'pausiert', 7),
+('Lilli', 'Schick', 1988-08-15, 150, 4, '', 'pausiert', 7),
+('Karl', 'Grün', 1983-09-17, 180, 5, '', 'aktiv', 8),
+('Max', 'Müller', 1950-02-02, 'Altersrente', 10, 'inaktiv', 1), 
+('Roman', 'Frey', 1950-12-08, 'Altersrente', 11, 'inaktiv', 1),
+('Markus', 'Ulm', 1931-09-13, 'Altersrente', 12, 'inaktiv', 2),
+('Thomas', 'Braun', 1920-12-09, 'Witwenrente', 13, 'inaktikv', 4),
+('Olaf', 'Nau', 1936-05-30, 'Altersrente', 14, 'inaktiv', 3);
+
+INSERT INTO vertrag (Vertragsstatus, Vertragstyp, Abschlussdatum, Versicherungs_Nr)
 Values ('aktiv', 'klassik', 2000-12-12), --Versicherungsnummern ergänzen, nachdem sie generiert wurden
 ('aktiv', 'klassik', 1990-12-01),
 ('aktiv', 'dynamik', 1990-09-15),
 ('aktiv', 'riester', 1978-03-20),
 ('inaktiv', 'klassik', 2002-11-23);
-
-INSERT INTO versicherter (Vorname, Nachname, Geburtsdatum, Versorgungspunkte, Adress_ID, Rentenart, Versicherungsstatus, Arbeitgeber_ID)
-VALUES ('Horst', 'Ehren', 1978-11-08, 34, 1, '', 'aktiv', 6), --versicherungs Nr fehlt noch, sollte automatisch generiert werden
-('Axel', 'Zaun', 1990-07-23, 55, 2, '', 'aktiv',  6), --adress-id und arbeitgeber-id nach automatischer generierung ergänzen
-('Ulli', 'Weber', 2000-10-06, 90, 3, '', 'pausiert', 7),
-('Lilli', 'Schick', 1988-08-15, 150, 4, '', 'pausiert', 7),
-('Karl', 'Grün', 1983-09-17, 180, 5, '', 'aktiv', 8),
-
-('Max', 'Müller', 1950-02-02, 'Altersrente', 10, 'inaktiv', 1), 
-('Roman', 'Frey', 1950-12-08, 'Altersrente', 11, 'inaktiv', 1), --arbeitgeber_id nach Generierung anpassen
-('Markus', 'Ulm', 1931-09-13, 'Altersrente', 12, 'inaktiv', 2),
-('Thomas', 'Braun', 1920-12-09, 'Witwenrente', 13, 'inaktikv', 4),
-('Olaf', 'Nau', 1936-05-30, 'Altersrente', 14, 'inaktiv', 3);
-
 
 
 -- Beispiele für Foreign Key
