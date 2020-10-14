@@ -57,7 +57,6 @@ CREATE TABLE vertrag (
 
 SAVEPOINT vor_insert;
 
--- Inserts
 
 INSERT INTO ort (Postleitzahl, Ortsname)
 VALUES (76887, 'Bad Bergzabern'),
@@ -92,13 +91,12 @@ VALUES ('Hauptstraße', '54', 76887),
 ('Milchstraße', '44', 76133);
 
 INSERT INTO key_account_manager (Vorname, Nachname, Eintrittsdatum)
-VALUES ('Frauke', 'Bauer', 2000-04-01),
-('Martin', 'Lutz', 2010-06-15),
-('Ingrid', 'Nist', 2020-08-15),
-('Tim', 'Seibert', 1990-12-01),
-('Walter', 'Mayer', 1980-01-01);
+VALUES ('Frauke', 'Bauer', DATE '2000-04-01'),
+('Martin', 'Lutz', DATE '2010-06-15'),
+('Ingrid', 'Nist', DATE '2020-08-15'),
+('Tim', 'Seibert', DATE '1990-12-01'),
+('Walter', 'Mayer', DATE '1980-01-01');
 
---adress-ids müssen noch angepasst werden, nachdem die ids automatisch generiert wurden
 INSERT INTO arbeitgeber (Firmenname, Adress_ID, Abrechnungsverband, Mitarbeiter_Nr)
 VALUES ('ENBW', 6, 'West', 1), 
 ('DRV', 7, 'West', 1),
@@ -106,26 +104,34 @@ VALUES ('ENBW', 6, 'West', 1),
 ('Stadt Berlin', 9, 'Ost', 2),
 ('SAP', 15, 'West', 3),
 ('Helios Klinik', 16, 'West', 4),
-('Bundeswehr', 17, 'Ost', 5)
+('Bundeswehr', 17, 'Ost', 5),
 ('Stadt Stuttgart', 18, 'West', 4);
 
---adress-id und arbeitgeber-id nach automatischer generierung ergänzen
 INSERT INTO versicherter (Vorname, Nachname, Geburtsdatum, Versorgungspunkte, Adress_ID, Rentenart, Versicherungsstatus, Arbeitgeber_ID)
-VALUES ('Horst', 'Ehren', 1978-11-08, 34, 1, '', 'aktiv', 6),
-('Axel', 'Zaun', 1990-07-23, 55, 2, '', 'aktiv',  6), 
-('Ulli', 'Weber', 2000-10-06, 90, 3, '', 'pausiert', 7),
-('Lilli', 'Schick', 1988-08-15, 150, 4, '', 'pausiert', 7),
-('Karl', 'Grün', 1983-09-17, 180, 5, '', 'aktiv', 8),
-('Max', 'Müller', 1950-02-02, 190, 10, 'Altersrente', 'inaktiv', 1), 
-('Roman', 'Frey', 1950-12-08, 220, 11, 'Altersrente', 'inaktiv', 1),
-('Markus', 'Ulm', 1931-09-13, 259, 12, 'Altersrente', 'inaktiv', 2),
-('Thomas', 'Braun', 1920-12-09, 274, 13, 'Witwenrente', 'inaktikv', 4),
-('Olaf', 'Nau', 1936-05-30, 210, 14, 'Altersrente', 'inaktiv', 3);
+VALUES ('Horst', 'Ehren', DATE '1978-11-08', 34, 1, '', 'aktiv', 6),
+('Axel', 'Zaun', DATE '1990-07-23', 55, 2, '', 'aktiv',  6), 
+('Ulli', 'Weber', DATE '2000-10-06', 90, 3, '', 'pausiert', 7),
+('Lilli', 'Schick', DATE '1988-08-15', 150, 4, '', 'pausiert', 7),
+('Karl', 'Grün', DATE '1983-09-17', 180, 5, '', 'aktiv', 8),
+('Max', 'Müller', DATE '1950-02-02', 190, 10, 'Altersrente', 'inaktiv', 1), 
+('Roman', 'Frey', DATE '1950-12-08', 220, 11, 'Altersrente', 'inaktiv', 1),
+('Markus', 'Ulm', DATE '1931-09-13', 259, 12, 'Altersrente', 'inaktiv', 2),
+('Thomas', 'Braun', DATE '1920-12-09', 274, 13, 'Witwenrente', 'inaktikv', 4),
+('Olaf', 'Nau', DATE '1936-05-30', 210, 14, 'Altersrente', 'inaktiv', 3);
 
---Versicherungsnummern ergänzen, nachdem sie generiert wurden
 INSERT INTO vertrag (Vertragsstatus, Vertragstyp, Abschlussdatum, Versicherungs_Nr)
-Values ('aktiv', 'klassik', 2000-12-12), 
-('aktiv', 'klassik', 1990-12-01),
-('aktiv', 'dynamik', 1990-09-15),
-('aktiv', 'riester', 1978-03-20),
-('inaktiv', 'klassik', 2002-11-23);
+Values ('aktiv', 'klassik', 2000-12-12, 1), 
+('', 'klassik', DATE '1990-12-01', 6),
+('', 'dynamik', DATE '1979-09-15', 8),
+('', 'riester', DATE '1978-03-20', 10),
+('', 'klassik', DATE '1950-11-23', 9),
+('inaktiv', 'dynamik', DATE '2005-10-24', 1),
+('aktiv', 'klassik', DATE '2014-03-08', 2),
+('aktiv', 'klassik', DATE '2016-05-29', 3),
+('aktiv', 'klassik', DATE '2000-10-01', 4),
+('aktiv', 'klassik', DATE '2000-08-15', 5),
+('', 'klassik', DATE '1990-12-01', 6),
+('', 'dynamik', DATE '1964-04-01', 7),
+('', 'klassik', DATE '1961-03-15', 8),
+('', 'riester', DATE '1960-12-15', 9),
+('', 'klassik', DATE '1958-09-13', 10);
