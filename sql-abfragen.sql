@@ -1,16 +1,5 @@
 CREATE DATABASE dbPortfolio;
 
--- CREATE TABLE rentner (
---     Versicherungs_Nr INTEGER NOT NULL, --auto_increment Konflikt mit versicherter
---     Nachname VARCHAR(70), 
---     Vorname VARCHAR(70), 
---     Rentenart VARCHAR(20),
---     Rentenhoehe FLOAT,
---     Arbeitgeber_ID INTEGER,
---     PRIMARY KEY (Versicherungs_Nr),
---     FOREIGN KEY (Adress_ID) REFERENCES adresse(Adress_ID),
---     FOREIGN KEY (Arbeitgeber_ID) REFERENCES arbeitgeber(Arbeitgeber_ID)
---     );
 CREATE TABLE vertrag (
     Vertrags_ID INTEGER NOT NULL AUTO_INCREMENT,
     Vertragsstatus VARCHAR(20),
@@ -100,11 +89,11 @@ VALUES (Hauptstraße, 54, 76887),
 (Adenauerring, 99, 75177);
 
 INSERT INTO key_account_manager (Vorname, Nachname, Eintrittsdatum)
-VALUES (Frauke, Bauer, 01.04.2000),
-(Martin, Lutz, 15.06.2010),
-(Ingrid, Nist, 15.08.2020),
-(Tim, Seibert, 01.12.1990),
-(Walter, Mayer, 01.01.1980);
+VALUES (Frauke, Bauer, 2000-04-01),
+(Martin, Lutz, 2010-06-15),
+(Ingrid, Nist, 2020-08-15),
+(Tim, Seibert, 1990-12-01),
+(Walter, Mayer, 1980-01-01);
 
 INSERT INTO arbeitgeber (Firmenname, Adress_ID, Abrechnungsverband, Mitarbeiter_Nr)
 VALUES (ENBW, 6, West, 2312), --adress-ids müssen noch angepasst werden, nachdem die ids automatisch generiert wurden
@@ -114,33 +103,25 @@ VALUES (ENBW, 6, West, 2312), --adress-ids müssen noch angepasst werden, nachde
 (SAP, 15, West, 2312);
 
 INSERT INTO vertrag (Vertragsstatus, Typ, Abschlussdatum, Versicherungs_Nr)
-Values (aktiv, klassik, 12.12.2000), --Versicherungsnummern ergänzen, nachdem sie generiert wurden
-(aktiv, klassik, 01.12.1990),
-(aktiv, dynamik, 15.09.1990),
-(aktiv, riester, 20.03.1978),
-(inaktiv, klassik, 23.11.2002);
+Values (aktiv, klassik, 2000-12-12), --Versicherungsnummern ergänzen, nachdem sie generiert wurden
+(aktiv, klassik, 1990-12-01),
+(aktiv, dynamik, 1990-09-15),
+(aktiv, riester, 1978-03-20),
+(inaktiv, klassik, 2002-11-23);
 
 INSERT INTO versicherter (Versicherungs_Nr, Vorname, Nachname, Geburtsdatum, Gehalt, Adress_ID, Rentenart, Rentenhoehe, Arbeitgeber_ID)
-VALUES (Horst, Ehren, 11.08.1978, 3434), --versicherungs Nr fehlt noch, sollte automatisch generiert werden
-(Axel, Zaun, 23.07.1990, 1587), --adress-id und arbeitgeber-id nach automatischer generierung ergänzen
-(Ulli, Weber, 06.10.2000, 5676),
-(Lilli, Schick, 15.08.1988, 3399),
-(Karl, Grün, 17.09.1983, 2456),
+VALUES (Horst, Ehren, 1978-11-08, 3434), --versicherungs Nr fehlt noch, sollte automatisch generiert werden
+(Axel, Zaun, 1990-07-23, 1587), --adress-id und arbeitgeber-id nach automatischer generierung ergänzen
+(Ulli, Weber, 2000-10-06, 5676),
+(Lilli, Schick, 1988-08-15, 3399),
+(Karl, Grün, 1983-09-17, 2456),
 
-(Max, Müller, Altersrente, 360, 1), --versicherungs Nr fehlt noch, sollte automatisch generiert werden
-(Roman, Frey, Altersrente, 332, 1), --arbeitgeber_id nach Generierung anpassen
-(Markus, Ulm, Altersrente, 234, 2),
-(Thomas, Braun, Witwenrente, 109, 4),
-(Olaf, Nau, Altersrente, 97, 3);
+(Max, Müller, 1950-02-02, Altersrente, 360, 1), --versicherungs Nr fehlt noch, sollte automatisch generiert werden
+(Roman, Frey, 1950-12-08, Altersrente, 332, 1), --arbeitgeber_id nach Generierung anpassen
+(Markus, Ulm, 1931-09-13, Altersrente, 234, 2),
+(Thomas, Braun, 1920-12-09, Witwenrente, 109, 4),
+(Olaf, Nau, 1936-05-30, Altersrente, 97, 3);
 
-
-
--- INSERT INTO rentner (Versicherungs_Nr, Nachname, Vorname, Rentenart, Rentenhoehe, Arbeitgeber_ID)
--- VALUES (Müller, Max, Altersrente, 360, 1), --versicherungs Nr fehlt noch, sollte automatisch generiert werden
--- (Frey, Roman, Altersrente, 332, 1), --arbeitgeber_id nach Generierung anpassen
--- Ulm, Markus, Altersrente, 234, 2),
--- (Braun, Thomas, Witwenrente, 109, 4),
--- (Nau, Olaf, Altersrente, 97, 3);
 
 
 -- Beispiele für Foreign Key
