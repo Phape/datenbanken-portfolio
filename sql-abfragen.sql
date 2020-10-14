@@ -100,11 +100,14 @@ VALUES ('Frauke', 'Bauer', 2000-04-01),
 
 --adress-ids müssen noch angepasst werden, nachdem die ids automatisch generiert wurden
 INSERT INTO arbeitgeber (Firmenname, Adress_ID, Abrechnungsverband, Mitarbeiter_Nr)
-VALUES ('ENBW', 6, 'West', 2312), 
-('DRV', 7, 'West', 4321),
-('Stadt Karlsruhe', 8, 'West', 2645),
-('Stadt Berlin', 9, 'Ost', 1265),
-('SAP', 15, 'West', 2312);
+VALUES ('ENBW', 6, 'West', 1), 
+('DRV', 7, 'West', 1),
+('Stadt Karlsruhe', 8, 'West', 2),
+('Stadt Berlin', 9, 'Ost', 2),
+('SAP', 15, 'West', 3),
+('Helios Klinik', 16, 'West', 4),
+('Bundeswehr', 17, 'Ost', 5)
+('Stadt Stuttgart', 18, 'West', 4);
 
 --adress-id und arbeitgeber-id nach automatischer generierung ergänzen
 INSERT INTO versicherter (Vorname, Nachname, Geburtsdatum, Versorgungspunkte, Adress_ID, Rentenart, Versicherungsstatus, Arbeitgeber_ID)
