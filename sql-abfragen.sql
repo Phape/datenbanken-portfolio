@@ -1,16 +1,16 @@
 CREATE DATABASE dbPortfolio;
 
-CREATE TABLE rentner (
-    Versicherungs_Nr INTEGER NOT NULL, --auto_increment Konflikt mit versicherter
-    Nachname VARCHAR(70), 
-    Vorname VARCHAR(70), 
-    Rentenart VARCHAR(20),
-    Rentenhoehe FLOAT,
-    Arbeitgeber_ID INTEGER,
-    PRIMARY KEY (Versicherungs_Nr),
-    FOREIGN KEY (Adress_ID) REFERENCES adresse(Adress_ID),
-    FOREIGN KEY (Arbeitgeber_ID) REFERENCES arbeitgeber(Arbeitgeber_ID)
-    );
+-- CREATE TABLE rentner (
+--     Versicherungs_Nr INTEGER NOT NULL, --auto_increment Konflikt mit versicherter
+--     Nachname VARCHAR(70), 
+--     Vorname VARCHAR(70), 
+--     Rentenart VARCHAR(20),
+--     Rentenhoehe FLOAT,
+--     Arbeitgeber_ID INTEGER,
+--     PRIMARY KEY (Versicherungs_Nr),
+--     FOREIGN KEY (Adress_ID) REFERENCES adresse(Adress_ID),
+--     FOREIGN KEY (Arbeitgeber_ID) REFERENCES arbeitgeber(Arbeitgeber_ID)
+--     );
 CREATE TABLE vertrag (
     Vertrags_ID INTEGER NOT NULL AUTO_INCREMENT,
     Vertragsstatus VARCHAR(20),
@@ -57,6 +57,8 @@ CREATE TABLE versicherter (
     Vorname VARCHAR(70),
     Geburtsdatum DATE,
     Adress_ID INTEGER,
+    Rentenart VARCHAR(20),
+    Rentenhoehe FLOAT,
     Arbeitgeber_ID INTEGER,
     Gehalt FLOAT,
     PRIMARY KEY (Versicherungs_Nr)
@@ -118,19 +120,27 @@ Values (aktiv, klassik, 12.12.2000), --Versicherungsnummern ergänzen, nachdem s
 (aktiv, riester, 20.03.1978),
 (inaktiv, klassik, 23.11.2002);
 
-INSERT INTO versicherter (Versicherungs_Nr, Vorname, Nachname, Geburtsdatum, Gehalt, Adress_ID, Arbeitgeber_ID)
+INSERT INTO versicherter (Versicherungs_Nr, Vorname, Nachname, Geburtsdatum, Gehalt, Adress_ID, Rentenart, Rentenhoehe, Arbeitgeber_ID)
 VALUES (Horst, Ehren, 11.08.1978, 3434), --versicherungs Nr fehlt noch, sollte automatisch generiert werden
 (Axel, Zaun, 23.07.1990, 1587), --adress-id und arbeitgeber-id nach automatischer generierung ergänzen
 (Ulli, Weber, 06.10.2000, 5676),
 (Lilli, Schick, 15.08.1988, 3399),
-(Karl, Grün, 17.09.1983, 2456);
+(Karl, Grün, 17.09.1983, 2456),
 
-INSERT INTO rentner (Versicherungs_Nr, Nachname, Vorname, Rentenart, Rentenhoehe, Arbeitgeber_ID)
-VALUES (Müller, Max, Altersrente, 360, 1), --versicherungs Nr fehlt noch, sollte automatisch generiert werden
-(Frey, Roman, Altersrente, 332, 1), --arbeitgeber_id nach Generierung anpassen
-Ulm, Markus, Altersrente, 234, 2),
-(Braun, Thomas, Witwenrente, 109, 4),
-(Nau, Olaf, Altersrente, 97, 3);
+(Max, Müller, Altersrente, 360, 1), --versicherungs Nr fehlt noch, sollte automatisch generiert werden
+(Roman, Frey, Altersrente, 332, 1), --arbeitgeber_id nach Generierung anpassen
+(Markus, Ulm, Altersrente, 234, 2),
+(Thomas, Braun, Witwenrente, 109, 4),
+(Olaf, Nau, Altersrente, 97, 3);
+
+
+
+-- INSERT INTO rentner (Versicherungs_Nr, Nachname, Vorname, Rentenart, Rentenhoehe, Arbeitgeber_ID)
+-- VALUES (Müller, Max, Altersrente, 360, 1), --versicherungs Nr fehlt noch, sollte automatisch generiert werden
+-- (Frey, Roman, Altersrente, 332, 1), --arbeitgeber_id nach Generierung anpassen
+-- Ulm, Markus, Altersrente, 234, 2),
+-- (Braun, Thomas, Witwenrente, 109, 4),
+-- (Nau, Olaf, Altersrente, 97, 3);
 
 
 -- Beispiele für Foreign Key
