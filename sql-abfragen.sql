@@ -55,9 +55,6 @@ CREATE TABLE vertrag (
 );
 
 
-SAVEPOINT vor_insert;
-
-
 INSERT INTO ort (Postleitzahl, Ortsname)
 VALUES (76887, 'Bad Bergzabern'),
 (76131, 'Karlsruhe'),
@@ -135,3 +132,30 @@ Values ('aktiv', 'klassik', DATE '2000-12-12', 1),
 ('', 'klassik', DATE '1961-03-15', 8),
 ('', 'riester', DATE '1960-12-15', 9),
 ('', 'klassik', DATE '1958-09-13', 10);
+
+SELECT * 
+FROM arbeitgeber 
+WHERE Mitarbeiter_Nr = 2;
+
+SELECT Versicherungs_Nr, Vorname, Nachname, Ortsname
+FROM versicherter, adresse, ort 
+WHERE (versicherter.Adress_ID=adresse.Adress_ID) AND adresse.Postleitzahl=ort.Postleitzahl AND ort.Ortsname = 'Karlsruhe';
+
+SELECT *
+FROM versicherter, arbeitgeber
+WHERE versicherter.Arbeitgeber_ID=arbeitgeber.Arbeitgeber_ID AND arbeitgeber.Firmenname='ENBW';
+
+SELECT *
+FROM vertrag
+WHERE Abschlussdatum < DATE '2002-01-01';
+
+SELECT Arbeitgeber_ID, Firmenname
+From arbeitgeber;
+
+SELECT Nachname, Vorname, Versorgungspunkte
+FROM versicherter, arbeitgeber
+WHERE versicherter.Arbeitgeber_ID = arbeitgeber.Arbeitgeber_ID AND arbeitgeber.Firmenname = 'Stadt Karlsruhe';
+
+SELECT Versicherungs_Nr, Nachname, Vorname, Ortsname
+FROM versicherter, arbeitgeber, adresse, ort
+WHERE versicherter.Arbeitgeber_ID = arbeitgeber.Arbeitgeber_ID AND arbeitgeber.Adress_ID = adresse.Adress_ID AND adresse.Postleitzahl = ort.Postleitzahl AND ort.Ortsname = 'Berlin';
