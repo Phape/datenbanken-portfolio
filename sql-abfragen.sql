@@ -2,41 +2,41 @@ CREATE DATABASE dbPortfolio;
 
 CREATE TABLE ort (
     Postleitzahl INTEGER NOT NULL,
-    Ortsname VARCHAR(70),
+    Ortsname VARCHAR(70) NOT NULL,
     PRIMARY KEY (Postleitzahl)
 );
 CREATE TABLE adresse (
     Adress_ID INTEGER NOT NULL AUTO_INCREMENT,
-    Straße VARCHAR(70),
-    Hausnummer VARCHAR(10),
-    Postleitzahl INTEGER,
+    Straße VARCHAR(70) NOT NULL,
+    Hausnummer VARCHAR(10) NOT NULL,
+    Postleitzahl INTEGER NOT NULL,
     PRIMARY KEY (Adress_ID),
     FOREIGN KEY (Postleitzahl) REFERENCES ort(Postleitzahl)
 );
 CREATE TABLE key_account_manager (
     Mitarbeiter_Nr INTEGER NOT NULL AUTO_INCREMENT,
-    Vorname VARCHAR(70),
-    Nachname  VARCHAR(70),
-    Eintrittsdatum DATE,
+    Vorname VARCHAR(70) NOT NULL,
+    Nachname  VARCHAR(70) NOT NULL,
+    Eintrittsdatum DATE NOT NULL,
     PRIMARY KEY (Mitarbeiter_Nr)
 );
 CREATE TABLE arbeitgeber (
     Arbeitgeber_ID INTEGER NOT NULL AUTO_INCREMENT,
-    Firmenname VARCHAR(120),
-    Adress_ID INTEGER,
-    Abrechnungsverband VARCHAR(10),
-    Mitarbeiter_Nr INTEGER,
+    Firmenname VARCHAR(120) NOT NULL,
+    Adress_ID INTEGER NOT NULL,
+    Abrechnungsverband VARCHAR(10) NOT NULL,
+    Mitarbeiter_Nr INTEGER NOT NULL,
     PRIMARY KEY (Arbeitgeber_ID),
     FOREIGN KEY (Adress_ID) REFERENCES adresse(Adress_ID),
     FOREIGN KEY (Mitarbeiter_Nr) REFERENCES key_account_manager(Mitarbeiter_Nr)
 );
 CREATE TABLE versicherter (
     Versicherungs_Nr INTEGER NOT NULL AUTO_INCREMENT, 
-    Vorname VARCHAR(70),
-    Nachname VARCHAR(70),
-    Geburtsdatum DATE,
+    Vorname VARCHAR(70) NOT NULL,
+    Nachname VARCHAR(70) NOT NULL,
+    Geburtsdatum DATE NOT NULL,
     Versorgungspunkte FLOAT,
-    Adress_ID INTEGER,
+    Adress_ID INTEGER NOT NULL,
     Rentenart VARCHAR(20),
     Versicherungsstatus VARCHAR(20),
     Arbeitgeber_ID INTEGER,
@@ -46,8 +46,8 @@ CREATE TABLE versicherter (
 );
 CREATE TABLE vertrag (
     Vertrags_ID INTEGER NOT NULL AUTO_INCREMENT,
-    Versicherungs_Nr INTEGER,
-    Abschlussdatum DATE,
+    Versicherungs_Nr INTEGER NOT NULL,
+    Abschlussdatum DATE NOT NULL,
     Vertragsstatus VARCHAR(20),
     Vertragstyp VARCHAR(10),
     PRIMARY KEY (Vertrags_ID),
