@@ -120,7 +120,7 @@ VALUES ('Horst', 'Ehren', DATE '1978-11-08', 34, 1, '', 'aktiv', 6),
 ('Olaf', 'Nau', DATE '1936-05-30', 210, 14, 'Altersrente', 'inaktiv', 3);
 
 INSERT INTO vertrag (Vertragsstatus, Vertragstyp, Abschlussdatum, Versicherungs_Nr)
-Values ('aktiv', 'klassik', 2000-12-12, 1), 
+Values ('aktiv', 'klassik', DATE '2000-12-12', 1), 
 ('', 'klassik', DATE '1990-12-01', 6),
 ('', 'dynamik', DATE '1979-09-15', 8),
 ('', 'riester', DATE '1978-03-20', 10),
