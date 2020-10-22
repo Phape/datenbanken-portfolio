@@ -3,10 +3,16 @@
 <hibernate-configuration>
     <session-factory>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/test?serverTimezone=CET</property>
-        <property name="connection.username">xxx</property>
-        <property name="connection.password">yyy</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/db_portfolio</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password"></property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <mapping class="firma.Mitarbeiter" />
+
+        <mapping class="de.gruppe4.datenbankenportfolio.Adresse" />
+        <mapping class="de.gruppe4.datenbankenportfolio.Arbeitgeber" />
+        <mapping class="de.gruppe4.datenbankenportfolio.KeyAccountManager" />
+        <mapping class="de.gruppe4.datenbankenportfolio.Ort" />
+        <mapping class="de.gruppe4.datenbankenportfolio.Versicherter" />
+        <mapping class="de.gruppe4.datenbankenportfolio.Vertrag" />
     </session-factory>
 </hibernate-configuration>
