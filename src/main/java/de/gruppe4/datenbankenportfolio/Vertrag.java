@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name = "vertrag")
 public class Vertrag {
     @Id
     @Column(name = "Vertrags_ID")

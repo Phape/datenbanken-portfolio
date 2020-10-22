@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name = "key_account_manager")
 public class KeyAccountManager {
     @Id
     @Column(name = "Mitarbeiter_Nr")

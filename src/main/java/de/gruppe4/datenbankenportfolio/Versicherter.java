@@ -3,6 +3,8 @@ package de.gruppe4.datenbankenportfolio;
 import java.sql.Date;
 import javax.persistence.*;
 
+@Entity
+@Table(name = "versicherter")
 public class Versicherter {
     @Id
     @Column(name = "Versicherungs_Nr")

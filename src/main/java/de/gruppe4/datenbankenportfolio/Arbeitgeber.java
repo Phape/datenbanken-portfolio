@@ -2,6 +2,8 @@ package de.gruppe4.datenbankenportfolio;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name = "arbeitgeber")
 public class Arbeitgeber {
     @Id
     @Column(name = "Arbeitgeber_ID")

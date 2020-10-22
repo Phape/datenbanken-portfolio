@@ -1,7 +1,8 @@
 package de.gruppe4.datenbankenportfolio;
 
 import javax.persistence.*;
-
+@Entity
+@Table(name = "adresse")
 public class Adresse {
     @Id
     @Column(name = "Adress_ID")
