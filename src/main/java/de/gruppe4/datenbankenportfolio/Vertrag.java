@@ -14,7 +14,7 @@ public class Vertrag {
     @Id
     @Column(name = "Vertrags_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int vertragsID;
+    private int vertragsId;
 
     @Column(name = "Versicherungs_Nr")
     private int versicherungsNr;

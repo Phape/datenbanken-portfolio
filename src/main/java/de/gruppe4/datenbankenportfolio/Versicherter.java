@@ -21,7 +21,7 @@ public class Versicherter {
     @Column(name = "Nachname")
     private String nachname;
 
-    @Column(name = "Gebutsdatum")
+    @Column(name = "Geburtsdatum")
     private Date Geburtsdatum;
 
     @Column(name = "Versorgungspunkte")
@@ -37,6 +37,6 @@ public class Versicherter {
     private String versicherungsstatus;
 
     @Column(name = "Arbeitgeber_ID")
-    private String arbeitgeber_ID;
+    private int arbeitgeber_ID;
 
 }
