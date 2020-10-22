@@ -3,9 +3,11 @@ package de.gruppe4.datenbankenportfolio;
 import java.sql.Date;
 
 import javax.persistence.*;
+import lombok.Data;
 
 @Entity
 @Table(name = "vertrag")
+@Data
 public class Vertrag {
     @Id
     @Column(name = "Vertrags_ID")

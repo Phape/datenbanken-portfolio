@@ -3,9 +3,11 @@ package de.gruppe4.datenbankenportfolio;
 import java.sql.Date;
 
 import javax.persistence.*;
+import lombok.Data;
 
 @Entity
 @Table(name = "key_account_manager")
+@Data
 public class KeyAccountManager {
     @Id
     @Column(name = "Mitarbeiter_Nr")

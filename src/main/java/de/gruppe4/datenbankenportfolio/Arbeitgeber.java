@@ -1,9 +1,11 @@
 package de.gruppe4.datenbankenportfolio;
 
 import javax.persistence.*;
+import lombok.Data;
 
 @Entity
 @Table(name = "arbeitgeber")
+@Data
 public class Arbeitgeber {
     @Id
     @Column(name = "Arbeitgeber_ID")
