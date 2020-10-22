@@ -3,10 +3,12 @@ package de.gruppe4.datenbankenportfolio;
 import java.sql.Date;
 import javax.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "versicherter")
 @Data
+@NoArgsConstructor
 public class Versicherter {
     @Id
     @Column(name = "Versicherungs_Nr")

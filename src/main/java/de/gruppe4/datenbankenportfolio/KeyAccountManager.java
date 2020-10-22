@@ -4,10 +4,12 @@ import java.sql.Date;
 
 import javax.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "key_account_manager")
 @Data
+@NoArgsConstructor
 public class KeyAccountManager {
     @Id
     @Column(name = "Mitarbeiter_Nr")

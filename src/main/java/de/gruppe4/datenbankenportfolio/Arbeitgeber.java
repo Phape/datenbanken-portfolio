@@ -2,10 +2,12 @@ package de.gruppe4.datenbankenportfolio;
 
 import javax.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "arbeitgeber")
 @Data
+@NoArgsConstructor
 public class Arbeitgeber {
     @Id
     @Column(name = "Arbeitgeber_ID")

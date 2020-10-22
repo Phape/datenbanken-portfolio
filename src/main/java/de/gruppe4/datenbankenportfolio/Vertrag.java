@@ -4,10 +4,12 @@ import java.sql.Date;
 
 import javax.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "vertrag")
 @Data
+@NoArgsConstructor
 public class Vertrag {
     @Id
     @Column(name = "Vertrags_ID")

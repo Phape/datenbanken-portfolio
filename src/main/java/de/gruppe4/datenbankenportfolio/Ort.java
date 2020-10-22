@@ -2,10 +2,12 @@ package de.gruppe4.datenbankenportfolio;
 
 import javax.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "ort")
 @Data
+@NoArgsConstructor
 public class Ort {
     @Id
     @Column(name = "Postleitzahl")
