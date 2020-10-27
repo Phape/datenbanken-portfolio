@@ -2,12 +2,12 @@ package de.gruppe4.datenbankenportfolio;
 
 import java.util.Set;
 import javax.persistence.*;
-import lombok.Data;
+import lombok.Data; 
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "adresse")
-@Data
+@Data //Wird benutzt um Getter, Setter und toString im Hintergrund zu erzeugen
 @NoArgsConstructor
 public class Adresse {
     @Id

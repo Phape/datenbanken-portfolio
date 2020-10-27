@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "ort")
-@Data
+@Data //Wird benutzt um Getter, Setter und toString im Hintergrund zu erzeugen
 @NoArgsConstructor
 public class Ort {
     @Id

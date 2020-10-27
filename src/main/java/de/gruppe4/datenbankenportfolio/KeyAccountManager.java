@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "key_account_manager")
-@Data
+@Data //Wird benutzt um Getter, Setter und toString im Hintergrund zu erzeugen
 @NoArgsConstructor
 public class KeyAccountManager {
     @Id
