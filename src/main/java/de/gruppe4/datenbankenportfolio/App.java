@@ -11,11 +11,12 @@ public class App {
     static Configuration config;
 
     public static void main(String[] args) {
-        config = new Configuration().configure();
-        factory = config.buildSessionFactory();
-        session = factory.openSession();
+        // config = new Configuration().configure();
+        // factory = config.buildSessionFactory();
+        // session = factory.openSession();
 
         App app = new App();
+        app.init();
         System.out.println("Adresse: " + app.readAdresse(1));
         System.out.println("Arbeitgeber: " + app.readArbeitgeber(1));
         System.out.println("KeyAccountManager: " + app.readKeyAccountManager(1));
@@ -25,6 +26,13 @@ public class App {
         // System.out.println("Adressen: " + app.readAdressen());
 
         session.close();
+    }
+
+    public void init() {
+        config = new Configuration().configure();
+        factory = config.buildSessionFactory();
+        session = factory.openSession();
+        System.out.println("______________________________");
     }
 
     protected void createAdresse() {
