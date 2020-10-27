@@ -1,6 +1,5 @@
 package de.gruppe4.datenbankenportfolio;
 
-import java.util.Set;
 import javax.persistence.*;
 import lombok.Data; 
 import lombok.NoArgsConstructor;
