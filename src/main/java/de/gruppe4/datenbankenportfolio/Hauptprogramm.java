@@ -118,7 +118,7 @@ public class Hauptprogramm {
                 int arbeitgeberId = scanner.nextInt();
                 System.out.println("Geburtsdatum im Format jjjj-mm-dd"); // Format korrekt?
                 long gebDatum = scanner.nextLong();
-                Date geburtsdatum= new Date(datum);
+                Date geburtsdatum= new Date(gebDatum);
                 System.out.println("Rentenart");
                 String rentenart = scanner.nextLine();
                 System.out.println("Versicherungsstatus");
@@ -133,7 +133,7 @@ public class Hauptprogramm {
                 int versicherungsNr = scanner.nextInt();
                 System.out.println("Abschlussdatum im Format jjjj-mm-dd"); // Format korrekt?
                 long abschlDatum = scanner.nextLong();
-                Date abschlussdatum= new Date(datum);
+                Date abschlussdatum= new Date(abschlDatum);
                 System.out.println("Vertragsstatus");
                 String vertragsstatus = scanner.nextLine();
                 System.out.println("Vertragstyp");
