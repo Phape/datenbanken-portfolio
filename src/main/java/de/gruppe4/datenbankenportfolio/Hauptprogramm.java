@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Hauptprogramm {
     Scanner scanner;
-    App app = new App();
+    App app;
 
     public static void main(String[] args) {
         Hauptprogramm hauptprogramm = new Hauptprogramm();
@@ -18,6 +18,10 @@ public class Hauptprogramm {
     }
 
     public void readUserInput() {
+        app = new App();
+        app.init();
+        System.out.println(app.readAdresse(6));
+
         scanner = new Scanner(System.in);
         int record = 0; // table or class the user wants to manipulate
         boolean userRecordSelcetionsIsValid = false;
@@ -68,9 +72,9 @@ public class Hauptprogramm {
         switch (record) {
             case 1: // Adresse
                 System.out.println("Straße");
-                String straße = scanner.nextLine();
+                String straße = scanner.next();
                 System.out.println("Hausnummer");
-                String hausnummer = scanner.nextLine();
+                String hausnummer = scanner.next();
                 System.out.println("Postleitzahl");
                 int postleitzahl = scanner.nextInt();
                 app.createAdresse(straße, hausnummer, postleitzahl);
@@ -78,9 +82,9 @@ public class Hauptprogramm {
 
             case 2: // Arbeitgeber
                 System.out.println("Abrechnungsverband");
-                String abrechnungsverband = scanner.nextLine();
+                String abrechnungsverband = scanner.next();
                 System.out.println("Name der Firma");
-                String firmenname = scanner.nextLine();
+                String firmenname = scanner.next();
                 System.out.println("AdressID");
                 int adressId = scanner.nextInt();
                 System.out.println("Mitarbeiternummer");
@@ -90,9 +94,9 @@ public class Hauptprogramm {
 
             case 3: // KeyAccountManager
                 System.out.println("Vorname");
-                String vorname = scanner.nextLine();
+                String vorname = scanner.next();
                 System.out.println("Nachname");
-                String nachname = scanner.nextLine();
+                String nachname = scanner.next();
                 System.out.println("Eintrittsdatum im Format jjjj-mm-dd"); // vielleicht auch Forat jjjjmmdd, da long
                 long datum = scanner.nextLong();
                 Date eintritsdatum = new Date(datum);
@@ -103,29 +107,30 @@ public class Hauptprogramm {
                 System.out.println("Postleitzahl");
                 int plz = scanner.nextInt();
                 System.out.println("Ortsname");
-                String ortsname = scanner.nextLine();
+                String ortsname = scanner.next();
                 app.createOrt(plz, ortsname);
                 break;
 
             case 5: // Versicherter
                 System.out.println("Vorname");
-                String vornameVers = scanner.nextLine();
+                String vornameVers = scanner.next();
                 System.out.println("Nachname");
-                String nachnameVers = scanner.nextLine();
+                String nachnameVers = scanner.next();
                 System.out.println("Adress ID");
                 int adressIdVers = scanner.nextInt();
                 System.out.println("Arbeitgeber ID");
                 int arbeitgeberId = scanner.nextInt();
                 System.out.println("Geburtsdatum im Format jjjj-mm-dd"); // Format korrekt?
                 long gebDatum = scanner.nextLong();
-                Date geburtsdatum= new Date(gebDatum);
+                Date geburtsdatum = new Date(gebDatum);
                 System.out.println("Rentenart");
-                String rentenart = scanner.nextLine();
+                String rentenart = scanner.next();
                 System.out.println("Versicherungsstatus");
-                String versicherungsstatus = scanner.nextLine();
+                String versicherungsstatus = scanner.next();
                 System.out.println("Versorgungspunkte");
                 int versorgungspunkte = scanner.nextInt();
-                app.createVersicherter(vornameVers, nachnameVers, adressIdVers, arbeitgeberId, geburtsdatum, rentenart, versicherungsstatus, versorgungspunkte);
+                app.createVersicherter(vornameVers, nachnameVers, adressIdVers, arbeitgeberId, geburtsdatum, rentenart,
+                        versicherungsstatus, versorgungspunkte);
                 break;
 
             case 6: // Vertrag
@@ -133,11 +138,11 @@ public class Hauptprogramm {
                 int versicherungsNr = scanner.nextInt();
                 System.out.println("Abschlussdatum im Format jjjj-mm-dd"); // Format korrekt?
                 long abschlDatum = scanner.nextLong();
-                Date abschlussdatum= new Date(abschlDatum);
+                Date abschlussdatum = new Date(abschlDatum);
                 System.out.println("Vertragsstatus");
-                String vertragsstatus = scanner.nextLine();
+                String vertragsstatus = scanner.next();
                 System.out.println("Vertragstyp");
-                String vertragstyp = scanner.nextLine();
+                String vertragstyp = scanner.next();
                 app.createVertrag(versicherungsNr, abschlussdatum, vertragsstatus, vertragstyp);
                 break;
 

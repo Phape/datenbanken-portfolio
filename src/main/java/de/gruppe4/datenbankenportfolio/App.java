@@ -249,7 +249,7 @@ public class App {
         return versicherter;
     }
 
-    protected void updateVersicherter(String versicherungsNr, String vorname, String nachname, int setAdressId, int arbeitgeberId, Date geburtsdatum, String rentenart, String versicherungsstatus, int versorgungspunkte) {
+    protected void updateVersicherter(int versicherungsNr, String vorname, String nachname, int setAdressId, int arbeitgeberId, Date geburtsdatum, String rentenart, String versicherungsstatus, int versorgungspunkte) {
         Versicherter versicherter = new Versicherter();
         versicherter.setVersicherungsNr(versicherungsNr);
         versicherter.setVorname(vorname);
