@@ -32,7 +32,7 @@ public class App {
         // adresse.setAdressId(); //auto generated
         adresse.setStraße("straße");
         adresse.setHausnummer("hausnummer");
-        adresse.setPostleitzahl("postleitzahl");
+        adresse.setPostleitzahl(74889);
 
         Transaction t = session.beginTransaction();
         session.save(adresse); // try-catch needed? see slide 171 / Hibernate-18
@@ -51,7 +51,7 @@ public class App {
         adresse.setAdressId(5); // is needed to id the adress to be updated
         adresse.setStraße("straße");
         adresse.setHausnummer("hausnummer");
-        adresse.setPostleitzahl("postleitzahl");
+        adresse.setPostleitzahl(74889);
 
         Transaction t = session.beginTransaction();
         session.update(adresse); // try-catch needed? see slide 171 / Hibernate-18

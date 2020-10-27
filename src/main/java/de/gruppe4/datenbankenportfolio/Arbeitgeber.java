@@ -26,4 +26,8 @@ public class Arbeitgeber {
     @Column(name = "Mitarbeiter_Nr")
     private int mitarbeiterNr;
 
+    // @ManyToOne
+    // @JoinColumn(name = "Adress_ID")
+    // private Adresse adresse;
+
 }

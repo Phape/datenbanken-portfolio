@@ -1,5 +1,6 @@
 package de.gruppe4.datenbankenportfolio;
 
+import java.util.Set;
 import javax.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,10 @@ public class Adresse {
     @Column(name = "Hausnummer")
     private String hausnummer;
 
-    @Column(name = "Postleitzahl")
-    private String postleitzahl;
+    // @Column(name = "Postleitzahl")
+    private int postleitzahl;
 
+    @ManyToOne
+    @JoinColumn(name="Postleitzahl")
+    private Ort ort;
 }

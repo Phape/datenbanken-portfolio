@@ -28,4 +28,8 @@ public class Vertrag {
     @Column(name = "Vertragstyp")
     private String vertragstyp;
 
+    // @ManyToOne
+    // @JoinColumn(name = "Versicherungs_Nr")
+    // private Versicherter versicherter;
+
 }
