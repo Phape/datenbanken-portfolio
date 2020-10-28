@@ -154,11 +154,15 @@ public class Hauptprogramm {
     public void read(int record) {
         switch (record) {
             case 1: // Adresse
-                
+                System.out.println("Geben sie die Adress ID der Adresse ein die sie ausgeben lassen wollen");
+                int adressId = scanner.nextInt();
+                app.readAdresse(adressId);
                 break;
 
             case 2: // Arbeitgeber
-                
+                System.out.println("Geben sie die Arbeitgeber ID des Arbeitgebers ein den sie ausgeben lassen wollen");
+                int arbeitgeberId = scanner.nextInt();
+                app.readAdresse(arbeitgeberId);
                 break;
 
             case 3: // KeyAccountManager
