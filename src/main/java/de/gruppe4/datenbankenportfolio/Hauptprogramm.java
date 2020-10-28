@@ -9,7 +9,7 @@ public class Hauptprogramm {
 
     public static void main(String[] args) {
         Hauptprogramm hauptprogramm = new Hauptprogramm();
-        hauptprogramm.readUserInput(); // do while einfügen
+        hauptprogramm.readUserInput();
 
         // App app = new App();
         // app.init();

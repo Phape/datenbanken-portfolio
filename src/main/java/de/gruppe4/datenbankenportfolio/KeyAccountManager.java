@@ -3,12 +3,10 @@ package de.gruppe4.datenbankenportfolio;
 import java.sql.Date;
 
 import javax.persistence.*;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "key_account_manager")
-@Data //Wird benutzt um Getter, Setter und toString im Hintergrund zu erzeugen
 @NoArgsConstructor
 public class KeyAccountManager {
     @Id
@@ -25,4 +23,46 @@ public class KeyAccountManager {
     @Column(name = "Eintrittsdatum")
     private Date eintrittsdatum;
 
+
+    public int getMitarbeiterNr() {
+        return this.mitarbeiterNr;
+    }
+
+    public void setMitarbeiterNr(int mitarbeiterNr) {
+        this.mitarbeiterNr = mitarbeiterNr;
+    }
+
+    public String getVorname() {
+        return this.vorname;
+    }
+
+    public void setVorname(String vorname) {
+        this.vorname = vorname;
+    }
+
+    public String getNachname() {
+        return this.nachname;
+    }
+
+    public void setNachname(String nachname) {
+        this.nachname = nachname;
+    }
+
+    public Date getEintrittsdatum() {
+        return this.eintrittsdatum;
+    }
+
+    public void setEintrittsdatum(Date eintrittsdatum) {
+        this.eintrittsdatum = eintrittsdatum;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " mitarbeiterNr='" + getMitarbeiterNr() + "'" +
+            ", vorname='" + getVorname() + "'" +
+            ", nachname='" + getNachname() + "'" +
+            ", eintrittsdatum='" + getEintrittsdatum() + "'" +
+            "}";
+    }
 }
