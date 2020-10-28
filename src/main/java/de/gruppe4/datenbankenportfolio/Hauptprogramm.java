@@ -152,14 +152,162 @@ public class Hauptprogramm {
     }
 
     public void read(int record) {
+        switch (record) {
+            case 1: // Adresse
+                
+                break;
 
+            case 2: // Arbeitgeber
+                
+                break;
+
+            case 3: // KeyAccountManager
+                
+                break;
+
+            case 4: // Ort
+
+                break;
+
+            case 5: // Versicherter
+                
+                break;
+
+            case 6: // Vertrag
+                
+                break;
+
+            default:
+                break;
+        }
     }
 
     public void update(int record) {
+        int adressId;
+        int mitarbeiternummer;
+        int versicherungsNr;
 
+        System.out.println("Bitte geben sie die angefragen Parameter ein");
+        switch (record) {
+            case 1: // Adresse
+                System.out.println("Adress ID");
+                adressId = scanner.nextInt();
+                System.out.println("Straße");
+                String straße = scanner.next();
+                System.out.println("Hausnummer");
+                String hausnummer = scanner.next();
+                System.out.println("Postleitzahl");
+                int postleitzahl = scanner.nextInt();
+                app.updateAdresse(adressId, straße, hausnummer, postleitzahl);
+                break;
+
+            case 2: // Arbeitgeber
+                System.out.println("Arbietgeber ID");
+                int arbietgeberId = scanner.nextInt();
+                System.out.println("Abrechnungsverband");
+                String abrechnungsverband = scanner.next();
+                System.out.println("Name der Firma");
+                String firmenname = scanner.next();
+                System.out.println("AdressID");
+                adressId = scanner.nextInt();
+                System.out.println("Mitarbeiternummer");
+                mitarbeiternummer = scanner.nextInt();
+                app.updateArbeitgeber(arbietgeberId, abrechnungsverband, firmenname, adressId, mitarbeiternummer);
+                break;
+
+            case 3: // KeyAccountManager
+                System.out.println("Mitarbeiter Nr.");
+                mitarbeiternummer = scanner.nextInt();
+                System.out.println("Vorname");
+                String vorname = scanner.next();
+                System.out.println("Nachname");
+                String nachname = scanner.next();
+                System.out.println("Eintrittsdatum im Format jjjj-mm-dd"); // vielleicht auch Forat jjjjmmdd, da long
+                long datum = scanner.nextLong();
+                Date eintritsdatum = new Date(datum);
+                app.updateKeyAccountManager(mitarbeiternummer, vorname, nachname, eintritsdatum);
+                break;
+
+            case 4: // Ort
+                System.out.println("Postleitzahl");
+                int plz = scanner.nextInt();
+                System.out.println("Ortsname");
+                String ortsname = scanner.next();
+                app.updateOrt(plz, ortsname);
+                break;
+
+            case 5: // Versicherter
+                System.out.println("Versicherungs Nr.");
+                versicherungsNr = scanner.nextInt();
+                System.out.println("Vorname");
+                String vornameVers = scanner.next();
+                System.out.println("Nachname");
+                String nachnameVers = scanner.next();
+                System.out.println("Adress ID");
+                int adressIdVers = scanner.nextInt();
+                System.out.println("Arbeitgeber ID");
+                int arbeitgeberId = scanner.nextInt();
+                System.out.println("Geburtsdatum im Format jjjj-mm-dd"); // Format korrekt?
+                long gebDatum = scanner.nextLong();
+                Date geburtsdatum = new Date(gebDatum);
+                System.out.println("Rentenart");
+                String rentenart = scanner.next();
+                System.out.println("Versicherungsstatus");
+                String versicherungsstatus = scanner.next();
+                System.out.println("Versorgungspunkte");
+                int versorgungspunkte = scanner.nextInt();
+                app.updateVersicherter(versicherungsNr,vornameVers, nachnameVers, adressIdVers, arbeitgeberId, geburtsdatum, rentenart,
+                        versicherungsstatus, versorgungspunkte);
+                break;
+
+            case 6: // Vertrag
+                System.out.println("Vertrags ID");
+                int vertragsId = scanner.nextInt();
+                System.out.println("Versicherungsnummer");
+                versicherungsNr = scanner.nextInt();
+                System.out.println("Abschlussdatum im Format jjjj-mm-dd"); // Format korrekt?
+                long abschlDatum = scanner.nextLong();
+                Date abschlussdatum = new Date(abschlDatum);
+                System.out.println("Vertragsstatus");
+                String vertragsstatus = scanner.next();
+                System.out.println("Vertragstyp");
+                String vertragstyp = scanner.next();
+                app.updateVertrag(vertragsId, versicherungsNr, abschlussdatum, vertragsstatus, vertragstyp);
+                break;
+
+            default:
+                break;
+        }
     }
 
     public void delete(int record) {
+        switch (record) {
+            case 1: // Adresse
+                
+                break;
 
+            case 2: // Arbeitgeber
+                
+                break;
+
+            case 3: // KeyAccountManager
+                
+                break;
+
+            case 4: // Ort
+
+                break;
+
+            case 5: // Versicherter
+                
+                break;
+
+            case 6: // Vertrag
+                
+                break;
+
+            default:
+                break;
+        }
     }
 }
