@@ -77,7 +77,7 @@ public class Vertrag {
     }
 
 
-    public Versicherter getVersicherter(int versicherungsNr) {
+    public Versicherter getVersicherter() {
         return this.versicherter;
     }
 
@@ -94,6 +94,7 @@ public class Vertrag {
             ", abschlussdatum='" + getAbschlussdatum() + "'" +
             ", vertragsstatus='" + getVertragsstatus() + "'" +
             ", vertragstyp='" + getVertragstyp() + "'" +
+            ", versicherter='" + getVersicherter().getVorname() + " " + getVersicherter().getNachname() + "'" +
             "}";
     }
 

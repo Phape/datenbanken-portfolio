@@ -105,7 +105,7 @@ public class Arbeitgeber {
             ", adressId='" + getAdressId() + "'" +
             ", abrechnungsverband='" + getAbrechnungsverband() + "'" +
             ", mitarbeiterNr='" + getKeyAccountManager(mitarbeiterNr) + "'" +
-            ", adresse=" + getAdresse(adressId) + "'" +
+            ", adresse='" + getAdresse(adressId) + "'" +
             "}";
     }
 }
