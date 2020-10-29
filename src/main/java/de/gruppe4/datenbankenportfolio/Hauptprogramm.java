@@ -67,7 +67,7 @@ public class Hauptprogramm {
     }
 
     public void create(int record) {
-        System.out.println("Bitte geben sie die angefragen Parameter ein");
+        System.out.println("\nBitte geben sie die angefragen Parameter ein");
         switch (record) {
             case 1: // Adresse
                 System.out.println("Straße");
@@ -151,6 +151,7 @@ public class Hauptprogramm {
     }
 
     public void read(int record) {
+        System.out.println();
         switch (record) {
             case 1: // Adresse
                 System.out.println("Geben sie die Adress ID der Adresse ein die sie ausgeben lassen wollen:");
@@ -198,7 +199,7 @@ public class Hauptprogramm {
         int mitarbeiternummer;
         int versicherungsNr;
 
-        System.out.println("Bitte geben sie die angefragen Parameter ein");
+        System.out.println("\nBitte geben sie die angefragen Parameter ein");
         switch (record) {
             case 1: // Adresse
                 System.out.println("Adress ID");
@@ -292,6 +293,7 @@ public class Hauptprogramm {
     }
 
     public void delete(int record) {
+        System.out.println();
         switch (record) {
             case 1: // Adresse
                 System.out.println("Geben sie die Adress ID der Adresse ein die sie löschen wollen:");

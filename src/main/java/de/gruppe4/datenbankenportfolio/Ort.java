@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 public class Ort {
     @Id
     @Column(name = "Postleitzahl")
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int postleitzahl;
 
     @Column(name = "Ortsname")
     private String ortsname;
 
 
+    
     public int getPostleitzahl() {
         return this.postleitzahl;
     }
@@ -24,6 +24,7 @@ public class Ort {
         this.postleitzahl = postleitzahl;
     }
 
+
     public String getOrtsname() {
         return this.ortsname;
     }
@@ -31,6 +32,7 @@ public class Ort {
     public void setOrtsname(String ortsname) {
         this.ortsname = ortsname;
     }
+
 
     @Override
     public String toString() {

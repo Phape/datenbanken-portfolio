@@ -26,10 +26,11 @@ public class Vertrag {
     @Column(name = "Vertragstyp")
     private String vertragstyp;
 
-    // @ManyToOne
-    // @JoinColumn(name = "Versicherungs_Nr")
-    // private Versicherter versicherter;
+    @ManyToOne
+    @JoinColumn(name = "VersicherungsNr")
+    private Versicherter versicherter;
     
+
 
     public int getVertragsId() {
         return this.vertragsId;
@@ -39,6 +40,7 @@ public class Vertrag {
         this.vertragsId = vertragsId;
     }
 
+
     public int getVersicherungsNr() {
         return this.versicherungsNr;
     }
@@ -46,6 +48,7 @@ public class Vertrag {
     public void setVersicherungsNr(int versicherungsNr) {
         this.versicherungsNr = versicherungsNr;
     }
+
 
     public Date getAbschlussdatum() {
         return this.abschlussdatum;
@@ -55,6 +58,7 @@ public class Vertrag {
         this.abschlussdatum = abschlussdatum;
     }
 
+
     public String getVertragsstatus() {
         return this.vertragsstatus;
     }
@@ -63,6 +67,7 @@ public class Vertrag {
         this.vertragsstatus = vertragsstatus;
     }
 
+
     public String getVertragstyp() {
         return this.vertragstyp;
     }
@@ -70,6 +75,16 @@ public class Vertrag {
     public void setVertragstyp(String vertragstyp) {
         this.vertragstyp = vertragstyp;
     }
+
+
+    public Versicherter getVersicherter(int versicherungsNr) {
+        return this.versicherter;
+    }
+
+    public void setVersicherter(Versicherter versicherter) {
+        this.versicherter = versicherter;
+    }
+
 
     @Override
     public String toString() {

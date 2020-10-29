@@ -26,6 +26,7 @@ public class Adresse {
     private Ort ort;
 
 
+    
     public int getAdressId() {
         return this.adressId;
     }
@@ -33,6 +34,7 @@ public class Adresse {
     public void setAdressId(int adressId) {
         this.adressId = adressId;
     }
+
 
     public String getStraße() {
         return this.straße;
@@ -42,6 +44,7 @@ public class Adresse {
         this.straße = straße;
     }
 
+
     public String getHausnummer() {
         return this.hausnummer;
     }
@@ -49,6 +52,7 @@ public class Adresse {
     public void setHausnummer(String hausnummer) {
         this.hausnummer = hausnummer;
     }
+
 
     public int getPostleitzahl() {
         return this.postleitzahl;
@@ -58,6 +62,7 @@ public class Adresse {
         this.postleitzahl = postleitzahl;
     }
 
+
     public Ort getOrt() {
         return this.ort;
     }
@@ -66,6 +71,7 @@ public class Adresse {
         this.ort = ort;
     }
     
+
     @Override
     public String toString() {
         return "{" +

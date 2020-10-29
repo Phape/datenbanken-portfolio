@@ -18,15 +18,20 @@ public class Arbeitgeber {
     // @Column(name = "AdressId")
     private int adressId;
 
+    // @Column(name = "MitarbeiterNr")
+    private int mitarbeiterNr;
+
     @Column(name = "Abrechnungsverband")
     private String abrechnungsverband;
 
-    @Column(name = "MitarbeiterNr")
-    private int mitarbeiterNr;
+    @ManyToOne
+    @JoinColumn(name = "MitarbeiterNr")
+    private KeyAccountManager keyAccountManager;
 
     @ManyToOne
     @JoinColumn(name = "AdressId")
     private Adresse adresse;
+
 
 
     public int getArbeitgeberId() {
@@ -37,6 +42,7 @@ public class Arbeitgeber {
         this.arbeitgeberId = arbeitgeberId;
     }
 
+
     public String getFirmenname() {
         return this.firmenname;
     }
@@ -44,6 +50,7 @@ public class Arbeitgeber {
     public void setFirmenname(String firmenname) {
         this.firmenname = firmenname;
     }
+
 
     public int getAdressId() {
         return this.adressId;
@@ -53,13 +60,6 @@ public class Arbeitgeber {
         this.adressId = adressId;
     }
 
-    public String getAbrechnungsverband() {
-        return this.abrechnungsverband;
-    }
-
-    public void setAbrechnungsverband(String abrechnungsverband) {
-        this.abrechnungsverband = abrechnungsverband;
-    }
 
     public int getMitarbeiterNr() {
         return this.mitarbeiterNr;
@@ -69,6 +69,25 @@ public class Arbeitgeber {
         this.mitarbeiterNr = mitarbeiterNr;
     }
 
+
+    public String getAbrechnungsverband() {
+        return this.abrechnungsverband;
+    }
+
+    public void setAbrechnungsverband(String abrechnungsverband) {
+        this.abrechnungsverband = abrechnungsverband;
+    }
+
+
+    public KeyAccountManager getKeyAccountManager(int mitarbeiterNr) {
+        return this.keyAccountManager;
+    }
+
+    public void setKeyAccountManager(KeyAccountManager keyAccountManager) {
+        this.keyAccountManager = keyAccountManager;
+    }
+
+
     public Adresse getAdresse(int adressId) {
         return this.adresse;
     }
@@ -77,6 +96,7 @@ public class Arbeitgeber {
         this.adresse = adresse;
     }
 
+
     @Override
     public String toString() {
         return "{" +
@@ -84,7 +104,7 @@ public class Arbeitgeber {
             ", firmenname='" + getFirmenname() + "'" +
             ", adressId='" + getAdressId() + "'" +
             ", abrechnungsverband='" + getAbrechnungsverband() + "'" +
-            ", mitarbeiterNr='" + getMitarbeiterNr() + "'" +
+            ", mitarbeiterNr='" + getKeyAccountManager(mitarbeiterNr) + "'" +
             ", adresse=" + getAdresse(adressId) + "'" +
             "}";
     }

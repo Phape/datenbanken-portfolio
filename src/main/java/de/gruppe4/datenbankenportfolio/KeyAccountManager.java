@@ -24,6 +24,7 @@ public class KeyAccountManager {
     private Date eintrittsdatum;
 
 
+    
     public int getMitarbeiterNr() {
         return this.mitarbeiterNr;
     }
@@ -31,6 +32,7 @@ public class KeyAccountManager {
     public void setMitarbeiterNr(int mitarbeiterNr) {
         this.mitarbeiterNr = mitarbeiterNr;
     }
+
 
     public String getVorname() {
         return this.vorname;
@@ -40,6 +42,7 @@ public class KeyAccountManager {
         this.vorname = vorname;
     }
 
+
     public String getNachname() {
         return this.nachname;
     }
@@ -48,6 +51,7 @@ public class KeyAccountManager {
         this.nachname = nachname;
     }
 
+
     public Date getEintrittsdatum() {
         return this.eintrittsdatum;
     }
@@ -55,6 +59,7 @@ public class KeyAccountManager {
     public void setEintrittsdatum(Date eintrittsdatum) {
         this.eintrittsdatum = eintrittsdatum;
     }
+
 
     @Override
     public String toString() {

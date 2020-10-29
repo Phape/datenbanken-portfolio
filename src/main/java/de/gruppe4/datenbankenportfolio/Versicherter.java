@@ -25,8 +25,12 @@ public class Versicherter {
     @Column(name = "Versorgungspunkte")
     private float versorgungspunkte;
 
-    @Column(name = "AdressId")
+    //@Column(name = "AdressId")
     private int adressId;
+
+    @ManyToOne
+    @JoinColumn(name = "AdressId")
+    private Adresse adresse;
 
     @Column(name = "Rentenart")
     private String rentenart;
@@ -34,8 +38,14 @@ public class Versicherter {
     @Column(name = "Versicherungsstatus")
     private String versicherungsstatus;
 
-    @Column(name = "ArbeitgeberId")
+    // @Column(name = "ArbeitgeberId")
     private int arbeitgeberId;
+
+    /*@ManyToMany
+    @JoinColumn(name = "ArbeitgeberId")
+    private Arbeitgeber arbeitgeber;
+    */
+
 
 
     public int getVersicherungsNr() {
@@ -46,6 +56,7 @@ public class Versicherter {
         this.versicherungsNr = versicherungsNr;
     }
 
+
     public String getVorname() {
         return this.vorname;
     }
@@ -54,6 +65,7 @@ public class Versicherter {
         this.vorname = vorname;
     }
 
+    
     public String getNachname() {
         return this.nachname;
     }
@@ -61,6 +73,7 @@ public class Versicherter {
     public void setNachname(String nachname) {
         this.nachname = nachname;
     }
+
 
     public Date getGeburtsdatum() {
         return this.Geburtsdatum;
@@ -70,6 +83,7 @@ public class Versicherter {
         this.Geburtsdatum = Geburtsdatum;
     }
 
+
     public float getVersorgungspunkte() {
         return this.versorgungspunkte;
     }
@@ -77,6 +91,7 @@ public class Versicherter {
     public void setVersorgungspunkte(float versorgungspunkte) {
         this.versorgungspunkte = versorgungspunkte;
     }
+
 
     public int getAdressId() {
         return this.adressId;
@@ -86,6 +101,16 @@ public class Versicherter {
         this.adressId = adressId;
     }
 
+
+    public Adresse getAdresse() {
+        return this.adresse;
+    }
+
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
+    }
+
+
     public String getRentenart() {
         return this.rentenart;
     }
@@ -93,6 +118,7 @@ public class Versicherter {
     public void setRentenart(String rentenart) {
         this.rentenart = rentenart;
     }
+
 
     public String getVersicherungsstatus() {
         return this.versicherungsstatus;
@@ -102,6 +128,7 @@ public class Versicherter {
         this.versicherungsstatus = versicherungsstatus;
     }
 
+
     public int getArbeitgeberId() {
         return this.arbeitgeberId;
     }
@@ -109,6 +136,16 @@ public class Versicherter {
     public void setArbeitgeberId(int arbeitgeberId) {
         this.arbeitgeberId = arbeitgeberId;
     }
+
+/*
+    public Arbeitgeber getArbeitgeber(int arbeitgeberId) {
+        return this.arbeitgeber;
+    }
+
+    public void setArbeitgeber(Arbeitgeber arbeitgeber) {
+        this.arbeitgeber = arbeitgeber;
+    }
+*/
 
     @Override
     public String toString() {
