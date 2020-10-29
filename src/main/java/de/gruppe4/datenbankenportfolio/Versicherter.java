@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Versicherter {
     @Id
-    @Column(name = "Versicherungs_Nr")
+    @Column(name = "VersicherungsNr")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int versicherungsNr;
 
@@ -25,7 +25,7 @@ public class Versicherter {
     @Column(name = "Versorgungspunkte")
     private float versorgungspunkte;
 
-    @Column(name = "Adress_ID")
+    @Column(name = "AdressId")
     private int adressId;
 
     @Column(name = "Rentenart")
@@ -34,8 +34,8 @@ public class Versicherter {
     @Column(name = "Versicherungsstatus")
     private String versicherungsstatus;
 
-    @Column(name = "Arbeitgeber_ID")
-    private int arbeitgeber_ID;
+    @Column(name = "ArbeitgeberId")
+    private int arbeitgeberId;
 
 
     public int getVersicherungsNr() {
@@ -102,12 +102,12 @@ public class Versicherter {
         this.versicherungsstatus = versicherungsstatus;
     }
 
-    public int getArbeitgeber_ID() {
-        return this.arbeitgeber_ID;
+    public int getArbeitgeberId() {
+        return this.arbeitgeberId;
     }
 
-    public void setArbeitgeber_ID(int arbeitgeber_ID) {
-        this.arbeitgeber_ID = arbeitgeber_ID;
+    public void setArbeitgeberId(int arbeitgeberId) {
+        this.arbeitgeberId = arbeitgeberId;
     }
 
     @Override
@@ -121,7 +121,7 @@ public class Versicherter {
             ", adressId='" + getAdressId() + "'" +
             ", rentenart='" + getRentenart() + "'" +
             ", versicherungsstatus='" + getVersicherungsstatus() + "'" +
-            ", arbeitgeber_ID='" + getArbeitgeber_ID() + "'" +
+            ", arbeitgeberId='" + getArbeitgeberId() + "'" +
             "}";
     }
 

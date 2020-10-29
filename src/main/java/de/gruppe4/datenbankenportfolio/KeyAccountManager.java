@@ -6,11 +6,11 @@ import javax.persistence.*;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "key_account_manager")
+@Table(name = "keyAccountManager")
 @NoArgsConstructor
 public class KeyAccountManager {
     @Id
-    @Column(name = "Mitarbeiter_Nr")
+    @Column(name = "MitarbeiterNr")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int mitarbeiterNr;
 

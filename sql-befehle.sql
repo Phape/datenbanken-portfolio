@@ -1,57 +1,57 @@
 CREATE DATABASE dbPortfolio;
-
+USE dbPortfolio;
 CREATE TABLE ort (
     Postleitzahl INTEGER NOT NULL,
     Ortsname VARCHAR(70) NOT NULL,
     PRIMARY KEY (Postleitzahl)
 );
 CREATE TABLE adresse (
-    Adress_ID INTEGER NOT NULL AUTO_INCREMENT,
+    AdressId INTEGER NOT NULL AUTO_INCREMENT,
     Straße VARCHAR(70) NOT NULL,
     Hausnummer VARCHAR(10) NOT NULL,
     Postleitzahl INTEGER NOT NULL,
-    PRIMARY KEY (Adress_ID),
+    PRIMARY KEY (AdressId),
     FOREIGN KEY (Postleitzahl) REFERENCES ort(Postleitzahl)
 );
-CREATE TABLE key_account_manager (
-    Mitarbeiter_Nr INTEGER NOT NULL AUTO_INCREMENT,
+CREATE TABLE keyAccountManager (
+    MitarbeiterNr INTEGER NOT NULL AUTO_INCREMENT,
     Vorname VARCHAR(70) NOT NULL,
     Nachname  VARCHAR(70) NOT NULL,
     Eintrittsdatum DATE NOT NULL,
-    PRIMARY KEY (Mitarbeiter_Nr)
+    PRIMARY KEY (MitarbeiterNr)
 );
 CREATE TABLE arbeitgeber (
-    Arbeitgeber_ID INTEGER NOT NULL AUTO_INCREMENT,
+    ArbeitgeberId INTEGER NOT NULL AUTO_INCREMENT,
     Firmenname VARCHAR(120) NOT NULL,
-    Adress_ID INTEGER NOT NULL,
+    AdressId INTEGER NOT NULL,
     Abrechnungsverband VARCHAR(10) NOT NULL,
-    Mitarbeiter_Nr INTEGER NOT NULL,
-    PRIMARY KEY (Arbeitgeber_ID),
-    FOREIGN KEY (Adress_ID) REFERENCES adresse(Adress_ID),
-    FOREIGN KEY (Mitarbeiter_Nr) REFERENCES key_account_manager(Mitarbeiter_Nr)
+    MitarbeiterNr INTEGER NOT NULL,
+    PRIMARY KEY (ArbeitgeberId),
+    FOREIGN KEY (AdressId) REFERENCES adresse(AdressId),
+    FOREIGN KEY (MitarbeiterNr) REFERENCES keyAccountManager(MitarbeiterNr)
 );
 CREATE TABLE versicherter (
-    Versicherungs_Nr INTEGER NOT NULL AUTO_INCREMENT, 
+    VersicherungsNr INTEGER NOT NULL AUTO_INCREMENT, 
     Vorname VARCHAR(70) NOT NULL,
     Nachname VARCHAR(70) NOT NULL,
     Geburtsdatum DATE NOT NULL,
     Versorgungspunkte FLOAT,
-    Adress_ID INTEGER NOT NULL,
+    AdressId INTEGER NOT NULL,
     Rentenart VARCHAR(20),
     Versicherungsstatus VARCHAR(20),
-    Arbeitgeber_ID INTEGER,
-    PRIMARY KEY (Versicherungs_Nr),
-    FOREIGN KEY (Adress_ID) REFERENCES adresse(Adress_ID),
-    FOREIGN KEY (Arbeitgeber_ID) REFERENCES arbeitgeber(Arbeitgeber_ID)
+    ArbeitgeberId INTEGER,
+    PRIMARY KEY (VersicherungsNr),
+    FOREIGN KEY (AdressId) REFERENCES adresse(AdressId),
+    FOREIGN KEY (ArbeitgeberId) REFERENCES arbeitgeber(ArbeitgeberId)
 );
 CREATE TABLE vertrag (
-    Vertrags_ID INTEGER NOT NULL AUTO_INCREMENT,
-    Versicherungs_Nr INTEGER NOT NULL,
+    VertragsId INTEGER NOT NULL AUTO_INCREMENT,
+    VersicherungsNr INTEGER NOT NULL,
     Abschlussdatum DATE NOT NULL,
     Vertragsstatus VARCHAR(20),
     Vertragstyp VARCHAR(10),
-    PRIMARY KEY (Vertrags_ID),
-    FOREIGN KEY (Versicherungs_Nr) REFERENCES versicherter(Versicherungs_Nr)
+    PRIMARY KEY (VertragsId),
+    FOREIGN KEY (VersicherungsNr) REFERENCES versicherter(VersicherungsNr)
 );
 
 
@@ -87,14 +87,14 @@ VALUES ('Hauptstraße', '54', 76887),
 ('Schneeweg', '4', 10115),
 ('Milchstraße', '44', 76133);
 
-INSERT INTO key_account_manager (Vorname, Nachname, Eintrittsdatum)
+INSERT INTO keyAccountManager (Vorname, Nachname, Eintrittsdatum)
 VALUES ('Frauke', 'Bauer', DATE '2000-04-01'),
 ('Martin', 'Lutz', DATE '2010-06-15'),
 ('Ingrid', 'Nist', DATE '2020-08-15'),
 ('Tim', 'Seibert', DATE '1990-12-01'),
 ('Walter', 'Mayer', DATE '1980-01-01');
 
-INSERT INTO arbeitgeber (Firmenname, Adress_ID, Abrechnungsverband, Mitarbeiter_Nr)
+INSERT INTO arbeitgeber (Firmenname, AdressId, Abrechnungsverband, MitarbeiterNr)
 VALUES ('ENBW', 6, 'West', 1), 
 ('DRV', 7, 'West', 1),
 ('Stadt Karlsruhe', 8, 'West', 2),
@@ -104,7 +104,7 @@ VALUES ('ENBW', 6, 'West', 1),
 ('Bundeswehr', 17, 'Ost', 5),
 ('Stadt Stuttgart', 18, 'West', 4);
 
-INSERT INTO versicherter (Vorname, Nachname, Geburtsdatum, Versorgungspunkte, Adress_ID, Rentenart, Versicherungsstatus, Arbeitgeber_ID)
+INSERT INTO versicherter (Vorname, Nachname, Geburtsdatum, Versorgungspunkte, AdressId, Rentenart, Versicherungsstatus, ArbeitgeberId)
 VALUES ('Horst', 'Ehren', DATE '1978-11-08', 34, 1, '', 'aktiv', 6),
 ('Axel', 'Zaun', DATE '1990-07-23', 55, 2, '', 'aktiv',  6), 
 ('Ulli', 'Weber', DATE '2000-10-06', 90, 3, '', 'pausiert', 7),
@@ -116,7 +116,7 @@ VALUES ('Horst', 'Ehren', DATE '1978-11-08', 34, 1, '', 'aktiv', 6),
 ('Thomas', 'Braun', DATE '1920-12-09', 274, 13, 'Witwenrente', 'inaktikv', 4),
 ('Olaf', 'Nau', DATE '1936-05-30', 210, 14, 'Altersrente', 'inaktiv', 3);
 
-INSERT INTO vertrag (Vertragsstatus, Vertragstyp, Abschlussdatum, Versicherungs_Nr)
+INSERT INTO vertrag (Vertragsstatus, Vertragstyp, Abschlussdatum, VersicherungsNr)
 Values ('aktiv', 'klassik', DATE '2000-12-12', 1), 
 ('', 'klassik', DATE '1990-12-01', 6),
 ('', 'dynamik', DATE '1979-09-15', 8),
@@ -135,27 +135,27 @@ Values ('aktiv', 'klassik', DATE '2000-12-12', 1),
 
 SELECT * 
 FROM arbeitgeber 
-WHERE Mitarbeiter_Nr = 2;
+WHERE MitarbeiterNr = 2;
 
-SELECT Versicherungs_Nr, Vorname, Nachname, Ortsname
+SELECT VersicherungsNr, Vorname, Nachname, Ortsname
 FROM versicherter, adresse, ort 
-WHERE (versicherter.Adress_ID=adresse.Adress_ID) AND adresse.Postleitzahl=ort.Postleitzahl AND ort.Ortsname = 'Karlsruhe';
+WHERE (versicherter.AdressId=adresse.AdressId) AND adresse.Postleitzahl=ort.Postleitzahl AND ort.Ortsname = 'Karlsruhe';
 
 SELECT *
 FROM versicherter, arbeitgeber
-WHERE versicherter.Arbeitgeber_ID=arbeitgeber.Arbeitgeber_ID AND arbeitgeber.Firmenname='ENBW';
+WHERE versicherter.ArbeitgeberId=arbeitgeber.ArbeitgeberId AND arbeitgeber.Firmenname='ENBW';
 
 SELECT *
 FROM vertrag
 WHERE Abschlussdatum < DATE '2002-01-01';
 
-SELECT Arbeitgeber_ID, Firmenname
+SELECT ArbeitgeberId, Firmenname
 From arbeitgeber;
 
 SELECT Nachname, Vorname, Versorgungspunkte
 FROM versicherter, arbeitgeber
-WHERE versicherter.Arbeitgeber_ID = arbeitgeber.Arbeitgeber_ID AND arbeitgeber.Firmenname = 'Stadt Karlsruhe';
+WHERE versicherter.ArbeitgeberId = arbeitgeber.ArbeitgeberId AND arbeitgeber.Firmenname = 'Stadt Karlsruhe';
 
-SELECT Versicherungs_Nr, Nachname, Vorname, Ortsname
+SELECT VersicherungsNr, Nachname, Vorname, Ortsname
 FROM versicherter, arbeitgeber, adresse, ort
-WHERE versicherter.Arbeitgeber_ID = arbeitgeber.Arbeitgeber_ID AND arbeitgeber.Adress_ID = adresse.Adress_ID AND adresse.Postleitzahl = ort.Postleitzahl AND ort.Ortsname = 'Berlin';
+WHERE versicherter.ArbeitgeberId = arbeitgeber.ArbeitgeberId AND arbeitgeber.AdressId = adresse.AdressId AND adresse.Postleitzahl = ort.Postleitzahl AND ort.Ortsname = 'Berlin';

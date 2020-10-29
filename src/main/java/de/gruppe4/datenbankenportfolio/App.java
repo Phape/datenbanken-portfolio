@@ -231,7 +231,7 @@ public class App {
         versicherter.setVorname(vorname);
         versicherter.setNachname(nachname);
         versicherter.setAdressId(adressId);
-        versicherter.setArbeitgeber_ID(arbeitgeberId);
+        versicherter.setArbeitgeberId(arbeitgeberId);
         versicherter.setGeburtsdatum(geburtsdatum); 
         versicherter.setRentenart(rentenart);
         versicherter.setVersicherungsstatus(versicherungsstatus);
@@ -255,7 +255,7 @@ public class App {
         versicherter.setVorname(vorname);
         versicherter.setNachname(nachname);
         versicherter.setAdressId(setAdressId);
-        versicherter.setArbeitgeber_ID(arbeitgeberId);
+        versicherter.setArbeitgeberId(arbeitgeberId);
         versicherter.setGeburtsdatum(geburtsdatum); 
         versicherter.setRentenart(rentenart);
         versicherter.setVersicherungsstatus(versicherungsstatus);

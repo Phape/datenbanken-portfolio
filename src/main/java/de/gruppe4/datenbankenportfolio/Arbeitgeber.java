@@ -8,20 +8,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Arbeitgeber {
     @Id
-    @Column(name = "Arbeitgeber_ID")
+    @Column(name = "ArbeitgeberId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int arbeitgeberId;
 
     @Column(name = "Firmenname")
     private String firmenname;
 
-    @Column(name = "Adress_ID")
+    @Column(name = "AdressId")
     private int adressId;
 
     @Column(name = "Abrechnungsverband")
     private String abrechnungsverband;
 
-    @Column(name = "Mitarbeiter_Nr")
+    @Column(name = "MitarbeiterNr")
     private int mitarbeiterNr;
 
     // @ManyToOne

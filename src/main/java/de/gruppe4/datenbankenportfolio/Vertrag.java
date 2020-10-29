@@ -10,11 +10,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Vertrag {
     @Id
-    @Column(name = "Vertrags_ID")
+    @Column(name = "VertragsId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int vertragsId;
 
-    @Column(name = "Versicherungs_Nr")
+    @Column(name = "VersicherungsNr")
     private int versicherungsNr;
 
     @Column(name = "Abschlussdatum")

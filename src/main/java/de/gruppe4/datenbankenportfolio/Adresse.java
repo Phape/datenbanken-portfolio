@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Adresse {
     @Id
-    @Column(name = "Adress_ID")
+    @Column(name = "AdressId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int adressId;
 
