@@ -20,7 +20,6 @@ public class Hauptprogramm {
     public void readUserInput() {
         app = new App();
         app.init();
-        System.out.println(app.readAdresse(6));
 
         scanner = new Scanner(System.in);
         int record = 0; // table or class the user wants to manipulate
