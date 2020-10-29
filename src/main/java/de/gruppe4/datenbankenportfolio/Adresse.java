@@ -73,7 +73,7 @@ public class Adresse {
             ", straße='" + getStraße() + "'" +
             ", hausnummer='" + getHausnummer() + "'" +
             ", postleitzahl='" + getPostleitzahl() + "'" +
-            ", ort='" + getOrt() + "'" +
+            ", ort='" + getOrt().getOrtsname() + "'" +
             "}";
     }    
 }

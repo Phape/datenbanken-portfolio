@@ -26,20 +26,20 @@ public class Hauptprogramm {
         boolean userRecordSelcetionsIsValid = false;
         while (!userRecordSelcetionsIsValid) {
             System.out.println(
-                    "Bitte geben sie an, welchen Datensatz sie bearbeiten möchten.\n1: Adresse\n2: Arbeitgeber\n3: KeyAccountManager\n4: Ort\n5: Versicherter\n6: Vertrag");
+                    "\nBitte geben sie an, welchen Datensatz sie benutzen möchten.\n1: Adresse\n2: Arbeitgeber\n3: KeyAccountManager\n4: Ort\n5: Versicherter\n6: Vertrag");
             record = scanner.nextInt();
             if (0 < record && record < 7) {
                 userRecordSelcetionsIsValid = true;
             } else {
                 userRecordSelcetionsIsValid = false;
-                System.out.println("Inkorrekte Eingabe!");
+                System.out.println("Inkorrekte Eingabe!\n");
             }
         }
 
         boolean userCRUDSelecionIsValid = false;
         while (!userCRUDSelecionIsValid) {
             System.out.println(
-                    "Bitte geben sie den Buchstabe der Aktion die sie ausführen wollen ein:\nc: Daten einfügen\nr: Daten abrufen\nu: Daten ändern\nd: Daten löschen");
+                    "\nBitte geben sie den Buchstabe der Aktion die sie ausführen wollen ein:\nc: Daten einfügen\nr: Daten abrufen\nu: Daten ändern\nd: Daten löschen");
             char operation = scanner.next().toLowerCase().charAt(0);
             switch (operation) {
                 case 'c':
@@ -155,37 +155,37 @@ public class Hauptprogramm {
             case 1: // Adresse
                 System.out.println("Geben sie die Adress ID der Adresse ein die sie ausgeben lassen wollen:");
                 int adressId = scanner.nextInt();
-                app.readAdresse(adressId);
+                System.out.println(app.readAdresse(adressId));
                 break;
 
             case 2: // Arbeitgeber
                 System.out.println("Geben sie die Arbeitgeber ID des Arbeitgebers ein den sie ausgeben lassen wollen:");
                 int arbeitgeberId = scanner.nextInt();
-                app.readAdresse(arbeitgeberId);
+                System.out.println(app.readArbeitgeber(arbeitgeberId));
                 break;
 
             case 3: // KeyAccountManager
                 System.out.println("Geben sie die Mitarbeiter ID des Key-Account-Managers ein den sie ausgeben lassen wollen:");
                 int mitarbeiternummer = scanner.nextInt();
-                app.readAdresse(mitarbeiternummer);
+                System.out.println(app.readKeyAccountManager(mitarbeiternummer));
                 break;
 
             case 4: // Ort
                 System.out.println("Geben sie die Postleitzahl des Ortes ein den sie ausgeben lassen wollen:");
                 int plz = scanner.nextInt();
-                app.readAdresse(plz);
+                System.out.println(app.readOrt(plz));
                 break;
 
             case 5: // Versicherter
                 System.out.println("Geben sie die Versicherungs Nrummer des Versicherten ein den sie ausgeben lassen wollen:");
                 int versicherungsnummer = scanner.nextInt();
-                app.readAdresse(versicherungsnummer);
+                System.out.println(app.readVersicherter(versicherungsnummer));
                 break;
 
             case 6: // Vertrag
                 System.out.println("Geben sie die Vertrags ID des Vertrages ein den sie ausgeben lassen wollen:");
                 int vertragsId = scanner.nextInt();
-                app.readAdresse(vertragsId);
+                System.out.println(app.readVertrag(vertragsId));
                 break;
 
             default:

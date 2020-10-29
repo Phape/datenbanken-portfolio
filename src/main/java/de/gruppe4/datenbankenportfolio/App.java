@@ -17,7 +17,7 @@ public class App {
 
         App app = new App();
         app.init();
-        System.out.println("Adresse: " + app.readAdresse(1));
+        System.out.println("\nAdresse: " + app.readAdresse(1));
         System.out.println("Arbeitgeber: " + app.readArbeitgeber(1));
         System.out.println("KeyAccountManager: " + app.readKeyAccountManager(1));
         System.out.println("Ort: " + app.readOrt(76137));
@@ -54,7 +54,7 @@ public class App {
         return adresse;
     }
 
-    protected void updateAdresse(int adressId,String straße,String hausnummer,int plz) {
+    protected void updateAdresse(int adressId, String straße, String hausnummer, int plz) {
         Adresse adresse = new Adresse();
         adresse.setAdressId(adressId); // is needed to id the adress to be updated
         adresse.setStraße(straße);

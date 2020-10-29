@@ -15,7 +15,7 @@ public class Arbeitgeber {
     @Column(name = "Firmenname")
     private String firmenname;
 
-    @Column(name = "AdressId")
+    // @Column(name = "AdressId")
     private int adressId;
 
     @Column(name = "Abrechnungsverband")
@@ -24,9 +24,9 @@ public class Arbeitgeber {
     @Column(name = "MitarbeiterNr")
     private int mitarbeiterNr;
 
-    // @ManyToOne
-    // @JoinColumn(name = "Adress_ID")
-    // private Adresse adresse;
+    @ManyToOne
+    @JoinColumn(name = "AdressId")
+    private Adresse adresse;
 
 
     public int getArbeitgeberId() {
@@ -69,6 +69,14 @@ public class Arbeitgeber {
         this.mitarbeiterNr = mitarbeiterNr;
     }
 
+    public Adresse getAdresse(int adressId) {
+        return this.adresse;
+    }
+
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -77,6 +85,7 @@ public class Arbeitgeber {
             ", adressId='" + getAdressId() + "'" +
             ", abrechnungsverband='" + getAbrechnungsverband() + "'" +
             ", mitarbeiterNr='" + getMitarbeiterNr() + "'" +
+            ", adresse=" + getAdresse(adressId) + "'" +
             "}";
     }
 }
