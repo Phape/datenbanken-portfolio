@@ -153,31 +153,39 @@ public class Hauptprogramm {
     public void read(int record) {
         switch (record) {
             case 1: // Adresse
-                System.out.println("Geben sie die Adress ID der Adresse ein die sie ausgeben lassen wollen");
+                System.out.println("Geben sie die Adress ID der Adresse ein die sie ausgeben lassen wollen:");
                 int adressId = scanner.nextInt();
                 app.readAdresse(adressId);
                 break;
 
             case 2: // Arbeitgeber
-                System.out.println("Geben sie die Arbeitgeber ID des Arbeitgebers ein den sie ausgeben lassen wollen");
+                System.out.println("Geben sie die Arbeitgeber ID des Arbeitgebers ein den sie ausgeben lassen wollen:");
                 int arbeitgeberId = scanner.nextInt();
                 app.readAdresse(arbeitgeberId);
                 break;
 
             case 3: // KeyAccountManager
-                
+                System.out.println("Geben sie die Mitarbeiter ID des Key-Account-Managers ein den sie ausgeben lassen wollen:");
+                int mitarbeiternummer = scanner.nextInt();
+                app.readAdresse(mitarbeiternummer);
                 break;
 
             case 4: // Ort
-
+                System.out.println("Geben sie die Postleitzahl des Ortes ein den sie ausgeben lassen wollen:");
+                int plz = scanner.nextInt();
+                app.readAdresse(plz);
                 break;
 
             case 5: // Versicherter
-                
+                System.out.println("Geben sie die Versicherungs Nrummer des Versicherten ein den sie ausgeben lassen wollen:");
+                int versicherungsnummer = scanner.nextInt();
+                app.readAdresse(versicherungsnummer);
                 break;
 
             case 6: // Vertrag
-                
+                System.out.println("Geben sie die Vertrags ID des Vertrages ein den sie ausgeben lassen wollen:");
+                int vertragsId = scanner.nextInt();
+                app.readAdresse(vertragsId);
                 break;
 
             default:
@@ -286,27 +294,39 @@ public class Hauptprogramm {
     public void delete(int record) {
         switch (record) {
             case 1: // Adresse
-                
+                System.out.println("Geben sie die Adress ID der Adresse ein die sie löschen wollen:");
+                int adressId = scanner.nextInt();
+                app.deleteAdresse(adressId);
                 break;
 
             case 2: // Arbeitgeber
-                
+                System.out.println("Geben sie die Arbeitgeber ID des Arbeitgebers ein den sie löschen wollen:");
+                int arbeitgeberId = scanner.nextInt();
+                app.deleteAdresse(arbeitgeberId);
                 break;
 
             case 3: // KeyAccountManager
-                
+                System.out.println("Geben sie die Mitarbeiter ID des Key-Account-Managers ein den sie löschen wollen:");
+                int mitarbeiternummer = scanner.nextInt();
+                app.deleteAdresse(mitarbeiternummer);
                 break;
 
             case 4: // Ort
-
+                System.out.println("Geben sie die Postleitzahl des Ortes ein den sie löschen wollen:");
+                int plz = scanner.nextInt();
+                app.deleteAdresse(plz);
                 break;
 
             case 5: // Versicherter
-                
+                System.out.println("Geben sie die Versicherungs Nrummer des Versicherten ein den sie löschen wollen:");
+                int versicherungsnummer = scanner.nextInt();
+                app.deleteAdresse(versicherungsnummer);
                 break;
 
             case 6: // Vertrag
-                
+                System.out.println("Geben sie die Vertrags ID des Vertrages ein den sie löschen wollen:");
+                int vertragsId = scanner.nextInt();
+                app.deleteAdresse(vertragsId);
                 break;
 
             default:
