@@ -97,8 +97,9 @@ public class Hauptprogramm {
                 System.out.println("Nachname");
                 String nachname = scanner.next();
                 System.out.println("Eintrittsdatum im Format jjjj-mm-dd"); // vielleicht auch Forat jjjjmmdd, da long
-                long datum = scanner.nextLong();
-                Date eintritsdatum = new Date(datum);
+                String datum = scanner.next();
+                long dateLong = Long.parseLong(datum.replace("-", ""));
+                Date eintritsdatum = new Date(dateLong); // Datum wird nicht richtig abgespeichert
                 app.createKeyAccountManager(vorname, nachname, eintritsdatum);
                 break;
 
@@ -166,7 +167,8 @@ public class Hauptprogramm {
                 break;
 
             case 3: // KeyAccountManager
-                System.out.println("Geben sie die Mitarbeiter ID des Key-Account-Managers ein den sie ausgeben lassen wollen:");
+                System.out.println(
+                        "Geben sie die Mitarbeiter ID des Key-Account-Managers ein den sie ausgeben lassen wollen:");
                 int mitarbeiternummer = scanner.nextInt();
                 System.out.println(app.readKeyAccountManager(mitarbeiternummer));
                 break;
@@ -178,7 +180,8 @@ public class Hauptprogramm {
                 break;
 
             case 5: // Versicherter
-                System.out.println("Geben sie die Versicherungs Nrummer des Versicherten ein den sie ausgeben lassen wollen:");
+                System.out.println(
+                        "Geben sie die Versicherungs Nrummer des Versicherten ein den sie ausgeben lassen wollen:");
                 int versicherungsnummer = scanner.nextInt();
                 System.out.println(app.readVersicherter(versicherungsnummer));
                 break;
@@ -268,8 +271,8 @@ public class Hauptprogramm {
                 String versicherungsstatus = scanner.next();
                 System.out.println("Versorgungspunkte");
                 int versorgungspunkte = scanner.nextInt();
-                app.updateVersicherter(versicherungsNr,vornameVers, nachnameVers, adressIdVers, arbeitgeberId, geburtsdatum, rentenart,
-                        versicherungsstatus, versorgungspunkte);
+                app.updateVersicherter(versicherungsNr, vornameVers, nachnameVers, adressIdVers, arbeitgeberId,
+                        geburtsdatum, rentenart, versicherungsstatus, versorgungspunkte);
                 break;
 
             case 6: // Vertrag

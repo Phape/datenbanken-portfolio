@@ -35,7 +35,7 @@ public class App {
         System.out.println("______________________________");
     }
 
-    protected void createAdresse(String straße,String hausnummer,int plz) {
+    protected void createAdresse(String straße, String hausnummer, int plz) {
         Adresse adresse = new Adresse();
         // adresse.setAdressId(); //auto generated
         adresse.setStraße(straße);
@@ -43,8 +43,15 @@ public class App {
         adresse.setPostleitzahl(plz);
 
         Transaction t = session.beginTransaction();
-        session.save(adresse); // try-catch needed? see slide 171 / Hibernate-18
-        t.commit();
+        try { // try-catch needed? see slide 171 / Hibernate-18 -> didn´t help
+            session.save(adresse);
+            t.commit();
+        } catch (HibernateException e) {
+            if (t != null)
+                t.rollback();
+            e.printStackTrace();
+        } 
+
     }
 
     protected Adresse readAdresse(int adressId) {
@@ -103,7 +110,8 @@ public class App {
         return arbeitgeber;
     }
 
-    protected void updateArbeitgeber(int arbeitgeberId, String abrechnungsverband, String firmenname, int adressId, int mitarbeiterNr) {
+    protected void updateArbeitgeber(int arbeitgeberId, String abrechnungsverband, String firmenname, int adressId,
+            int mitarbeiterNr) {
         Arbeitgeber arbeitgeber = new Arbeitgeber();
         arbeitgeber.setArbeitgeberId(arbeitgeberId);
         arbeitgeber.setAbrechnungsverband(abrechnungsverband);
@@ -121,7 +129,7 @@ public class App {
         arbeitgeber.setAdressId(5);
 
         Transaction t = session.beginTransaction();
-        session.delete(arbeitgeber); 
+        session.delete(arbeitgeber);
         t.commit();
     }
 
@@ -169,7 +177,7 @@ public class App {
         keyAccountManager.setMitarbeiterNr(5);
 
         Transaction t = session.beginTransaction();
-        session.delete(keyAccountManager); 
+        session.delete(keyAccountManager);
         t.commit();
     }
 
@@ -213,7 +221,7 @@ public class App {
         ort.setPostleitzahl(74889);
 
         Transaction t = session.beginTransaction();
-        session.delete(ort); 
+        session.delete(ort);
         t.commit();
     }
 
@@ -225,14 +233,15 @@ public class App {
         return ortList;
     }
 
-    protected void createVersicherter(String vorname, String nachname, int adressId, int arbeitgeberId, Date geburtsdatum, String rentenart, String versicherungsstatus, int versorgungspunkte) {
+    protected void createVersicherter(String vorname, String nachname, int adressId, int arbeitgeberId,
+            Date geburtsdatum, String rentenart, String versicherungsstatus, int versorgungspunkte) {
         Versicherter versicherter = new Versicherter();
         // versicherter.setVersicherungsNr(5); //auto generated
         versicherter.setVorname(vorname);
         versicherter.setNachname(nachname);
         versicherter.setAdressId(adressId);
         versicherter.setArbeitgeberId(arbeitgeberId);
-        versicherter.setGeburtsdatum(geburtsdatum); 
+        versicherter.setGeburtsdatum(geburtsdatum);
         versicherter.setRentenart(rentenart);
         versicherter.setVersicherungsstatus(versicherungsstatus);
         versicherter.setVersorgungspunkte(versorgungspunkte);
@@ -249,14 +258,15 @@ public class App {
         return versicherter;
     }
 
-    protected void updateVersicherter(int versicherungsNr, String vorname, String nachname, int setAdressId, int arbeitgeberId, Date geburtsdatum, String rentenart, String versicherungsstatus, int versorgungspunkte) {
+    protected void updateVersicherter(int versicherungsNr, String vorname, String nachname, int setAdressId,
+            int arbeitgeberId, Date geburtsdatum, String rentenart, String versicherungsstatus, int versorgungspunkte) {
         Versicherter versicherter = new Versicherter();
         versicherter.setVersicherungsNr(versicherungsNr);
         versicherter.setVorname(vorname);
         versicherter.setNachname(nachname);
         versicherter.setAdressId(setAdressId);
         versicherter.setArbeitgeberId(arbeitgeberId);
-        versicherter.setGeburtsdatum(geburtsdatum); 
+        versicherter.setGeburtsdatum(geburtsdatum);
         versicherter.setRentenart(rentenart);
         versicherter.setVersicherungsstatus(versicherungsstatus);
         versicherter.setVersorgungspunkte(versorgungspunkte);
@@ -271,7 +281,7 @@ public class App {
         versicherter.setVersicherungsNr(versicherungsNr);
 
         Transaction t = session.beginTransaction();
-        session.delete(versicherter); 
+        session.delete(versicherter);
         t.commit();
     }
 
@@ -303,7 +313,8 @@ public class App {
         return vertrag;
     }
 
-    protected void updateVertrag(int vertragsId, int versicherungsNr, Date abschlussdatum, String vertragsstatus, String vertragstyp) {
+    protected void updateVertrag(int vertragsId, int versicherungsNr, Date abschlussdatum, String vertragsstatus,
+            String vertragstyp) {
         Vertrag vertrag = new Vertrag();
         vertrag.setVertragsId(vertragsId);
         vertrag.setVersicherungsNr(versicherungsNr);
@@ -321,7 +332,7 @@ public class App {
         vertrag.setVertragsId(vertragsId);
 
         Transaction t = session.beginTransaction();
-        session.delete(vertrag); 
+        session.delete(vertrag);
         t.commit();
     }
 
