@@ -11,7 +11,7 @@ public class Ort {
     @Column(name = "Postleitzahl")
     private int postleitzahl;
 
-    @Column(name = "Ortsname")
+    @Column(name = "Ortsname", nullable=false)
     private String ortsname;
 
 
