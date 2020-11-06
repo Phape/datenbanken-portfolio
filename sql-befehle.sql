@@ -11,7 +11,7 @@ CREATE TABLE adresse (
     Hausnummer VARCHAR(10) NOT NULL,
     Postleitzahl INTEGER NOT NULL,
     PRIMARY KEY (AdressId),
-    FOREIGN KEY (Postleitzahl) REFERENCES ort(Postleitzahl)
+    FOREIGN KEY (Postleitzahl) REFERENCES ort(Postleitzahl) ON DELETE CASCADE
 );
 CREATE TABLE keyAccountManager (
     MitarbeiterNr INTEGER NOT NULL AUTO_INCREMENT,
@@ -27,7 +27,7 @@ CREATE TABLE arbeitgeber (
     Abrechnungsverband VARCHAR(10) NOT NULL,
     MitarbeiterNr INTEGER NOT NULL,
     PRIMARY KEY (ArbeitgeberId),
-    FOREIGN KEY (AdressId) REFERENCES adresse(AdressId)
+    FOREIGN KEY (AdressId) REFERENCES adresse(AdressId) ON DELETE CASCADE
 );
 CREATE TABLE versicherter (
     VersicherungsNr INTEGER NOT NULL AUTO_INCREMENT, 
@@ -39,14 +39,14 @@ CREATE TABLE versicherter (
     Rentenart VARCHAR(20),
     Versicherungsstatus VARCHAR(20),
     PRIMARY KEY (VersicherungsNr),
-    FOREIGN KEY (AdressId) REFERENCES adresse(AdressId)
+    FOREIGN KEY (AdressId) REFERENCES adresse(AdressId) ON DELETE CASCADE
 );
 CREATE TABLE arbeitsverhaeltnisse (
     VersicherungsNr INTEGER NOT NULL,
     ArbeitgeberId INTEGER NOT NULL,
     PRIMARY KEY (VersicherungsNr, ArbeitgeberId),
-    FOREIGN KEY (VersicherungsNr) REFERENCES versicherter(VersicherungsNr),
-    FOREIGN KEY (ArbeitgeberId) REFERENCES arbeitgeber(ArbeitgeberId)
+    FOREIGN KEY (VersicherungsNr) REFERENCES versicherter(VersicherungsNr) ON DELETE CASCADE,
+    FOREIGN KEY (ArbeitgeberId) REFERENCES arbeitgeber(ArbeitgeberId) ON DELETE CASCADE
 );
 CREATE TABLE vertrag (
     VertragsId INTEGER NOT NULL AUTO_INCREMENT,
@@ -55,7 +55,7 @@ CREATE TABLE vertrag (
     Vertragsstatus VARCHAR(20),
     Vertragstyp VARCHAR(10),
     PRIMARY KEY (VertragsId),
-    FOREIGN KEY (VersicherungsNr) REFERENCES versicherter(VersicherungsNr)
+    FOREIGN KEY (VersicherungsNr) REFERENCES versicherter(VersicherungsNr) ON DELETE CASCADE
 );
 
 
