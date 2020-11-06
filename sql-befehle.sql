@@ -27,8 +27,7 @@ CREATE TABLE arbeitgeber (
     Abrechnungsverband VARCHAR(10) NOT NULL,
     MitarbeiterNr INTEGER NOT NULL,
     PRIMARY KEY (ArbeitgeberId),
-    FOREIGN KEY (AdressId) REFERENCES adresse(AdressId),
-    FOREIGN KEY (MitarbeiterNr) REFERENCES keyAccountManager(MitarbeiterNr)
+    FOREIGN KEY (AdressId) REFERENCES adresse(AdressId)
 );
 CREATE TABLE versicherter (
     VersicherungsNr INTEGER NOT NULL AUTO_INCREMENT, 
@@ -39,9 +38,14 @@ CREATE TABLE versicherter (
     AdressId INTEGER NOT NULL,
     Rentenart VARCHAR(20),
     Versicherungsstatus VARCHAR(20),
-    ArbeitgeberId INTEGER,
     PRIMARY KEY (VersicherungsNr),
-    FOREIGN KEY (AdressId) REFERENCES adresse(AdressId),
+    FOREIGN KEY (AdressId) REFERENCES adresse(AdressId)
+);
+CREATE TABLE arbeitsverhaeltnisse (
+    VersicherungsNr INTEGER NOT NULL,
+    ArbeitgeberId INTEGER NOT NULL,
+    PRIMARY KEY (VersicherungsNr, ArbeitgeberId),
+    FOREIGN KEY (VersicherungsNr) REFERENCES versicherter(VersicherungsNr),
     FOREIGN KEY (ArbeitgeberId) REFERENCES arbeitgeber(ArbeitgeberId)
 );
 CREATE TABLE vertrag (
@@ -104,20 +108,20 @@ VALUES ('ENBW', 6, 'West', 1),
 ('Bundeswehr', 17, 'Ost', 5),
 ('Stadt Stuttgart', 18, 'West', 4);
 
-INSERT INTO versicherter (Vorname, Nachname, Geburtsdatum, Versorgungspunkte, AdressId, Rentenart, Versicherungsstatus, ArbeitgeberId)
-VALUES ('Horst', 'Ehren', DATE '1978-11-08', 34, 1, '', 'aktiv', 6),
-('Axel', 'Zaun', DATE '1990-07-23', 55, 2, '', 'aktiv',  6), 
-('Ulli', 'Weber', DATE '2000-10-06', 90, 3, '', 'pausiert', 7),
-('Lilli', 'Schick', DATE '1988-08-15', 150, 4, '', 'pausiert', 7),
-('Karl', 'Grün', DATE '1983-09-17', 180, 5, '', 'aktiv', 8),
-('Max', 'Müller', DATE '1950-02-02', 190, 10, 'Altersrente', 'inaktiv', 1), 
-('Roman', 'Frey', DATE '1950-12-08', 220, 11, 'Altersrente', 'inaktiv', 1),
-('Markus', 'Ulm', DATE '1931-09-13', 259, 12, 'Altersrente', 'inaktiv', 2),
-('Thomas', 'Braun', DATE '1920-12-09', 274, 13, 'Witwenrente', 'inaktikv', 4),
-('Olaf', 'Nau', DATE '1936-05-30', 210, 14, 'Altersrente', 'inaktiv', 3);
+INSERT INTO versicherter (Vorname, Nachname, Geburtsdatum, Versorgungspunkte, AdressId, Rentenart, Versicherungsstatus)
+VALUES ('Horst', 'Ehren', DATE '1978-11-08', 34, 1, '', 'aktiv'),
+('Axel', 'Zaun', DATE '1990-07-23', 55, 2, '', 'aktiv'), 
+('Ulli', 'Weber', DATE '2000-10-06', 90, 3, '', 'pausiert'),
+('Lilli', 'Schick', DATE '1988-08-15', 150, 4, '', 'pausiert'),
+('Karl', 'Grün', DATE '1983-09-17', 180, 5, '', 'aktiv'),
+('Max', 'Müller', DATE '1950-02-02', 190, 10, 'Altersrente', 'inaktiv'), 
+('Roman', 'Frey', DATE '1950-12-08', 220, 11, 'Altersrente', 'inaktiv'),
+('Markus', 'Ulm', DATE '1931-09-13', 259, 12, 'Altersrente', 'inaktiv'),
+('Thomas', 'Braun', DATE '1920-12-09', 274, 13, 'Witwenrente', 'inaktikv'),
+('Olaf', 'Nau', DATE '1936-05-30', 210, 14, 'Altersrente', 'inaktiv');
 
 INSERT INTO vertrag (Vertragsstatus, Vertragstyp, Abschlussdatum, VersicherungsNr)
-Values ('aktiv', 'klassik', DATE '2000-12-12', 1), 
+VALUES ('aktiv', 'klassik', DATE '2000-12-12', 1), 
 ('', 'klassik', DATE '1990-12-01', 6),
 ('', 'dynamik', DATE '1979-09-15', 8),
 ('', 'riester', DATE '1978-03-20', 10),
@@ -133,6 +137,19 @@ Values ('aktiv', 'klassik', DATE '2000-12-12', 1),
 ('', 'riester', DATE '1960-12-15', 9),
 ('', 'klassik', DATE '1958-09-13', 10);
 
+INSERT INTO arbeitsverhaeltnisse(VersicherungsNr, ArbeitgeberId)
+VALUES (1, 6),
+(2, 6),
+(3, 7),
+(4, 7),
+(5, 8),
+(6, 1),
+(7, 1),
+(8, 2),
+(9, 4),
+(10, 3);
+
+
 SELECT * 
 FROM arbeitgeber 
 WHERE MitarbeiterNr = 2;
@@ -142,8 +159,8 @@ FROM versicherter, adresse, ort
 WHERE (versicherter.AdressId=adresse.AdressId) AND adresse.Postleitzahl=ort.Postleitzahl AND ort.Ortsname = 'Karlsruhe';
 
 SELECT *
-FROM versicherter, arbeitgeber
-WHERE versicherter.ArbeitgeberId=arbeitgeber.ArbeitgeberId AND arbeitgeber.Firmenname='ENBW';
+FROM versicherter, arbeitgeber, arbeitsverhaeltnisse
+WHERE versicherter.VersicherungsNr=arbeitsverhaeltnisse.VersicherungsNr AND arbeitsverhaeltnisse.ArbeitgeberId=arbeitgeber.ArbeitgeberId AND arbeitgeber.Firmenname ='ENBW';
 
 SELECT *
 FROM vertrag
@@ -153,9 +170,9 @@ SELECT ArbeitgeberId, Firmenname
 From arbeitgeber;
 
 SELECT Nachname, Vorname, Versorgungspunkte
-FROM versicherter, arbeitgeber
-WHERE versicherter.ArbeitgeberId = arbeitgeber.ArbeitgeberId AND arbeitgeber.Firmenname = 'Stadt Karlsruhe';
+FROM versicherter, arbeitgeber, arbeitsverhaeltnisse
+WHERE versicherter.VersicherungsNr=arbeitsverhaeltnisse.VersicherungsNr AND arbeitsverhaeltnisse.ArbeitgeberId=arbeitgeber.ArbeitgeberId AND arbeitgeber.Firmenname = 'Stadt Karlsruhe';
 
-SELECT VersicherungsNr, Nachname, Vorname, Ortsname
-FROM versicherter, arbeitgeber, adresse, ort
-WHERE versicherter.ArbeitgeberId = arbeitgeber.ArbeitgeberId AND arbeitgeber.AdressId = adresse.AdressId AND adresse.Postleitzahl = ort.Postleitzahl AND ort.Ortsname = 'Berlin';
+SELECT versicherter.VersicherungsNr, Nachname, Vorname, Ortsname
+FROM versicherter, arbeitgeber, adresse, ort, arbeitsverhaeltnisse
+WHERE versicherter.VersicherungsNr=arbeitsverhaeltnisse.VersicherungsNr AND arbeitsverhaeltnisse.ArbeitgeberId=arbeitgeber.ArbeitgeberId AND arbeitgeber.AdressId = adresse.AdressId AND adresse.Postleitzahl = ort.Postleitzahl AND ort.Ortsname = 'Berlin';
