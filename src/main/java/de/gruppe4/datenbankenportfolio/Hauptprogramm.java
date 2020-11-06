@@ -1,6 +1,7 @@
 package de.gruppe4.datenbankenportfolio;
 
 import java.sql.Date;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Scanner;
 
 public class Hauptprogramm {
@@ -67,7 +68,7 @@ public class Hauptprogramm {
     }
 
     public void create(int record) {
-        System.out.println("\nBitte geben sie die angefragen Parameter ein");
+        System.out.println("\nBitte geben sie die angefragten Parameter ein");
         switch (record) {
             case 1: // Adresse
                 System.out.println("Straße");
@@ -76,7 +77,12 @@ public class Hauptprogramm {
                 String hausnummer = scanner.next();
                 System.out.println("Postleitzahl");
                 int postleitzahl = scanner.nextInt();
-                app.createAdresse(straße, hausnummer, postleitzahl);
+                try {
+                    app.createAdresse(straße, hausnummer, postleitzahl);
+                } catch (Exception e) {
+                    System.out.println(
+                            "Etwas ist schiefgelaufen. Vielleicht existiert noch kein Ort mit der angegebenen Postleitzahl.");
+                }
                 break;
 
             case 2: // Arbeitgeber
@@ -202,7 +208,7 @@ public class Hauptprogramm {
         int mitarbeiternummer;
         int versicherungsNr;
 
-        System.out.println("\nBitte geben sie die angefragen Parameter ein");
+        System.out.println("\nBitte geben sie die angefragten Parameter ein");
         switch (record) {
             case 1: // Adresse
                 System.out.println("Adress ID");
@@ -213,7 +219,12 @@ public class Hauptprogramm {
                 String hausnummer = scanner.next();
                 System.out.println("Postleitzahl");
                 int postleitzahl = scanner.nextInt();
-                app.updateAdresse(adressId, straße, hausnummer, postleitzahl);
+                try {
+                    app.updateAdresse(adressId, straße, hausnummer, postleitzahl);
+                } catch (Exception e) {
+                    System.out.println(
+                            "Etwas ist schiefgelaufen. Vielleicht existiert noch kein Ort mit der angegebenen Postleitzahl.");
+                }
                 break;
 
             case 2: // Arbeitgeber

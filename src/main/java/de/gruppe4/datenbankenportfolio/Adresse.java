@@ -16,11 +16,11 @@ public class Adresse {
     @Column(name = "Hausnummer")
     private String hausnummer;
 
-    // @Column(name = "Postleitzahl")
+    @Column(name = "Postleitzahl")
     private int postleitzahl;
 
     @ManyToOne
-    @JoinColumn(name = "Postleitzahl", referencedColumnName = "Postleitzahl")
+    @JoinColumn(name="Postleitzahl", insertable = false, updatable = false) //PROBLEM MIGHT BE HERE https://stackoverflow.com/questions/24377478/persistenceexception-column-id-specified-twice
     private Ort ort;
 
     public Adresse() {
@@ -30,7 +30,6 @@ public class Adresse {
         this.straße = straße;
         this.hausnummer = hausnummer;
         this.postleitzahl = postleitzahl;
-        // this.postleitzahl=ort.getPostleitzahl();
     }
 
     public int getAdressId() {

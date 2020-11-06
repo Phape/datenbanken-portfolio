@@ -19,8 +19,8 @@ public class Ort implements Serializable {
     @Column(name = "Ortsname", nullable = false)
     private String ortsname;
 
-    @OneToMany(mappedBy = "ort", cascade = CascadeType.ALL)
-    private List<Adresse> adressen = new ArrayList<Adresse>();
+    // @OneToMany(mappedBy = "ort", cascade = CascadeType.ALL)
+    // private List<Adresse> adressen = new ArrayList<Adresse>();
 
     public Ort() {
     }
