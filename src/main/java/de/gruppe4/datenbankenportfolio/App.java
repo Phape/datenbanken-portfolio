@@ -39,8 +39,8 @@ public class App {
         Transaction t = session.beginTransaction();
         
         // adresse.setAdressId(); //auto generated
-        Ort ort = session.get(Ort.class, plz);
-        Adresse adresse = new Adresse(straße, hausnummer, ort);
+        // Ort ort = session.get(Ort.class, plz);
+        Adresse adresse = new Adresse(straße, hausnummer, plz);
         //adresse.setPostleitzahl(plz);
         try { // try-catch needed? see slide 171 / Hibernate-18 -> didn´t help
             session.save(adresse);
@@ -241,7 +241,7 @@ public class App {
         versicherter.setVorname(vorname);
         versicherter.setNachname(nachname);
         versicherter.setAdressId(adressId);
-        versicherter.setArbeitgeberId(arbeitgeberId);
+        // versicherter.setArbeitgeberId(arbeitgeberId);
         versicherter.setGeburtsdatum(geburtsdatum);
         versicherter.setRentenart(rentenart);
         versicherter.setVersicherungsstatus(versicherungsstatus);
@@ -266,7 +266,7 @@ public class App {
         versicherter.setVorname(vorname);
         versicherter.setNachname(nachname);
         versicherter.setAdressId(setAdressId);
-        versicherter.setArbeitgeberId(arbeitgeberId);
+        // versicherter.setArbeitgeberId(arbeitgeberId);
         versicherter.setGeburtsdatum(geburtsdatum);
         versicherter.setRentenart(rentenart);
         versicherter.setVersicherungsstatus(versicherungsstatus);

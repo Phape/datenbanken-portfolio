@@ -1,12 +1,14 @@
 package de.gruppe4.datenbankenportfolio;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "versicherter")
-@NoArgsConstructor
+
 public class Versicherter {
     @Id
     @Column(name = "VersicherungsNr")
@@ -20,12 +22,12 @@ public class Versicherter {
     private String nachname;
 
     @Column(name = "Geburtsdatum")
-    private Date Geburtsdatum;
+    private Date geburtsdatum;
 
     @Column(name = "Versorgungspunkte")
     private float versorgungspunkte;
 
-    //@Column(name = "AdressId")
+    // @Column(name = "AdressId")
     private int adressId;
 
     @ManyToOne
@@ -38,15 +40,32 @@ public class Versicherter {
     @Column(name = "Versicherungsstatus")
     private String versicherungsstatus;
 
-    // @Column(name = "ArbeitgeberId")
-    private int arbeitgeberId;
+    // @ManyToMany
+    // @JoinColumn(name = "ArbeitgeberId")
+    // private List<Arbeitgeber> arbeitgeber;
 
-    /*@ManyToMany
-    @JoinColumn(name = "ArbeitgeberId")
-    private Arbeitgeber arbeitgeber;
-    */
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+        name = "Arbeitsverhaeltnisse", 
+        joinColumns = { @JoinColumn(name = "VersicherungsNr") }, 
+        inverseJoinColumns = { @JoinColumn(name = "ArbeitgeberId") }
+    )
+    private List<Arbeitgeber> arbeitgebers = new ArrayList<Arbeitgeber>();
 
+    public Versicherter() {
 
+    }
+
+    public Versicherter(String vorname, String nachname, Date geburtsdatum, float versorgungspunkte, int adressId,
+            String rentenart, String versicherungsstatus) {
+        this.vorname = vorname;
+        this.nachname = nachname;
+        this.geburtsdatum = geburtsdatum;
+        this.versorgungspunkte = versorgungspunkte;
+        this.adressId = adressId;
+        this.rentenart = rentenart;
+        this.versicherungsstatus = versicherungsstatus;
+    }
 
     public int getVersicherungsNr() {
         return this.versicherungsNr;
@@ -56,7 +75,6 @@ public class Versicherter {
         this.versicherungsNr = versicherungsNr;
     }
 
-
     public String getVorname() {
         return this.vorname;
     }
@@ -65,7 +83,6 @@ public class Versicherter {
         this.vorname = vorname;
     }
 
-    
     public String getNachname() {
         return this.nachname;
     }
@@ -74,15 +91,13 @@ public class Versicherter {
         this.nachname = nachname;
     }
 
-
     public Date getGeburtsdatum() {
-        return this.Geburtsdatum;
+        return this.geburtsdatum;
     }
 
     public void setGeburtsdatum(Date Geburtsdatum) {
-        this.Geburtsdatum = Geburtsdatum;
+        this.geburtsdatum = Geburtsdatum;
     }
-
 
     public float getVersorgungspunkte() {
         return this.versorgungspunkte;
@@ -92,7 +107,6 @@ public class Versicherter {
         this.versorgungspunkte = versorgungspunkte;
     }
 
-
     public int getAdressId() {
         return this.adressId;
     }
@@ -100,7 +114,6 @@ public class Versicherter {
     public void setAdressId(int adressId) {
         this.adressId = adressId;
     }
-
 
     public Adresse getAdresse() {
         return this.adresse;
@@ -110,7 +123,6 @@ public class Versicherter {
         this.adresse = adresse;
     }
 
-
     public String getRentenart() {
         return this.rentenart;
     }
@@ -118,7 +130,6 @@ public class Versicherter {
     public void setRentenart(String rentenart) {
         this.rentenart = rentenart;
     }
-
 
     public String getVersicherungsstatus() {
         return this.versicherungsstatus;
@@ -128,38 +139,22 @@ public class Versicherter {
         this.versicherungsstatus = versicherungsstatus;
     }
 
-
-    public int getArbeitgeberId() {
-        return this.arbeitgeberId;
+    public List<Arbeitgeber> getArbeitgebers() {
+        return this.arbeitgebers;
     }
 
-    public void setArbeitgeberId(int arbeitgeberId) {
-        this.arbeitgeberId = arbeitgeberId;
+    public void setArbeitgebers(List<Arbeitgeber> arbeitgeber) {
+        this.arbeitgebers = arbeitgeber;
     }
-
-/*
-    public Arbeitgeber getArbeitgeber(int arbeitgeberId) {
-        return this.arbeitgeber;
-    }
-
-    public void setArbeitgeber(Arbeitgeber arbeitgeber) {
-        this.arbeitgeber = arbeitgeber;
-    }
-*/
 
     @Override
     public String toString() {
-        return "{" +
-            " versicherungsNr='" + getVersicherungsNr() + "'" +
-            ", vorname='" + getVorname() + "'" +
-            ", nachname='" + getNachname() + "'" +
-            ", Geburtsdatum='" + getGeburtsdatum() + "'" +
-            ", versorgungspunkte='" + getVersorgungspunkte() + "'" +
-            ", adressId='" + getAdressId() + "'" +
-            ", rentenart='" + getRentenart() + "'" +
-            ", versicherungsstatus='" + getVersicherungsstatus() + "'" +
-            ", arbeitgeberId='" + getArbeitgeberId() + "'" +
-            "}";
+        return "{" + " versicherungsNr='" + getVersicherungsNr() + "'" + ", vorname='" + getVorname() + "'"
+                + ", nachname='" + getNachname() + "'" + ", Geburtsdatum='" + getGeburtsdatum() + "'"
+                + ", versorgungspunkte='" + getVersorgungspunkte() + "'" + ", adressId='" + getAdressId() + "'"
+                + ", rentenart='" + getRentenart() + "'" + ", versicherungsstatus='" + getVersicherungsstatus() + "'"
+                + ", arbeitgebers'" + getArbeitgebers() + "'" + ", arbeitgeber='" + getArbeitgebers() + "'"
+                + "}";
     }
 
 }

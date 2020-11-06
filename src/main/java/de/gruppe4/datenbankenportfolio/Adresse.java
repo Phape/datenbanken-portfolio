@@ -1,11 +1,9 @@
 package de.gruppe4.datenbankenportfolio;
 
 import javax.persistence.*;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "adresse")
-@NoArgsConstructor
 public class Adresse {
     @Id
     @Column(name = "AdressId")
@@ -18,25 +16,22 @@ public class Adresse {
     @Column(name = "Hausnummer")
     private String hausnummer;
 
-    //@Column(name = "Postleitzahl")
+    // @Column(name = "Postleitzahl")
     private int postleitzahl;
 
     @ManyToOne
-    @JoinColumn(name="Postleitzahl", referencedColumnName = "Postleitzahl")
+    @JoinColumn(name = "Postleitzahl", referencedColumnName = "Postleitzahl")
     private Ort ort;
-
 
     public Adresse() {
     }
 
-    public Adresse(String straße, String hausnummer, Ort ort) {
+    public Adresse(String straße, String hausnummer, int postleitzahl) {
         this.straße = straße;
         this.hausnummer = hausnummer;
-        this.ort = ort;
-        //this.postleitzahl=ort.getPostleitzahl();
+        this.postleitzahl = postleitzahl;
+        // this.postleitzahl=ort.getPostleitzahl();
     }
-
-    
 
     public int getAdressId() {
         return this.adressId;
@@ -46,7 +41,6 @@ public class Adresse {
         this.adressId = adressId;
     }
 
-
     public String getStraße() {
         return this.straße;
     }
@@ -54,7 +48,6 @@ public class Adresse {
     public void setStraße(String straße) {
         this.straße = straße;
     }
-
 
     public String getHausnummer() {
         return this.hausnummer;
@@ -64,7 +57,6 @@ public class Adresse {
         this.hausnummer = hausnummer;
     }
 
-
     public int getPostleitzahl() {
         return this.postleitzahl;
     }
@@ -73,7 +65,6 @@ public class Adresse {
         this.postleitzahl = postleitzahl;
     }
 
-
     public Ort getOrt() {
         return this.ort;
     }
@@ -81,16 +72,11 @@ public class Adresse {
     public void setOrt(Ort ort) {
         this.ort = ort;
     }
-    
 
     @Override
     public String toString() {
-        return "{" +
-            " adressId='" + getAdressId() + "'" +
-            ", straße='" + getStraße() + "'" +
-            ", hausnummer='" + getHausnummer() + "'" +
-            ", postleitzahl='" + getOrt().getPostleitzahl() + "'" +
-            ", ort='" + getOrt().getOrtsname() + "'" +
-            "}";
-    }    
+        return "{" + " adressId='" + getAdressId() + "'" + ", straße='" + getStraße() + "'" + ", hausnummer='"
+                + getHausnummer() + "'" + ", postleitzahl='" + getOrt().getPostleitzahl() + "'" + ", ort='"
+                + getOrt().getOrtsname() + "'" + "}";
+    }
 }

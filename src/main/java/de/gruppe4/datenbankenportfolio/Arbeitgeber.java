@@ -1,11 +1,12 @@
 package de.gruppe4.datenbankenportfolio;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "arbeitgeber")
-@NoArgsConstructor
 public class Arbeitgeber {
     @Id
     @Column(name = "ArbeitgeberId")
@@ -32,7 +33,19 @@ public class Arbeitgeber {
     @JoinColumn(name = "AdressId")
     private Adresse adresse;
 
+    @ManyToMany(mappedBy = "arbeitgebers")
+    private List<Versicherter> versicherters = new ArrayList<Versicherter>();
 
+    public Arbeitgeber() {
+
+    }
+
+    public Arbeitgeber(String firmenname, int adressId, int mitarbeiterNr, String abrechnungsverband) {
+        this.firmenname = firmenname;
+        this.adressId = adressId;
+        this.mitarbeiterNr = mitarbeiterNr;
+        this.abrechnungsverband = abrechnungsverband;
+    }
 
     public int getArbeitgeberId() {
         return this.arbeitgeberId;
@@ -42,7 +55,6 @@ public class Arbeitgeber {
         this.arbeitgeberId = arbeitgeberId;
     }
 
-
     public String getFirmenname() {
         return this.firmenname;
     }
@@ -50,7 +62,6 @@ public class Arbeitgeber {
     public void setFirmenname(String firmenname) {
         this.firmenname = firmenname;
     }
-
 
     public int getAdressId() {
         return this.adressId;
@@ -60,7 +71,6 @@ public class Arbeitgeber {
         this.adressId = adressId;
     }
 
-
     public int getMitarbeiterNr() {
         return this.mitarbeiterNr;
     }
@@ -68,7 +78,6 @@ public class Arbeitgeber {
     public void setMitarbeiterNr(int mitarbeiterNr) {
         this.mitarbeiterNr = mitarbeiterNr;
     }
-
 
     public String getAbrechnungsverband() {
         return this.abrechnungsverband;
@@ -78,7 +87,6 @@ public class Arbeitgeber {
         this.abrechnungsverband = abrechnungsverband;
     }
 
-
     public KeyAccountManager getKeyAccountManager(int mitarbeiterNr) {
         return this.keyAccountManager;
     }
@@ -86,7 +94,6 @@ public class Arbeitgeber {
     public void setKeyAccountManager(KeyAccountManager keyAccountManager) {
         this.keyAccountManager = keyAccountManager;
     }
-
 
     public Adresse getAdresse(int adressId) {
         return this.adresse;
@@ -96,16 +103,21 @@ public class Arbeitgeber {
         this.adresse = adresse;
     }
 
+    public List<Versicherter> getVersicherters() {
+        return this.versicherters;
+    }
+
+    public void setVersicherters(List<Versicherter> versicherters) {
+        this.versicherters = versicherters;
+    }
 
     @Override
     public String toString() {
-        return "{" +
-            " arbeitgeberId='" + getArbeitgeberId() + "'" +
-            ", firmenname='" + getFirmenname() + "'" +
-            ", adressId='" + getAdressId() + "'" +
-            ", abrechnungsverband='" + getAbrechnungsverband() + "'" +
-            ", mitarbeiterNr='" + getKeyAccountManager(mitarbeiterNr) + "'" +
-            ", adresse='" + getAdresse(adressId) + "'" +
-            "}";
+        return "{" + " arbeitgeberId='" + getArbeitgeberId() + "'" + ", firmenname='" + getFirmenname() + "'"
+                + ", adressId='" + getAdressId() + "'" + ", abrechnungsverband='" + getAbrechnungsverband() + "'"
+                + ", mitarbeiterNr='" + getKeyAccountManager(mitarbeiterNr) + "'" + ", adresse='" + getAdresse(adressId)
+                + "'" 
+                + "}";
     }
+
 }

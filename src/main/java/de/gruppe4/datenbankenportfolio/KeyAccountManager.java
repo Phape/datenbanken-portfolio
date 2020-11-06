@@ -6,11 +6,9 @@ import java.util.ArrayList;
 import javax.persistence.*;
 
 import java.util.List;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "keyAccountManager")
-@NoArgsConstructor
 public class KeyAccountManager {
     @Id
     @Column(name = "MitarbeiterNr")
@@ -26,24 +24,19 @@ public class KeyAccountManager {
     @Column(name = "Eintrittsdatum")
     private Date eintrittsdatum;
 
-    @OneToMany(mappedBy = "keyAccountManager", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "keyAccountManager", cascade = CascadeType.ALL)
     private List<Arbeitgeber> arbeitgebers = new ArrayList<Arbeitgeber>();
-
-
 
     public KeyAccountManager() {
     }
 
-
-    public KeyAccountManager(String vorname, String nachname, Date eintrittsdatum, List<Arbeitgeber> arbeitgebers) {
+    public KeyAccountManager(String vorname, String nachname, Date eintrittsdatum) {
         this.vorname = vorname;
         this.nachname = nachname;
         this.eintrittsdatum = eintrittsdatum;
-        this.arbeitgebers = arbeitgebers;
+        // this.arbeitgebers = arbeitgebers;
     }
 
-
-    
     public int getMitarbeiterNr() {
         return this.mitarbeiterNr;
     }
@@ -51,7 +44,6 @@ public class KeyAccountManager {
     public void setMitarbeiterNr(int mitarbeiterNr) {
         this.mitarbeiterNr = mitarbeiterNr;
     }
-
 
     public String getVorname() {
         return this.vorname;
@@ -61,7 +53,6 @@ public class KeyAccountManager {
         this.vorname = vorname;
     }
 
-
     public String getNachname() {
         return this.nachname;
     }
@@ -69,7 +60,6 @@ public class KeyAccountManager {
     public void setNachname(String nachname) {
         this.nachname = nachname;
     }
-
 
     public Date getEintrittsdatum() {
         return this.eintrittsdatum;
@@ -79,14 +69,9 @@ public class KeyAccountManager {
         this.eintrittsdatum = eintrittsdatum;
     }
 
-
     @Override
     public String toString() {
-        return "{" +
-            " mitarbeiterNr='" + getMitarbeiterNr() + "'" +
-            ", vorname='" + getVorname() + "'" +
-            ", nachname='" + getNachname() + "'" +
-            ", eintrittsdatum='" + getEintrittsdatum() + "'" +
-            "}";
+        return "{" + " mitarbeiterNr='" + getMitarbeiterNr() + "'" + ", vorname='" + getVorname() + "'" + ", nachname='"
+                + getNachname() + "'" + ", eintrittsdatum='" + getEintrittsdatum() + "'" + "}";
     }
 }
