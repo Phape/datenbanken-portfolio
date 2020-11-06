@@ -25,7 +25,7 @@ public class Arbeitgeber {
     private String abrechnungsverband;
 
     @ManyToOne
-    @JoinColumn(name = "MitarbeiterNr")
+    @JoinColumn(name = "MitarbeiterNr", referencedColumnName = "MitarbeiterNr")
     private KeyAccountManager keyAccountManager;
 
     @ManyToOne

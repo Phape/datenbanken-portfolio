@@ -18,15 +18,26 @@ public class Adresse {
     @Column(name = "Hausnummer")
     private String hausnummer;
 
-    // @Column(name = "Postleitzahl")
+    //@Column(name = "Postleitzahl")
     private int postleitzahl;
 
     @ManyToOne
-    @JoinColumn(name="Postleitzahl")
+    @JoinColumn(name="Postleitzahl", referencedColumnName = "Postleitzahl")
     private Ort ort;
 
 
+    public Adresse() {
+    }
+
+    public Adresse(String straße, String hausnummer, Ort ort) {
+        this.straße = straße;
+        this.hausnummer = hausnummer;
+        this.ort = ort;
+        //this.postleitzahl=ort.getPostleitzahl();
+    }
+
     
+
     public int getAdressId() {
         return this.adressId;
     }
@@ -78,7 +89,7 @@ public class Adresse {
             " adressId='" + getAdressId() + "'" +
             ", straße='" + getStraße() + "'" +
             ", hausnummer='" + getHausnummer() + "'" +
-            ", postleitzahl='" + getPostleitzahl() + "'" +
+            ", postleitzahl='" + getOrt().getPostleitzahl() + "'" +
             ", ort='" + getOrt().getOrtsname() + "'" +
             "}";
     }    

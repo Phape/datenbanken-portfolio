@@ -1,19 +1,40 @@
 package de.gruppe4.datenbankenportfolio;
 
 import javax.persistence.*;
+
 import lombok.NoArgsConstructor;
+
+import java.util.List;
+import java.io.Serializable;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "ort")
 @NoArgsConstructor
-public class Ort {
+@SuppressWarnings("serial")
+public class Ort implements Serializable{
+
     @Id
-    @Column(name = "Postleitzahl")
+    @Column(name = "Postleitzahl", unique = true)
     private int postleitzahl;
 
     @Column(name = "Ortsname", nullable=false)
     private String ortsname;
 
+    @OneToMany(mappedBy = "ort", cascade=CascadeType.ALL)
+    private List<Adresse> adressen = new ArrayList<Adresse>();
+
+
+
+    public Ort() {
+    }
+
+    public Ort(int postleitzahl, String ortsname, List<Adresse> adressen) {
+        this.postleitzahl = postleitzahl;
+        this.ortsname = ortsname;
+        this.adressen = adressen;
+    }
+    
 
     
     public int getPostleitzahl() {
@@ -41,5 +62,4 @@ public class Ort {
             ", ortsname='" + getOrtsname() + "'" +
             "}";
     }
-
 }

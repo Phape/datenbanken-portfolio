@@ -11,9 +11,9 @@ public class App {
     static Configuration config;
 
     public static void main(String[] args) {
-        // config = new Configuration().configure();
-        // factory = config.buildSessionFactory();
-        // session = factory.openSession();
+        //config = new Configuration().configure();
+        //factory = config.buildSessionFactory();
+        //session = factory.openSession();
 
         App app = new App();
         app.init();
@@ -36,13 +36,12 @@ public class App {
     }
 
     protected void createAdresse(String straße, String hausnummer, int plz) {
-        Adresse adresse = new Adresse();
-        // adresse.setAdressId(); //auto generated
-        adresse.setStraße(straße);
-        adresse.setHausnummer(hausnummer);
-        adresse.setPostleitzahl(plz);
-
         Transaction t = session.beginTransaction();
+        
+        // adresse.setAdressId(); //auto generated
+        Ort ort = session.get(Ort.class, plz);
+        Adresse adresse = new Adresse(straße, hausnummer, ort);
+        //adresse.setPostleitzahl(plz);
         try { // try-catch needed? see slide 171 / Hibernate-18 -> didn´t help
             session.save(adresse);
             t.commit();
@@ -66,7 +65,7 @@ public class App {
         adresse.setAdressId(adressId); // is needed to id the adress to be updated
         adresse.setStraße(straße);
         adresse.setHausnummer(hausnummer);
-        adresse.setPostleitzahl(plz);
+      //  adresse.setPostleitzahl(plz);
 
         Transaction t = session.beginTransaction();
         session.update(adresse); // try-catch needed? see slide 171 / Hibernate-18
@@ -90,15 +89,16 @@ public class App {
         return adressen;
     }
 
+
     protected void createArbeitgeber(String abrechnungsverband, String firmenname, int adressId, int mitarbeiterNr) {
+        Transaction t = session.beginTransaction();
         Arbeitgeber arbeitgeber = new Arbeitgeber();
         // arbeitgeber.setArbeitgeberId(5); //auto generated
         arbeitgeber.setAbrechnungsverband(abrechnungsverband);
         arbeitgeber.setFirmenname(firmenname);
         arbeitgeber.setAdressId(adressId);
         arbeitgeber.setMitarbeiterNr(mitarbeiterNr);
-
-        Transaction t = session.beginTransaction();
+        arbeitgeber.setKeyAccountManager(session.get(KeyAccountManager.class, mitarbeiterNr));
         session.save(arbeitgeber);
         t.commit();
     }
@@ -140,6 +140,7 @@ public class App {
         t.commit();
         return arbeitgeberList;
     }
+
 
     protected void createKeyAccountManager(String vorname, String nachname, Date eintritsdatum) {
         KeyAccountManager keyAccountManager = new KeyAccountManager();

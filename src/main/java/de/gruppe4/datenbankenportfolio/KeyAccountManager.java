@@ -1,8 +1,11 @@
 package de.gruppe4.datenbankenportfolio;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 import javax.persistence.*;
+
+import java.util.List;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -22,6 +25,22 @@ public class KeyAccountManager {
 
     @Column(name = "Eintrittsdatum")
     private Date eintrittsdatum;
+
+    @OneToMany(mappedBy = "keyAccountManager", cascade=CascadeType.ALL)
+    private List<Arbeitgeber> arbeitgebers = new ArrayList<Arbeitgeber>();
+
+
+
+    public KeyAccountManager() {
+    }
+
+
+    public KeyAccountManager(String vorname, String nachname, Date eintrittsdatum, List<Arbeitgeber> arbeitgebers) {
+        this.vorname = vorname;
+        this.nachname = nachname;
+        this.eintrittsdatum = eintrittsdatum;
+        this.arbeitgebers = arbeitgebers;
+    }
 
 
     
