@@ -67,7 +67,7 @@ public class App {
 
     protected void deleteAdresse(int adressId) {
         Adresse adresse = new Adresse();
-        adresse.setAdressId(5);
+        adresse.setAdressId(adressId);
 
         Transaction t = session.beginTransaction();
         session.delete(adresse); // try-catch needed? see slide 171 / Hibernate-18
@@ -119,7 +119,7 @@ public class App {
 
     protected void deleteArbeitgeber(int arbeitgeberId) {
         Arbeitgeber arbeitgeber = new Arbeitgeber();
-        arbeitgeber.setAdressId(5);
+        arbeitgeber.setArbeitgeberId(arbeitgeberId);
 
         Transaction t = session.beginTransaction();
         session.delete(arbeitgeber);
@@ -168,7 +168,7 @@ public class App {
 
     protected void deleteKeyAccountManager(int mitarbeiterNr) {
         KeyAccountManager keyAccountManager = new KeyAccountManager();
-        keyAccountManager.setMitarbeiterNr(5);
+        keyAccountManager.setMitarbeiterNr(mitarbeiterNr);
 
         Transaction t = session.beginTransaction();
         session.delete(keyAccountManager);
@@ -212,7 +212,7 @@ public class App {
 
     protected void deleteOrt(int postleitzahl) {
         Ort ort = new Ort();
-        ort.setPostleitzahl(74889);
+        ort.setPostleitzahl(postleitzahl);
 
         Transaction t = session.beginTransaction();
         session.delete(ort);
