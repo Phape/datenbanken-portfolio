@@ -37,11 +37,7 @@ public class App {
 
     protected void createAdresse(String straße, String hausnummer, int plz) {
         Transaction t = session.beginTransaction();
-        
-        // adresse.setAdressId(); //auto generated
-        // Ort ort = session.get(Ort.class, plz);
         Adresse adresse = new Adresse(straße, hausnummer, plz);
-        // adresse.setPostleitzahl(plz);
         session.save(adresse);
         t.commit();
     }
@@ -86,7 +82,6 @@ public class App {
     protected void createArbeitgeber(String abrechnungsverband, String firmenname, int adressId, int mitarbeiterNr) {
         Transaction t = session.beginTransaction();
         Arbeitgeber arbeitgeber = new Arbeitgeber();
-        // arbeitgeber.setArbeitgeberId(5); //auto generated
         arbeitgeber.setAbrechnungsverband(abrechnungsverband);
         arbeitgeber.setFirmenname(firmenname);
         arbeitgeber.setAdressId(adressId);
@@ -137,10 +132,9 @@ public class App {
 
     protected void createKeyAccountManager(String vorname, String nachname, Date eintritsdatum) {
         KeyAccountManager keyAccountManager = new KeyAccountManager();
-        // keyAccountManager.setMitarbeiterNr(5); //auto generated
         keyAccountManager.setVorname(vorname);
         keyAccountManager.setNachname(nachname);
-        keyAccountManager.setEintrittsdatum(eintritsdatum); // not sure if date is used correctly
+        keyAccountManager.setEintrittsdatum(eintritsdatum);
 
         Transaction t = session.beginTransaction();
         session.save(keyAccountManager);
@@ -159,7 +153,7 @@ public class App {
         keyAccountManager.setMitarbeiterNr(mitarbeiterNr);
         keyAccountManager.setVorname(vorname);
         keyAccountManager.setNachname(nachname);
-        keyAccountManager.setEintrittsdatum(eintritsdatum); // not sure if date is used correctly
+        keyAccountManager.setEintrittsdatum(eintritsdatum);
 
         Transaction t = session.beginTransaction();
         session.update(keyAccountManager);
@@ -230,7 +224,6 @@ public class App {
     protected void createVersicherter(String vorname, String nachname, int adressId, int arbeitgeberId,
             Date geburtsdatum, String rentenart, String versicherungsstatus, int versorgungspunkte) {
         Versicherter versicherter = new Versicherter();
-        // versicherter.setVersicherungsNr(5); //auto generated
         versicherter.setVorname(vorname);
         versicherter.setNachname(nachname);
         versicherter.setAdressId(adressId);
@@ -289,7 +282,6 @@ public class App {
 
     protected void createVertrag(int versicherungsNr, Date abschlussdatum, String vertragsstatus, String vertragstyp) {
         Vertrag vertrag = new Vertrag();
-        // vertrag.setVertragsID(5); //auto generated
         vertrag.setVersicherungsNr(versicherungsNr);
         vertrag.setAbschlussdatum(abschlussdatum);
         vertrag.setVertragsstatus(vertragsstatus);

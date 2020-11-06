@@ -1,7 +1,6 @@
 package de.gruppe4.datenbankenportfolio;
 
 import java.sql.Date;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Scanner;
 
 public class Hauptprogramm {

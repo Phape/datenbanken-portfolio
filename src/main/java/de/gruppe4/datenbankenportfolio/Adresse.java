@@ -20,7 +20,7 @@ public class Adresse {
     private int postleitzahl;
 
     @ManyToOne
-    @JoinColumn(name="Postleitzahl", insertable = false, updatable = false) //PROBLEM MIGHT BE HERE https://stackoverflow.com/questions/24377478/persistenceexception-column-id-specified-twice
+    @JoinColumn(name="Postleitzahl", insertable = false, updatable = false)
     private Ort ort;
 
     public Adresse() {
