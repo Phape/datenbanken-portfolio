@@ -9,19 +9,18 @@ public class Hauptprogramm {
 
     public static void main(String[] args) {
         Hauptprogramm hauptprogramm = new Hauptprogramm();
-        hauptprogramm.readUserInput();
+        hauptprogramm.init();
+    }
 
-        // App app = new App();
-        // app.init();
+    public void init() {
+        app = new App();
+        app.init();
+        scanner = new Scanner(System.in);
 
-        // System.out.println(app.readAdresse(6));
+        this.readUserInput();
     }
 
     public void readUserInput() {
-        app = new App();
-        app.init();
-
-        scanner = new Scanner(System.in);
         int record = 0; // table or class the user wants to manipulate
         boolean userRecordSelcetionsIsValid = false;
         while (!userRecordSelcetionsIsValid) {
@@ -63,6 +62,20 @@ public class Hauptprogramm {
                     System.out.println("Inkorrekte Eingabe!");
                     break;
             }
+        }
+    }
+
+    public void askForAnotherOperation() {
+        System.out.println("Möchten sie noch eine Operation durchführen? J/N?");
+        char answer = scanner.next().toLowerCase().charAt(0);
+        if (answer == 'j') {
+            this.readUserInput();
+        }
+        else if (answer == 'n') {
+            
+        } else {
+            System.out.println("Unzulässige Eingabe, bitte geben sie 'j' oder 'n' ein.");
+            askForAnotherOperation();
         }
     }
 
@@ -154,6 +167,7 @@ public class Hauptprogramm {
             default:
                 break;
         }
+        askForAnotherOperation();
     }
 
     public void read(int record) {
@@ -200,18 +214,15 @@ public class Hauptprogramm {
             default:
                 break;
         }
+        askForAnotherOperation();
     }
 
     public void update(int record) {
-        int adressId;
-        int mitarbeiternummer;
-        int versicherungsNr;
-
         System.out.println("\nBitte geben sie die angefragten Parameter ein");
         switch (record) {
             case 1: // Adresse
                 System.out.println("Adress ID");
-                adressId = scanner.nextInt();
+                int adressId = scanner.nextInt();
                 System.out.println("Straße");
                 String straße = scanner.next();
                 System.out.println("Hausnummer");
@@ -234,15 +245,15 @@ public class Hauptprogramm {
                 System.out.println("Name der Firma");
                 String firmenname = scanner.next();
                 System.out.println("AdressID");
-                adressId = scanner.nextInt();
+                int adressIdArbeitg = scanner.nextInt();
                 System.out.println("Mitarbeiternummer");
-                mitarbeiternummer = scanner.nextInt();
-                app.updateArbeitgeber(arbietgeberId, abrechnungsverband, firmenname, adressId, mitarbeiternummer);
+                int mitarbeiternummer = scanner.nextInt();
+                app.updateArbeitgeber(arbietgeberId, abrechnungsverband, firmenname, adressIdArbeitg, mitarbeiternummer);
                 break;
 
             case 3: // KeyAccountManager
                 System.out.println("Mitarbeiter Nr.");
-                mitarbeiternummer = scanner.nextInt();
+                int mitarbeiternummerKam = scanner.nextInt();
                 System.out.println("Vorname");
                 String vorname = scanner.next();
                 System.out.println("Nachname");
@@ -250,7 +261,7 @@ public class Hauptprogramm {
                 System.out.println("Eintrittsdatum im Format jjjj-mm-dd"); // vielleicht auch Forat jjjjmmdd, da long
                 long datum = scanner.nextLong();
                 Date eintritsdatum = new Date(datum);
-                app.updateKeyAccountManager(mitarbeiternummer, vorname, nachname, eintritsdatum);
+                app.updateKeyAccountManager(mitarbeiternummerKam, vorname, nachname, eintritsdatum);
                 break;
 
             case 4: // Ort
@@ -263,7 +274,7 @@ public class Hauptprogramm {
 
             case 5: // Versicherter
                 System.out.println("Versicherungs Nr.");
-                versicherungsNr = scanner.nextInt();
+                int versicherungsNr = scanner.nextInt();
                 System.out.println("Vorname");
                 String vornameVers = scanner.next();
                 System.out.println("Nachname");
@@ -289,7 +300,7 @@ public class Hauptprogramm {
                 System.out.println("Vertrags ID");
                 int vertragsId = scanner.nextInt();
                 System.out.println("Versicherungsnummer");
-                versicherungsNr = scanner.nextInt();
+                int versicherungsNrVertrag = scanner.nextInt();
                 System.out.println("Abschlussdatum im Format jjjj-mm-dd"); // Format korrekt?
                 long abschlDatum = scanner.nextLong();
                 Date abschlussdatum = new Date(abschlDatum);
@@ -297,12 +308,13 @@ public class Hauptprogramm {
                 String vertragsstatus = scanner.next();
                 System.out.println("Vertragstyp");
                 String vertragstyp = scanner.next();
-                app.updateVertrag(vertragsId, versicherungsNr, abschlussdatum, vertragsstatus, vertragstyp);
+                app.updateVertrag(vertragsId, versicherungsNrVertrag, abschlussdatum, vertragsstatus, vertragstyp);
                 break;
 
             default:
                 break;
         }
+        askForAnotherOperation();
     }
 
     public void delete(int record) {
@@ -347,5 +359,6 @@ public class Hauptprogramm {
             default:
                 break;
         }
+        askForAnotherOperation();
     }
 }
