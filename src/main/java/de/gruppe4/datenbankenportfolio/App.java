@@ -1,6 +1,5 @@
 package de.gruppe4.datenbankenportfolio;
 
-// import java.sql.Date;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.*;
@@ -12,10 +11,6 @@ public class App {
     static Configuration config;
 
     public static void main(String[] args) {
-        //config = new Configuration().configure();
-        //factory = config.buildSessionFactory();
-        //session = factory.openSession();
-
         App app = new App();
         app.init();
         System.out.println("\nAdresse: " + app.readAdresse(1));
@@ -24,7 +19,6 @@ public class App {
         System.out.println("Ort: " + app.readOrt(76137));
         System.out.println("Versicherter: " + app.readVersicherter(1));
         System.out.println("Vertrag: " + app.readVertrag(1));
-        // System.out.println("Adressen: " + app.readAdressen());
 
         session.close();
     }
@@ -53,12 +47,9 @@ public class App {
     protected void updateAdresse(int adressId, String straße, String hausnummer, int plz) {
         Adresse adresse = new Adresse(straße, hausnummer, plz);
         adresse.setAdressId(adressId); // is needed to id the adress to be updated
-        // adresse.setStraße(straße);
-        // adresse.setHausnummer(hausnummer);
-        // adresse.setPostleitzahl(plz);
 
         Transaction t = session.beginTransaction();
-        session.update(adresse); // try-catch needed? see slide 171 / Hibernate-18
+        session.update(adresse);
         t.commit();
     }
 
@@ -67,7 +58,7 @@ public class App {
         adresse.setAdressId(adressId);
 
         Transaction t = session.beginTransaction();
-        session.delete(adresse); // try-catch needed? see slide 171 / Hibernate-18
+        session.delete(adresse);
         t.commit();
     }
 
@@ -82,11 +73,7 @@ public class App {
 
     protected void createArbeitgeber(String abrechnungsverband, String firmenname, int adressId, int mitarbeiterNr) {
         Transaction t = session.beginTransaction();
-        Arbeitgeber arbeitgeber = new Arbeitgeber();
-        arbeitgeber.setAbrechnungsverband(abrechnungsverband);
-        arbeitgeber.setFirmenname(firmenname);
-        arbeitgeber.setAdressId(adressId);
-        arbeitgeber.setMitarbeiterNr(mitarbeiterNr);
+        Arbeitgeber arbeitgeber = new Arbeitgeber(firmenname, adressId, mitarbeiterNr, abrechnungsverband);
         arbeitgeber.setKeyAccountManager(session.get(KeyAccountManager.class, mitarbeiterNr));
         session.save(arbeitgeber);
         t.commit();
@@ -127,11 +114,8 @@ public class App {
     }
 
 
-    protected void createKeyAccountManager(String vorname, String nachname, Date eintritsdatum) {
-        KeyAccountManager keyAccountManager = new KeyAccountManager();
-        keyAccountManager.setVorname(vorname);
-        keyAccountManager.setNachname(nachname);
-        keyAccountManager.setEintrittsdatum(eintritsdatum);
+    protected void createKeyAccountManager(String vorname, String nachname, Date eintrittsdatum) {
+        KeyAccountManager keyAccountManager = new KeyAccountManager(vorname, nachname, eintrittsdatum);
 
         Transaction t = session.beginTransaction();
         session.save(keyAccountManager);
@@ -171,9 +155,7 @@ public class App {
     }
 
     protected void createOrt(int plz, String ortsname) {
-        Ort ort = new Ort();
-        ort.setPostleitzahl(plz);
-        ort.setOrtsname(ortsname);
+        Ort ort = new Ort(plz, ortsname);
 
         Transaction t = session.beginTransaction();
         session.save(ort);
@@ -212,17 +194,9 @@ public class App {
         return ortList;
     }
 
-    protected void createVersicherter(String vorname, String nachname, int adressId, int arbeitgeberId,
+    protected void createVersicherter(String vorname, String nachname, int adressId,
             Date geburtsdatum, String rentenart, String versicherungsstatus, int versorgungspunkte) {
-        Versicherter versicherter = new Versicherter();
-        versicherter.setVorname(vorname);
-        versicherter.setNachname(nachname);
-        versicherter.setAdressId(adressId);
-        // versicherter.setArbeitgeberId(arbeitgeberId);
-        versicherter.setGeburtsdatum(geburtsdatum);
-        versicherter.setRentenart(rentenart);
-        versicherter.setVersicherungsstatus(versicherungsstatus);
-        versicherter.setVersorgungspunkte(versorgungspunkte);
+        Versicherter versicherter = new Versicherter(vorname, nachname, geburtsdatum, versorgungspunkte, adressId, rentenart, versicherungsstatus);
 
         Transaction t = session.beginTransaction();
         session.save(versicherter);
@@ -240,14 +214,6 @@ public class App {
             int arbeitgeberId, Date geburtsdatum, String rentenart, String versicherungsstatus, int versorgungspunkte) {
         Versicherter versicherter = new Versicherter(vorname, nachname, geburtsdatum, versorgungspunkte, adressId, rentenart, versicherungsstatus);
         versicherter.setVersicherungsNr(versicherungsNr);
-        // versicherter.setVorname(vorname);
-        // versicherter.setNachname(nachname);
-        // versicherter.setAdressId(setAdressId);
-        // versicherter.setArbeitgeberId(arbeitgeberId);
-        // versicherter.setGeburtsdatum(geburtsdatum);
-        // versicherter.setRentenart(rentenart);
-        // versicherter.setVersicherungsstatus(versicherungsstatus);
-        // versicherter.setVersorgungspunkte(versorgungspunkte);
 
         Transaction t = session.beginTransaction();
         session.update(versicherter);
@@ -273,10 +239,6 @@ public class App {
 
     protected void createVertrag(int versicherungsNr, Date abschlussdatum, String vertragsstatus, String vertragstyp) {
         Vertrag vertrag = new Vertrag(versicherungsNr, abschlussdatum, vertragsstatus, vertragstyp);
-        // vertrag.setVersicherungsNr(versicherungsNr);
-        // vertrag.setAbschlussdatum(abschlussdatum);
-        // vertrag.setVertragsstatus(vertragsstatus);
-        // vertrag.setVertragstyp(vertragstyp);
 
         Transaction t = session.beginTransaction();
         session.save(vertrag);
@@ -294,10 +256,6 @@ public class App {
             String vertragstyp) {
         Vertrag vertrag = new Vertrag(versicherungsNr, abschlussdatum, vertragsstatus, vertragstyp);
         vertrag.setVertragsId(vertragsId);
-        // vertrag.setVersicherungsNr(versicherungsNr);
-        // vertrag.setAbschlussdatum(abschlussdatum);
-        // vertrag.setVertragsstatus(vertragsstatus);
-        // vertrag.setVertragstyp(vertragstyp);
 
         Transaction t = session.beginTransaction();
         session.update(vertrag);

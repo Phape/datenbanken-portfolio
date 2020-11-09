@@ -1,6 +1,5 @@
 package de.gruppe4.datenbankenportfolio;
 
-// import java.sql.Date;
 import java.util.Date;
 import java.util.ArrayList;
 
@@ -35,7 +34,6 @@ public class KeyAccountManager {
         this.vorname = vorname;
         this.nachname = nachname;
         this.eintrittsdatum = eintrittsdatum;
-        // this.arbeitgebers = arbeitgebers;
     }
 
     public int getMitarbeiterNr() {

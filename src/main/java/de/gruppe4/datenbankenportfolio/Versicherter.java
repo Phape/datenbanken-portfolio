@@ -1,6 +1,5 @@
 package de.gruppe4.datenbankenportfolio;
 
-// import java.sql.Date;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +27,7 @@ public class Versicherter {
     @Column(name = "Versorgungspunkte")
     private float versorgungspunkte;
 
-    // @Column(name = "AdressId")
+    @Column(name = "AdressId")
     private int adressId;
 
     @ManyToOne

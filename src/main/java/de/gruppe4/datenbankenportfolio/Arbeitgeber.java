@@ -16,10 +16,10 @@ public class Arbeitgeber {
     @Column(name = "Firmenname")
     private String firmenname;
 
-    // @Column(name = "AdressId")
+    @Column(name = "AdressId")
     private int adressId;
 
-    // @Column(name = "MitarbeiterNr")
+    @Column(name = "MitarbeiterNr")
     private int mitarbeiterNr;
 
     @Column(name = "Abrechnungsverband")

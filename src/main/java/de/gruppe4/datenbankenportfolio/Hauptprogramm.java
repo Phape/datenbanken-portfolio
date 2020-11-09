@@ -1,6 +1,5 @@
 package de.gruppe4.datenbankenportfolio;
 
-// import java.sql.Date;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -157,8 +156,8 @@ public class Hauptprogramm {
                 String nachnameVers = scanner.next();
                 System.out.println("Adress ID");
                 int adressIdVers = scanner.nextInt();
-                System.out.println("Arbeitgeber ID");
-                int arbeitgeberId = scanner.nextInt();
+                // System.out.println("Arbeitgeber ID");
+                // int arbeitgeberId = scanner.nextInt();
                 System.out.println("Geburtsdatum im Format jjjj-mm-dd");
                 String datumVers = scanner.next();
                 DateFormat dateFormatVers = new SimpleDateFormat("yyyy-MM-dd");
@@ -175,7 +174,7 @@ public class Hauptprogramm {
                 System.out.println("Versorgungspunkte");
                 int versorgungspunkte = scanner.nextInt();
                 try {
-                    app.createVersicherter(vornameVers, nachnameVers, adressIdVers, arbeitgeberId, geburtsdatum,
+                    app.createVersicherter(vornameVers, nachnameVers, adressIdVers, geburtsdatum,
                             rentenart, versicherungsstatus, versorgungspunkte);
                 } catch (Exception e) {
                     System.out.println(

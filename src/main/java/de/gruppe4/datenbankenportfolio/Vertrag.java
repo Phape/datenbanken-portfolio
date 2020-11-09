@@ -1,6 +1,5 @@
 package de.gruppe4.datenbankenportfolio;
 
-// import java.sql.Date;
 import java.util.Date;
 
 
@@ -38,7 +37,7 @@ public class Vertrag {
         this.versicherungsNr = versicherungsNr;
         this.abschlussdatum = abschlussdatum;
         this.vertragsstatus = vertragsstatus;
-        this.vertragstyp = vertragsstatus;
+        this.vertragstyp = vertragstyp;
     }
 
     public int getVertragsId() {
