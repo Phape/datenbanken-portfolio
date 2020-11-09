@@ -329,31 +329,31 @@ public class Hauptprogramm {
             case 2: // Arbeitgeber
                 System.out.println("Geben sie die Arbeitgeber ID des Arbeitgebers ein den sie löschen wollen:");
                 int arbeitgeberId = scanner.nextInt();
-                app.deleteAdresse(arbeitgeberId);
+                app.deleteArbeitgeber(arbeitgeberId);
                 break;
 
             case 3: // KeyAccountManager
                 System.out.println("Geben sie die Mitarbeiter ID des Key-Account-Managers ein den sie löschen wollen:");
                 int mitarbeiternummer = scanner.nextInt();
-                app.deleteAdresse(mitarbeiternummer);
+                app.deleteKeyAccountManager(mitarbeiternummer);
                 break;
 
             case 4: // Ort
                 System.out.println("Geben sie die Postleitzahl des Ortes ein den sie löschen wollen:");
                 int plz = scanner.nextInt();
-                app.deleteAdresse(plz);
+                app.deleteOrt(plz);
                 break;
 
             case 5: // Versicherter
                 System.out.println("Geben sie die Versicherungs Nrummer des Versicherten ein den sie löschen wollen:");
                 int versicherungsnummer = scanner.nextInt();
-                app.deleteAdresse(versicherungsnummer);
+                app.deleteVersicherter(versicherungsnummer);
                 break;
 
             case 6: // Vertrag
                 System.out.println("Geben sie die Vertrags ID des Vertrages ein den sie löschen wollen:");
                 int vertragsId = scanner.nextInt();
-                app.deleteAdresse(vertragsId);
+                app.deleteVertrag(vertragsId);
                 break;
 
             default:
