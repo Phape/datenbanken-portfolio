@@ -41,7 +41,7 @@ public class Hauptprogramm {
         boolean userCRUDSelecionIsValid = false;
         while (!userCRUDSelecionIsValid) {
             System.out.println(
-                    "\nBitte geben Sie den Buchstaben der gewünschten Aktion ein\nc: Daten einfügen\nr: Daten abrufen\nu: Daten ändern\nd: Daten lentfernen");
+                    "\nBitte geben Sie den Buchstaben der gewünschten Aktion ein\nc: Daten einfügen\nr: Daten abrufen\nu: Daten ändern\nd: Daten  entfernen");
             char operation = scanner.next().toLowerCase().charAt(0);
             switch (operation) {
                 case 'c':
@@ -318,15 +318,15 @@ public class Hauptprogramm {
                 int mitarbeiternummer = scanner.nextInt();
 
                 try {
-                    app.createArbeitgeber(abrechnungsverband, firmenname, adressIdArbeitg, mitarbeiternummer);
+                    app.updateArbeitgeber(arbietgeberId, abrechnungsverband, firmenname, adressIdArbeitg,
+                        mitarbeiternummer);
                 } catch (Exception e) {
                     System.out.println(
                             "\nEtwas ist schiefgelaufen. Vielleicht existiert keine Adresse mit der angegebenen Adress-ID.");
                     success = false;
                 }
 
-                app.updateArbeitgeber(arbietgeberId, abrechnungsverband, firmenname, adressIdArbeitg,
-                        mitarbeiternummer);
+                
                 break;
 
             case 3: // KeyAccountManager
@@ -347,14 +347,12 @@ public class Hauptprogramm {
                 }
 
                 try {
-                    app.createKeyAccountManager(vorname, nachname, eintrittsdatum);
+                    app.updateKeyAccountManager(mitarbeiternummerKam, vorname, nachname, eintrittsdatum);
                 } catch (Exception e) {
                     System.out.println(
                             "\nEtwas ist schiefgelaufen. Vielleicht existiert keine Adresse mit der angegebenen Adress-ID.");
                     success = false;
                 }
-
-                app.updateKeyAccountManager(mitarbeiternummerKam, vorname, nachname, eintrittsdatum);
                 break;
 
             case 4: // Ort
