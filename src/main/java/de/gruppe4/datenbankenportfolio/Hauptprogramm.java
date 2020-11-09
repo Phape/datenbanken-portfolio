@@ -9,6 +9,12 @@ import java.util.Scanner;
 public class Hauptprogramm {
     Scanner scanner;
     App app;
+    static final int ADRESSE = 1;
+    static final int ARBEITGEBER = 2;
+    static final int KEYACCOUNTMANAGER = 3;
+    static final int ORT = 4;
+    static final int VERSICHERTER = 5;
+    static final int VERTRAG = 6;
 
     public static void main(String[] args) {
         Hauptprogramm hauptprogramm = new Hauptprogramm();
@@ -28,7 +34,7 @@ public class Hauptprogramm {
         boolean userRecordSelcetionsIsValid = false;
         while (!userRecordSelcetionsIsValid) {
             System.out.println(
-                    "\nBitte geben Sie an, welchen Datensatz Sie benutzen möchten:\n1: Adresse\n2: Arbeitgeber\n3: KeyAccountManager\n4: Ort\n5: Versicherter\n6: Vertrag");
+                    "\nBitte geben Sie an, welchen Datensatz Sie benutzen möchten:\n" + ADRESSE + ": Adresse\n" + ARBEITGEBER + ": Arbeitgeber\n" + KEYACCOUNTMANAGER + ": KeyAccountManager\n" + ORT + ": Ort\n" + VERSICHERTER + ": Versicherter\n" + VERTRAG + ": Vertrag");
             record = scanner.nextInt();
             if (0 < record && record < 7) {
                 userRecordSelcetionsIsValid = true;
@@ -68,12 +74,11 @@ public class Hauptprogramm {
         }
     }
 
-
     public void create(int record) {
         System.out.println("\nBitte geben Sie die angefragten Parameter ein");
         boolean success = true;
         switch (record) {
-            case 1: // Adresse
+            case ADRESSE:
                 System.out.println("Straße");
                 String straße = scanner.next();
                 System.out.println("Hausnummer");
@@ -89,7 +94,7 @@ public class Hauptprogramm {
                 }
                 break;
 
-            case 2: // Arbeitgeber
+            case ARBEITGEBER:
                 System.out.println("Abrechnungsverband");
                 String abrechnungsverband = scanner.next();
                 System.out.println("Name der Firma");
@@ -98,7 +103,7 @@ public class Hauptprogramm {
                 int adressId = scanner.nextInt();
                 System.out.println("Mitarbeiter-Nummer");
                 int mitarbeiternummer = scanner.nextInt();
-                
+
                 try {
                     app.createArbeitgeber(abrechnungsverband, firmenname, adressId, mitarbeiternummer);
                 } catch (Exception e) {
@@ -108,7 +113,7 @@ public class Hauptprogramm {
                 }
                 break;
 
-            case 3: // KeyAccountManager
+            case KEYACCOUNTMANAGER:
                 System.out.println("Vorname");
                 String vorname = scanner.next();
                 System.out.println("Nachname");
@@ -117,9 +122,9 @@ public class Hauptprogramm {
                 String datum = scanner.next();
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date eintrittsdatum = new Date();
-                try{
+                try {
                     eintrittsdatum = dateFormat.parse(datum);
-                } catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 try {
@@ -131,7 +136,7 @@ public class Hauptprogramm {
                 }
                 break;
 
-            case 4: // Ort
+            case ORT:
                 System.out.println("Postleitzahl");
                 int plz = scanner.nextInt();
                 System.out.println("Ortsname");
@@ -145,7 +150,7 @@ public class Hauptprogramm {
                 }
                 break;
 
-            case 5: // Versicherter
+            case VERSICHERTER:
                 System.out.println("Vorname");
                 String vornameVers = scanner.next();
                 System.out.println("Nachname");
@@ -158,9 +163,9 @@ public class Hauptprogramm {
                 String datumVers = scanner.next();
                 DateFormat dateFormatVers = new SimpleDateFormat("yyyy-MM-dd");
                 Date geburtsdatum = new Date();
-                try{
+                try {
                     geburtsdatum = dateFormatVers.parse(datumVers);
-                } catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 System.out.println("Rentenart");
@@ -170,25 +175,25 @@ public class Hauptprogramm {
                 System.out.println("Versorgungspunkte");
                 int versorgungspunkte = scanner.nextInt();
                 try {
-                    app.createVersicherter(vornameVers, nachnameVers, adressIdVers, arbeitgeberId, geburtsdatum, rentenart,
-                        versicherungsstatus, versorgungspunkte);
+                    app.createVersicherter(vornameVers, nachnameVers, adressIdVers, arbeitgeberId, geburtsdatum,
+                            rentenart, versicherungsstatus, versorgungspunkte);
                 } catch (Exception e) {
                     System.out.println(
-                        "\nEtwas ist schiefgelaufen. Vielleicht existiert keine Adresse mit der angegebenen Adress-ID oder die angegebene Arbeitgeber-ID existiert noch nicht");
+                            "\nEtwas ist schiefgelaufen. Vielleicht existiert keine Adresse mit der angegebenen Adress-ID oder die angegebene Arbeitgeber-ID existiert noch nicht");
                     success = false;
                 }
                 break;
 
-            case 6: // Vertrag
+            case VERTRAG:
                 System.out.println("Versicherungsnummer");
                 int versicherungsNr = scanner.nextInt();
                 System.out.println("Abschlussdatum im Format jjjj-mm-dd");
                 String datumVertrag = scanner.next();
                 DateFormat dateFormatVertrag = new SimpleDateFormat("yyyy-MM-dd");
                 Date abschlussdatum = new Date();
-                try{
+                try {
                     abschlussdatum = dateFormatVertrag.parse(datumVertrag);
-                } catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 System.out.println("Vertragsstatus");
@@ -199,7 +204,7 @@ public class Hauptprogramm {
                     app.createVertrag(versicherungsNr, abschlussdatum, vertragsstatus, vertragstyp);
                 } catch (Exception e) {
                     System.out.println(
-                        "\nEtwas ist schiefgelaufen. Vielleicht existiert keine Adresse mit der angegebenen Adress-ID oder die angegebene Arbeitgeber-ID existiert noch nicht");
+                            "\nEtwas ist schiefgelaufen. Vielleicht existiert keine Adresse mit der angegebenen Adress-ID oder die angegebene Arbeitgeber-ID existiert noch nicht");
                     success = false;
                 }
                 break;
@@ -215,7 +220,7 @@ public class Hauptprogramm {
     public void read(int record) {
         System.out.println();
         switch (record) {
-            case 1: // Adresse
+            case ADRESSE:
                 System.out.println("Bitte geben Sie die Adress-ID der Adresse ein, die Sie ausgeben lassen wollen:");
                 int adressId = scanner.nextInt();
                 try {
@@ -226,8 +231,9 @@ public class Hauptprogramm {
                 }
                 break;
 
-            case 2: // Arbeitgeber
-                System.out.println("Bitte geben Sie die Arbeitgeber-ID des Arbeitgebers ein, den Sie ausgeben lassen wollen:");
+            case ARBEITGEBER:
+                System.out.println(
+                        "Bitte geben Sie die Arbeitgeber-ID des Arbeitgebers ein, den Sie ausgeben lassen wollen:");
                 int arbeitgeberId = scanner.nextInt();
                 try {
                     System.out.println(app.readArbeitgeber(arbeitgeberId));
@@ -237,7 +243,7 @@ public class Hauptprogramm {
                 }
                 break;
 
-            case 3: // KeyAccountManager
+            case KEYACCOUNTMANAGER:
                 System.out.println(
                         "Bitte geben Sie die Mitarbeiter-ID des Key-Account-Managers ein, den Sie ausgeben lassen wollen:");
                 int mitarbeiternummer = scanner.nextInt();
@@ -249,7 +255,7 @@ public class Hauptprogramm {
                 }
                 break;
 
-            case 4: // Ort
+            case ORT:
                 System.out.println("Bitte geben Sie die Postleitzahl des Ortes ein, den Sie ausgeben lassen wollen:");
                 int plz = scanner.nextInt();
                 try {
@@ -260,7 +266,7 @@ public class Hauptprogramm {
                 }
                 break;
 
-            case 5: // Versicherter
+            case VERSICHERTER:
                 System.out.println(
                         "Bitte geben Sie die Versicherungs-Nummer des Versicherten ein, den Sie ausgeben lassen wollen:");
                 int versicherungsnummer = scanner.nextInt();
@@ -272,8 +278,9 @@ public class Hauptprogramm {
                 }
                 break;
 
-            case 6: // Vertrag
-                System.out.println("Bitte geben Sie die Vertrags-ID des Vertrages ein, den Sie ausgeben lassen wollen:");
+            case VERTRAG:
+                System.out
+                        .println("Bitte geben Sie die Vertrags-ID des Vertrages ein, den Sie ausgeben lassen wollen:");
                 int vertragsId = scanner.nextInt();
                 System.out.println(app.readVertrag(vertragsId));
                 break;
@@ -287,7 +294,7 @@ public class Hauptprogramm {
         boolean success = true;
         System.out.println("\nBitte geben Sie die angefragten Parameter ein");
         switch (record) {
-            case 1: // Adresse
+            case ADRESSE:
                 System.out.println("Adress ID");
                 int adressId = scanner.nextInt();
                 System.out.println("Straße");
@@ -305,7 +312,7 @@ public class Hauptprogramm {
                 }
                 break;
 
-            case 2: // Arbeitgeber
+            case ARBEITGEBER:
                 System.out.println("Arbeitgeber-ID");
                 int arbietgeberId = scanner.nextInt();
                 System.out.println("Abrechnungsverband");
@@ -319,17 +326,16 @@ public class Hauptprogramm {
 
                 try {
                     app.updateArbeitgeber(arbietgeberId, abrechnungsverband, firmenname, adressIdArbeitg,
-                        mitarbeiternummer);
+                            mitarbeiternummer);
                 } catch (Exception e) {
                     System.out.println(
                             "\nEtwas ist schiefgelaufen. Vielleicht existiert keine Adresse mit der angegebenen Adress-ID.");
                     success = false;
                 }
 
-                
                 break;
 
-            case 3: // KeyAccountManager
+            case KEYACCOUNTMANAGER:
                 System.out.println("Mitarbeiter-Nr.");
                 int mitarbeiternummerKam = scanner.nextInt();
                 System.out.println("Vorname");
@@ -340,9 +346,9 @@ public class Hauptprogramm {
                 String datum = scanner.next();
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date eintrittsdatum = new Date();
-                try{
+                try {
                     eintrittsdatum = dateFormat.parse(datum);
-                } catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -355,12 +361,11 @@ public class Hauptprogramm {
                 }
                 break;
 
-            case 4: // Ort
+            case ORT:
                 System.out.println("Postleitzahl");
                 int plz = scanner.nextInt();
                 System.out.println("Ortsname");
                 String ortsname = scanner.next();
-                // app.updateOrt(plz, ortsname);
                 try {
                     app.updateOrt(plz, ortsname);
                 } catch (Exception e) {
@@ -370,7 +375,7 @@ public class Hauptprogramm {
                 }
                 break;
 
-            case 5: // Versicherter
+            case VERSICHERTER:
                 System.out.println("Versicherungs-Nr.");
                 int versicherungsNr = scanner.nextInt();
                 System.out.println("Vorname");
@@ -385,9 +390,9 @@ public class Hauptprogramm {
                 String datumVers = scanner.next();
                 DateFormat dateFormatGeburtsdatum = new SimpleDateFormat("yyyy-MM-dd");
                 Date geburtsdatum = new Date();
-                try{
+                try {
                     geburtsdatum = dateFormatGeburtsdatum.parse(datumVers);
-                } catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 System.out.println("Rentenart");
@@ -407,7 +412,7 @@ public class Hauptprogramm {
                 }
                 break;
 
-            case 6: // Vertrag
+            case VERTRAG:
                 System.out.println("Vertrags-ID");
                 int vertragsId = scanner.nextInt();
                 System.out.println("Versicherungs-Nummer");
@@ -416,9 +421,9 @@ public class Hauptprogramm {
                 String datumVertrag = scanner.next();
                 DateFormat dateFormatVertrag = new SimpleDateFormat("yyyy-MM-dd");
                 Date abschlussdatum = new Date();
-                try{
+                try {
                     abschlussdatum = dateFormatVertrag.parse(datumVertrag);
-                } catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 System.out.println("Vertragsstatus");
@@ -446,37 +451,40 @@ public class Hauptprogramm {
         boolean success = true;
         System.out.println();
         switch (record) {
-            case 1: // Adresse
+            case ADRESSE:
                 System.out.println("Bitte geben Sie die Adress-ID der Adresse ein, die Sie entfernen wollen:");
                 int adressId = scanner.nextInt();
                 app.deleteAdresse(adressId);
                 break;
 
-            case 2: // Arbeitgeber
-                System.out.println("Bitte geben Sie die Arbeitgeber-ID des Arbeitgebers ein, den Sie entfernen wollen:");
+            case ARBEITGEBER:
+                System.out
+                        .println("Bitte geben Sie die Arbeitgeber-ID des Arbeitgebers ein, den Sie entfernen wollen:");
                 int arbeitgeberId = scanner.nextInt();
                 app.deleteArbeitgeber(arbeitgeberId);
                 break;
 
-            case 3: // KeyAccountManager
-                System.out.println("Bitte geben Sie die Mitarbeiter-ID des Key-Account-Managers ein, den sie entfernen wollen:");
+            case KEYACCOUNTMANAGER:
+                System.out.println(
+                        "Bitte geben Sie die Mitarbeiter-ID des Key-Account-Managers ein, den sie entfernen wollen:");
                 int mitarbeiternummer = scanner.nextInt();
                 app.deleteKeyAccountManager(mitarbeiternummer);
                 break;
 
-            case 4: // Ort
+            case ORT:
                 System.out.println("Bitte geben Sie die Postleitzahl des Ortes ein, den Sie entfernen wollen:");
                 int plz = scanner.nextInt();
                 app.deleteOrt(plz);
                 break;
 
-            case 5: // Versicherter
-                System.out.println("Bitte geben Sie die Versicherungs-Nummer des Versicherten ein, den Sie entfernen wollen:");
+            case VERSICHERTER:
+                System.out.println(
+                        "Bitte geben Sie die Versicherungs-Nummer des Versicherten ein, den Sie entfernen wollen:");
                 int versicherungsnummer = scanner.nextInt();
                 app.deleteVersicherter(versicherungsnummer);
                 break;
 
-            case 6: // Vertrag
+            case VERTRAG:
                 System.out.println("Bitte geben sie die Vertrags-ID des Vertrages ein, den sie entfernen wollen:");
                 int vertragsId = scanner.nextInt();
                 app.deleteVertrag(vertragsId);
