@@ -1,6 +1,8 @@
 package de.gruppe4.datenbankenportfolio;
 
-import java.sql.Date;
+// import java.sql.Date;
+import java.util.Date;
+
 
 import javax.persistence.*;
 

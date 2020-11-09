@@ -1,6 +1,7 @@
 package de.gruppe4.datenbankenportfolio;
 
-import java.sql.Date;
+// import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
@@ -281,11 +282,11 @@ public class App {
     }
 
     protected void createVertrag(int versicherungsNr, Date abschlussdatum, String vertragsstatus, String vertragstyp) {
-        Vertrag vertrag = new Vertrag();
-        vertrag.setVersicherungsNr(versicherungsNr);
-        vertrag.setAbschlussdatum(abschlussdatum);
-        vertrag.setVertragsstatus(vertragsstatus);
-        vertrag.setVertragstyp(vertragstyp);
+        Vertrag vertrag = new Vertrag(versicherungsNr, abschlussdatum, vertragsstatus, vertragstyp);
+        // vertrag.setVersicherungsNr(versicherungsNr);
+        // vertrag.setAbschlussdatum(abschlussdatum);
+        // vertrag.setVertragsstatus(vertragsstatus);
+        // vertrag.setVertragstyp(vertragstyp);
 
         Transaction t = session.beginTransaction();
         session.save(vertrag);
