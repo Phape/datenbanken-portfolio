@@ -14,7 +14,7 @@ public class Ort implements Serializable {
     @Column(name = "Postleitzahl", unique = true)
     private int postleitzahl;
 
-    @Column(name = "Ortsname", nullable = false)
+    @Column(name = "Ortsname")
     private String ortsname;
 
     public Ort() {
