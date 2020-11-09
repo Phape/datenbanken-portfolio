@@ -154,9 +154,15 @@ public class Hauptprogramm {
                 int adressIdVers = scanner.nextInt();
                 System.out.println("Arbeitgeber ID");
                 int arbeitgeberId = scanner.nextInt();
-                System.out.println("Geburtsdatum im Format jjjjmmdd");
-                long gebDatum = scanner.nextLong();
-                Date geburtsdatum = new Date(gebDatum);
+                System.out.println("Geburtsdatum im Format jjjj-mm-dd");
+                String datumVers = scanner.next();
+                DateFormat dateFormatVers = new SimpleDateFormat("yyyy-MM-dd");
+                Date geburtsdatum = new Date();
+                try{
+                    geburtsdatum = dateFormatVers.parse(datumVers);
+                } catch(Exception e){
+                    e.printStackTrace();
+                }
                 System.out.println("Rentenart");
                 String rentenart = scanner.next();
                 System.out.println("Versicherungsstatus");
@@ -176,9 +182,15 @@ public class Hauptprogramm {
             case 6: // Vertrag
                 System.out.println("Versicherungsnummer");
                 int versicherungsNr = scanner.nextInt();
-                System.out.println("Abschlussdatum im Format jjjjmmdd");
-                long abschlDatum = scanner.nextLong();
-                Date abschlussdatum = new Date(abschlDatum);
+                System.out.println("Abschlussdatum im Format jjjj-mm-dd");
+                String datumVertrag = scanner.next();
+                DateFormat dateFormatVertrag = new SimpleDateFormat("yyyy-MM-dd");
+                Date abschlussdatum = new Date();
+                try{
+                    abschlussdatum = dateFormatVertrag.parse(datumVertrag);
+                } catch(Exception e){
+                    e.printStackTrace();
+                }
                 System.out.println("Vertragsstatus");
                 String vertragsstatus = scanner.next();
                 System.out.println("Vertragstyp");
@@ -324,9 +336,15 @@ public class Hauptprogramm {
                 String vorname = scanner.next();
                 System.out.println("Nachname");
                 String nachname = scanner.next();
-                System.out.println("Eintrittsdatum im Format jjjjmmdd");
-                long datum = scanner.nextLong();
-                Date eintrittsdatum = new Date(datum);
+                System.out.println("Eintrittsdatum im Format jjjj-mm-dd");
+                String datum = scanner.next();
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date eintrittsdatum = new Date();
+                try{
+                    eintrittsdatum = dateFormat.parse(datum);
+                } catch(Exception e){
+                    e.printStackTrace();
+                }
 
                 try {
                     app.createKeyAccountManager(vorname, nachname, eintrittsdatum);
@@ -365,9 +383,15 @@ public class Hauptprogramm {
                 int adressIdVers = scanner.nextInt();
                 System.out.println("Arbeitgeber-ID");
                 int arbeitgeberId = scanner.nextInt();
-                System.out.println("Geburtsdatum im Format jjjjmmdd");
-                long gebDatum = scanner.nextLong();
-                Date geburtsdatum = new Date(gebDatum);
+                System.out.println("Geburtsdatum im Format jjjj-mm-dd");
+                String datumVers = scanner.next();
+                DateFormat dateFormatGeburtsdatum = new SimpleDateFormat("yyyy-MM-dd");
+                Date geburtsdatum = new Date();
+                try{
+                    geburtsdatum = dateFormatGeburtsdatum.parse(datumVers);
+                } catch(Exception e){
+                    e.printStackTrace();
+                }
                 System.out.println("Rentenart");
                 String rentenart = scanner.next();
                 System.out.println("Versicherungsstatus");
@@ -390,9 +414,15 @@ public class Hauptprogramm {
                 int vertragsId = scanner.nextInt();
                 System.out.println("Versicherungs-Nummer");
                 int versicherungsNrVertrag = scanner.nextInt();
-                System.out.println("Abschlussdatum im Format jjjjmmdd");
-                long abschlDatum = scanner.nextLong();
-                Date abschlussdatum = new Date(abschlDatum);
+                System.out.println("Abschlussdatum im Format jjjj-mm-dd");
+                String datumVertrag = scanner.next();
+                DateFormat dateFormatVertrag = new SimpleDateFormat("yyyy-MM-dd");
+                Date abschlussdatum = new Date();
+                try{
+                    abschlussdatum = dateFormatVertrag.parse(datumVertrag);
+                } catch(Exception e){
+                    e.printStackTrace();
+                }
                 System.out.println("Vertragsstatus");
                 String vertragsstatus = scanner.next();
                 System.out.println("Vertragstyp");
