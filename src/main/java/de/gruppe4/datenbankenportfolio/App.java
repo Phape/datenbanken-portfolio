@@ -103,10 +103,6 @@ public class App {
             int mitarbeiterNr) {
         Arbeitgeber arbeitgeber = new Arbeitgeber(firmenname, adressId, mitarbeiterNr, abrechnungsverband);
         arbeitgeber.setArbeitgeberId(arbeitgeberId);
-        // arbeitgeber.setAbrechnungsverband(abrechnungsverband);
-        // arbeitgeber.setFirmenname(firmenname);
-        // arbeitgeber.setAdressId(adressId);
-        // arbeitgeber.setMitarbeiterNr(mitarbeiterNr);
 
         Transaction t = session.beginTransaction();
         session.update(arbeitgeber);
@@ -152,10 +148,6 @@ public class App {
     protected void updateKeyAccountManager(int mitarbeiterNr, String vorname, String nachname, Date eintritsdatum) {
         KeyAccountManager keyAccountManager = new KeyAccountManager(vorname, nachname, eintritsdatum);
         keyAccountManager.setMitarbeiterNr(mitarbeiterNr);
-        // keyAccountManager.setVorname(vorname);
-        // keyAccountManager.setNachname(nachname);
-        // keyAccountManager.setEintrittsdatum(eintritsdatum);
-
         Transaction t = session.beginTransaction();
         session.update(keyAccountManager);
         t.commit();
@@ -197,8 +189,6 @@ public class App {
 
     protected void updateOrt(int plz, String ortsname) {
         Ort ort = new Ort(plz, ortsname);
-        // ort.setPostleitzahl(plz);
-        // ort.setOrtsname(ortsname);
 
         Transaction t = session.beginTransaction();
         session.update(ort);

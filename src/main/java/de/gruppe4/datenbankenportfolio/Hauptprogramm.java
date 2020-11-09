@@ -41,7 +41,7 @@ public class Hauptprogramm {
         boolean userCRUDSelecionIsValid = false;
         while (!userCRUDSelecionIsValid) {
             System.out.println(
-                    "\nBitte geben Sie den Buchstaben der gewünschten Aktion ein\nc: Daten einfügen\nr: Daten abrufen\nu: Daten ändern\nd: Daten  entfernen");
+                    "\nBitte geben Sie den Buchstaben der gewünschten Aktion ein\nc: Daten einfügen\nr: Daten abrufen\nu: Daten ändern\nd: Daten entfernen");
             char operation = scanner.next().toLowerCase().charAt(0);
             switch (operation) {
                 case 'c':
