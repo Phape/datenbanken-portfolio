@@ -31,7 +31,7 @@ public class Versicherter {
     private int adressId;
 
     @ManyToOne
-    @JoinColumn(name = "AdressId")
+    @JoinColumn(name = "AdressId", insertable = false, updatable = false)
     private Adresse adresse;
 
     @Column(name = "Rentenart")

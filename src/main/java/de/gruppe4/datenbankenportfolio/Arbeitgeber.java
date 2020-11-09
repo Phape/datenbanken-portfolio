@@ -26,11 +26,11 @@ public class Arbeitgeber {
     private String abrechnungsverband;
 
     @ManyToOne
-    @JoinColumn(name = "MitarbeiterNr", referencedColumnName = "MitarbeiterNr")
+    @JoinColumn(name = "MitarbeiterNr", insertable = false, updatable = false)
     private KeyAccountManager keyAccountManager;
 
     @ManyToOne
-    @JoinColumn(name = "AdressId")
+    @JoinColumn(name = "AdressId", insertable = false, updatable = false)
     private Adresse adresse;
 
     @ManyToMany(mappedBy = "arbeitgebers")

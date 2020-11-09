@@ -30,7 +30,7 @@ public class Vertrag {
     private String vertragstyp;
 
     @ManyToOne
-    @JoinColumn(name = "VersicherungsNr")
+    @JoinColumn(name = "VersicherungsNr", insertable = false, updatable = false)
     private Versicherter versicherter;
     
 
