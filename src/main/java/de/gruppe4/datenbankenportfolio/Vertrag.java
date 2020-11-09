@@ -4,20 +4,15 @@ import java.sql.Date;
 
 import javax.persistence.*;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 @Entity
 @Table(name = "vertrag")
-@Data
-@NoArgsConstructor
 public class Vertrag {
     @Id
     @Column(name = "VertragsId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int vertragsId;
 
-    // @Column(name = "VersicherungsNr")
+    @Column(name = "VersicherungsNr")
     private int versicherungsNr;
 
     @Column(name = "Abschlussdatum")
@@ -32,8 +27,17 @@ public class Vertrag {
     @ManyToOne
     @JoinColumn(name = "VersicherungsNr", insertable = false, updatable = false)
     private Versicherter versicherter;
-    
 
+    public Vertrag() {
+
+    }
+
+    public Vertrag(int versicherungsNr, Date abschlussdatum, String vertragsstatus, String vertragstyp) {
+        this.versicherungsNr = versicherungsNr;
+        this.abschlussdatum = abschlussdatum;
+        this.vertragsstatus = vertragsstatus;
+        this.vertragstyp = vertragsstatus;
+    }
 
     public int getVertragsId() {
         return this.vertragsId;
@@ -43,7 +47,6 @@ public class Vertrag {
         this.vertragsId = vertragsId;
     }
 
-
     public int getVersicherungsNr() {
         return this.versicherungsNr;
     }
@@ -51,7 +54,6 @@ public class Vertrag {
     public void setVersicherungsNr(int versicherungsNr) {
         this.versicherungsNr = versicherungsNr;
     }
-
 
     public Date getAbschlussdatum() {
         return this.abschlussdatum;
@@ -61,7 +63,6 @@ public class Vertrag {
         this.abschlussdatum = abschlussdatum;
     }
 
-
     public String getVertragsstatus() {
         return this.vertragsstatus;
     }
@@ -69,7 +70,6 @@ public class Vertrag {
     public void setVertragsstatus(String vertragsstatus) {
         this.vertragsstatus = vertragsstatus;
     }
-
 
     public String getVertragstyp() {
         return this.vertragstyp;
@@ -79,7 +79,6 @@ public class Vertrag {
         this.vertragstyp = vertragstyp;
     }
 
-
     public Versicherter getVersicherter() {
         return this.versicherter;
     }
@@ -88,17 +87,12 @@ public class Vertrag {
         this.versicherter = versicherter;
     }
 
-
     @Override
     public String toString() {
-        return "{" +
-            " vertragsId='" + getVertragsId() + "'" +
-            ", versicherungsNr='" + getVersicherungsNr() + "'" +
-            ", abschlussdatum='" + getAbschlussdatum() + "'" +
-            ", vertragsstatus='" + getVertragsstatus() + "'" +
-            ", vertragstyp='" + getVertragstyp() + "'" +
-            ", versicherter='" + getVersicherter().getVorname() + " " + getVersicherter().getNachname() + "'" +
-            "}";
+        return "{" + " vertragsId='" + getVertragsId() + "'" + ", versicherungsNr='" + getVersicherungsNr() + "'"
+                + ", abschlussdatum='" + getAbschlussdatum() + "'" + ", vertragsstatus='" + getVertragsstatus() + "'"
+                + ", vertragstyp='" + getVertragstyp() + "'" + ", versicherter='" + getVersicherter().getVorname() + " "
+                + getVersicherter().getNachname() + "'" + "}";
     }
 
 }
