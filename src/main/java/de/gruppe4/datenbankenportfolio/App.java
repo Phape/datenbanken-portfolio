@@ -50,11 +50,11 @@ public class App {
     }
 
     protected void updateAdresse(int adressId, String straße, String hausnummer, int plz) {
-        Adresse adresse = new Adresse();
+        Adresse adresse = new Adresse(straße, hausnummer, plz);
         adresse.setAdressId(adressId); // is needed to id the adress to be updated
-        adresse.setStraße(straße);
-        adresse.setHausnummer(hausnummer);
-      //  adresse.setPostleitzahl(plz);
+        // adresse.setStraße(straße);
+        // adresse.setHausnummer(hausnummer);
+        // adresse.setPostleitzahl(plz);
 
         Transaction t = session.beginTransaction();
         session.update(adresse); // try-catch needed? see slide 171 / Hibernate-18
