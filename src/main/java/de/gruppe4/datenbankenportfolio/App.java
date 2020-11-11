@@ -13,6 +13,7 @@ public class App {
     public static void main(String[] args) {
         App app = new App();
         app.init();
+        // These prints are for testing the functionality
         System.out.println("\nAdresse: " + app.readAdresse(1));
         System.out.println("Arbeitgeber: " + app.readArbeitgeber(1));
         System.out.println("KeyAccountManager: " + app.readKeyAccountManager(1));

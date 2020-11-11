@@ -5,9 +5,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
+/**
+ * Console program to use the methods of {@link de.gruppe4.datenbankenportfolio.App}.
+ * Contains methods to Create, Read, Update and Delete records of the dbportfolio Database.
+ */
 public class Hauptprogramm {
     Scanner scanner;
     App app;
+    // 
     static final int ADRESSE = 1;
     static final int ARBEITGEBER = 2;
     static final int KEYACCOUNTMANAGER = 3;
@@ -28,6 +33,12 @@ public class Hauptprogramm {
         this.readUserInput();
     }
 
+    /**
+     * Contains the whole handling of user input (via Console).
+     * First, the user is asked which record he wants to read or manipulate.
+     * Second, the user is asked which operation (one of CRUD) he wants to perform.
+     * Calls one of the methods {@link #create(int)}, {@link #read(int)}, {@link #update(int)}, {@link #delete(int)}
+     */
     public void readUserInput() {
         int record = 0; // table or class the user wants to manipulate
         boolean userRecordSelcetionsIsValid = false;
@@ -73,6 +84,13 @@ public class Hauptprogramm {
         }
     }
 
+    /**
+     * Creates a new object of the given record type (eg. int 1 for Adresse).
+     * The user is asked to enter all required attributes.
+     * Calls the matching methods of {@link de.gruppe4.datenbankenportfolio.App} to manipulate the database.
+     * For example, {@link de.gruppe4.datenbankenportfolio.App#createAdresse(String, String, int)} is called to add an adress.
+     * @param record integer representing the record to be manipulated, eg. {@link #ADRESSE}
+     */
     public void create(int record) {
         System.out.println("\nBitte geben Sie die angefragten Parameter ein");
         boolean success = true;
@@ -216,6 +234,13 @@ public class Hauptprogramm {
         }
     }
 
+    /**
+     * Reads an object of the given record type (eg. {@link #ADRESSE}).
+     * The user is asked to enter the ID.
+     * Calls the matching methods of {@link de.gruppe4.datenbankenportfolio.App} to manipulate the database.
+     * For example, {@link de.gruppe4.datenbankenportfolio.App#readAdresse(int)} is called to read an adress.
+     * @param record integer representing the record to be manipulated, eg. {@link #ADRESSE}
+     */
     public void read(int record) {
         System.out.println();
         switch (record) {
@@ -289,6 +314,13 @@ public class Hauptprogramm {
         }
     }
 
+    /**
+     * Updates an object of the given record type (eg. {@link #ADRESSE}).
+     * The user is asked to enter all required attributes and the ID of the object / entry to manipulate.
+     * Calls the matching methods of {@link de.gruppe4.datenbankenportfolio.App} to manipulate the database.
+     * For example, {@link de.gruppe4.datenbankenportfolio.App#updateAdresse(int, String, String, int)} is called to update an adress.
+     * @param record integer representing the record to be manipulated, eg. {@link #ADRESSE}
+     */
     public void update(int record) {
         boolean success = true;
         System.out.println("\nBitte geben Sie die angefragten Parameter ein");
@@ -446,6 +478,13 @@ public class Hauptprogramm {
         }
     }
 
+    /**
+     * Deletes an object /entry of the given record type (eg. {@link #ADRESSE}).
+     * The user is asked to enter the ID.
+     * Calls the matching methods of {@link de.gruppe4.datenbankenportfolio.App} to manipulate the database.
+     * For example, {@link de.gruppe4.datenbankenportfolio.App#deleteAdresse(int)} is called to delete an adress.
+     * @param record integer representing the record to be manipulated, eg. {@link #ADRESSE}
+     */
     public void delete(int record) {
         boolean success = true;
         System.out.println();
